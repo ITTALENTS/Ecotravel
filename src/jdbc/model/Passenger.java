@@ -1,6 +1,6 @@
 package jdbc.model;
 
-public class Passenger extends Person{
+public class Passenger extends Person {
 
 	@Override
 	public String getName() {

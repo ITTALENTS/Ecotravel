@@ -1,4 +1,5 @@
 package jdbc.templates;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -39,7 +40,7 @@ public class PassengerJDBCTemplate implements PassengerDAO {
 			String date) {
 
 		return jdbc
-				.query("select ecotravel.ads.TownFrom, ecotravel.ads.TownTo , ecotravel.ads.freePlaces,ecotravel.ads.dateOfTravel, ecotravel.profiles.email from ecotravel.ads inner join ecotravel.drivers on ecotravel.drivers.driverId=ecotravel.ads.driverId inner join ecotravel.profiles on drivers.profileId=ecotravel.profiles.profileId  where  townFrom=? and townTo=? and dateOfTravel=?",
+				.query("select ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel, profiles.email from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  townFrom=? and townTo=? and dateOfTravel=?",
 						new Object[] { from, to, date },
 						new RowMapper<AdvertismentDtls>() {
 
@@ -61,11 +62,11 @@ public class PassengerJDBCTemplate implements PassengerDAO {
 	}
 
 	@Override
-	public ProfilePass showProfile( String username) {
+	public ProfilePass showProfile(String username) {
 
-		String sql = "select ecotravel.passengers.name,ecotravel.passengers.telephone,ecotravel.passengers.rating, ecotravel.profiles.username, ecotravel.profiles.email from  "
-				+ "ecotravel.passengers inner join ecotravel.profiles on ecotravel.passengers.profileId =ecotravel.profiles.profileId where ecotravel.passengers.profileId="
-				+ "(SELECT profileId FROM ecotravel.profiles where username like ?)";
+		String sql = "select passengers.name,passengers.telephone,passengers.rating, profiles.username, profiles.email from  "
+				+ "passengers inner join profiles on passengers.profileId =profiles.profileId where passengers.profileId="
+				+ "(SELECT profileId FROM profiles where username like ?)";
 		ProfilePass profile = jdbc.queryForObject(sql,
 				new Object[] { username }, new ProfilePassMapper());
 
@@ -76,8 +77,8 @@ public class PassengerJDBCTemplate implements PassengerDAO {
 	@Override
 	public void changeProfile(String name, String telephone, String username) {
 
-		String SQL = "update ecotravel.passengers set ecotravel.passengers.name=?, ecotravel.passengers.telephone=? where profileId = "
-				+ "  (SELECT profileId FROM ecotravel.profiles where username like ?)";
+		String SQL = "update passengers set passengers.name=?, passengers.telephone=? where profileId = "
+				+ "  (SELECT profileId FROM profiles where username like ?)";
 		jdbc.update(SQL, name, telephone, username);
 
 	}
