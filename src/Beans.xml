@@ -11,29 +11,35 @@ class="org.springframework.jdbc.datasource.DriverManagerDataSource">
    <property name="password" value="hristobotev154"/>
 </bean>
 
-	<bean id="person" class="Person" abstract="true">
+	<bean id="person" class="jdbc.model.Person" abstract="true">
 		<property name="rating" value="0"></property>
 	</bean>
-	<bean id="profile" class="Profile"></bean>
-	<bean id="driver" class="Driver" parent="person">
+	<bean id="profile" class="jdbc.model.Profile"></bean>
+	<bean id="driver" class="jdbc.model.Driver" parent="person">
 		<property name="numberOfTravels" value="0"></property>
 	</bean>
 
-	<bean id="passenger" class="Passenger" parent="person"></bean>
-	<bean id="advertisment" class="Addvertisment"></bean>
+	<bean id="passenger" class="jdbc.model.Passenger" parent="person"></bean>
+	<bean id="advertisment" class="jdbc.model.Addvertisment"></bean>
 	<bean id="driverJDBCTemplate" 
-      class="DriverJDBCTemplate">
+      class="jdbc.templates.DriverJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />    
-      
+            
    </bean>
    <bean id="passengerJDBCTemplate" 
-      class="PassengerJDBCTemplate">
+      class="jdbc.templates.PassengerJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />    
+      <property name="transactionManager"  ref="transactionManager" />    
    </bean>
    <bean id="profileJDBCTemplate" 
-      class="ProfileJDBCTemplate">
+      class="jdbc.templates.ProfileJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />  
+            
        
+   </bean>
+    <bean id="transactionManager" 
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource"  ref="dataSource" />    
    </bean>
    
 </beans>

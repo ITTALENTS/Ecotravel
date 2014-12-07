@@ -1,3 +1,4 @@
+package jdbc.model;
 
 public class AdvertismentDtls {
 private String townFrom;

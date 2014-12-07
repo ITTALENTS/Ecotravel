@@ -1,3 +1,4 @@
+package jdbc.model;
 
 public class Addvertisment {
 private String travelFrom ;

@@ -1,7 +1,13 @@
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import jdbc.dao.*;
 
-
+import jdbc.mappers.*;
+import jdbc.model.*;
+import jdbc.templates.*;
 
 public class Demo {
 
@@ -25,10 +31,24 @@ public class Demo {
 	      pas.setTelephone("0896457812");
 	      pas.setRating(0);
 	      pas.setProfile(p);
-	      passengerJDBCTemplate.showProfile(pas, p.getUsername());
+	     
+	    ProfilePass pp=  passengerJDBCTemplate.showProfile(p.getUsername());
+	      System.out.println(pp.getEmail());
 	      passengerJDBCTemplate.changeProfile("Update profile", "08888888", "gosho");
-	      passengerJDBCTemplate.searchAdvertisment("Sofia", "Pernik", "2014-12-08 12:00:00");
-	      
+	      List<AdvertismentDtls> ads= passengerJDBCTemplate.searchAdvertisment("Sofia", "Pernik", "2014-12-08 12:00:00");
+	    for (AdvertismentDtls advertismentDtls : ads) {
+	    	 System.out.print("From" +advertismentDtls.getTownFrom() );
+	    	 System.out.print("To" +advertismentDtls.getTownTo() );
+	    	 System.out.print("Date" +advertismentDtls.getDate());
+	         System.out.print("Driver email : " + advertismentDtls.getEmail());
+	         System.out.println("Free places: " + advertismentDtls.getFreePlaces());
+		}
+	      passengerJDBCTemplate.voteForDriver("gosho", 10);
+	      Driver d = new Driver();
+	      d.setProfile(p);
+	      DriverJDBCTemplate driverJDBCTemplate= (DriverJDBCTemplate) context.getBean("driverJDBCTemplate");
+	      ProfileDriv pd= driverJDBCTemplate.showProfile("mitaka");
+	      System.out.println(pd.getEmail());
 	}
 
 }

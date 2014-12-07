@@ -1,15 +1,29 @@
+package jdbc.model;
 
-public class Driver extends Person{
-
-	private int numberOfTravels;
-	private int yearsInDriving;
-	private Boolean isSmoking;
-	private String musicInTheCar;
-	public String getMusicInTheCar() {
-		return musicInTheCar;
+public class ProfileDriv extends Driver{
+	private String username;
+	private String email;
+	public String getUsername() {
+		return username;
 	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	@Override
+	public String getMusicInTheCar() {
+		// TODO Auto-generated method stub
+		return super.getMusicInTheCar();
+	}
+	@Override
 	public void setMusicInTheCar(String musicInTheCar) {
-		this.musicInTheCar = musicInTheCar;
+		// TODO Auto-generated method stub
+		super.setMusicInTheCar(musicInTheCar);
 	}
 	@Override
 	public String getName() {
@@ -51,24 +65,36 @@ public class Driver extends Person{
 		// TODO Auto-generated method stub
 		super.setProfile(profile);
 	}
+	@Override
 	public int getNumberOfTravels() {
-		return numberOfTravels;
+		// TODO Auto-generated method stub
+		return super.getNumberOfTravels();
 	}
+	@Override
 	public void setNumberOfTravels(int numberOfTravels) {
-		this.numberOfTravels = numberOfTravels;
+		// TODO Auto-generated method stub
+		super.setNumberOfTravels(numberOfTravels);
 	}
+	@Override
 	public int getYearsInDriving() {
-		return yearsInDriving;
+		// TODO Auto-generated method stub
+		return super.getYearsInDriving();
 	}
+	@Override
 	public void setYearsInDriving(int yearsInDriving) {
-		this.yearsInDriving = yearsInDriving;
+		// TODO Auto-generated method stub
+		super.setYearsInDriving(yearsInDriving);
 	}
+	@Override
 	public Boolean getIsSmoking() {
-		return isSmoking;
+		// TODO Auto-generated method stub
+		return super.getIsSmoking();
 	}
+	@Override
 	public void setIsSmoking(Boolean isSmoking) {
-		this.isSmoking = isSmoking;
-	};
+		// TODO Auto-generated method stub
+		super.setIsSmoking(isSmoking);
+	}
 	
 	
 }

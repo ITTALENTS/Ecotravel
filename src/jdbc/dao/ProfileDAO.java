@@ -1,5 +1,6 @@
+package jdbc.dao;
 import javax.sql.DataSource;
-
+import jdbc.model.*;
 
 public interface ProfileDAO {
 	public void setDataSource(DataSource ds);
