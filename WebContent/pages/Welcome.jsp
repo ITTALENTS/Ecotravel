@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="loginWrapper">
-		<form id="loginForm" method="Post" action="Welcome.jsp">
+		<form id="loginForm" method="Post" action="Welcome.html">
 			<div>
 				<label for="username">Username:</label>
 				<input type="text" name="username" value="Enter username" required="required"/>
