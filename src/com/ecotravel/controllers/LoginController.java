@@ -14,8 +14,13 @@ public class LoginController {
 	@RequestMapping(value="/welcome", method = RequestMethod.POST)
 	public String handleLogin(HttpSession session)
 	{
-		session.getAttribute(arg0)
-		if() //user is in Db
+//		request
+//		String username = session.getAttribute("user")
+		if(true) //user is in Db
+		{
+			
+		}
+		return "ChooseForm";
 	}
 	
 }
