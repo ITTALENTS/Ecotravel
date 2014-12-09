@@ -8,7 +8,7 @@ import jdbc.model.*;
 import jdbc.mappers.*;
 import jdbc.dao.*;
 
-public class DriverJDBCTemplate implements DriverDAO {
+public class DriverJDBCTemplate implements IDriverDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbc;
 

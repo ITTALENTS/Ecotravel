@@ -3,7 +3,7 @@ package jdbc.dao;
 import javax.sql.DataSource;
 import jdbc.model.*;
 
-public interface DriverDAO {
+public interface IDriverDAO {
 	public void setDataSource(DataSource ds);
 
 	public Addvertisment openAdvertisment(int driverId, String from, String to,
