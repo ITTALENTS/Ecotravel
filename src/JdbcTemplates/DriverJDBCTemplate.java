@@ -1,6 +1,10 @@
+package JdbcTemplates;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import DAOs.DriverDAO;
+import classes.Addvertisment;
 
 
 public class DriverJDBCTemplate implements DriverDAO{
@@ -11,11 +15,11 @@ public class DriverJDBCTemplate implements DriverDAO{
 	public void openAdvertisment(String from, String to, String date,
 			int freePlaces) {
 
-Addvertisment ad= new Addvertisment();
-ad.setDate(date);
-ad.setFreePlaces(freePlaces);
-ad.setTravelFrom(from);
-ad.setTravelTo(to);
+			Addvertisment ad= new Addvertisment();
+			ad.setDate(date);
+			ad.setFreePlaces(freePlaces);
+			ad.setTravelFrom(from);
+			ad.setTravelTo(to);
 
 
 String sql= "insert into ecotravel.ads (driverId,TownFrom, TownTo,dateOfTravel, ) values(?,?,?,?) ";

@@ -9,15 +9,10 @@
 <body>
 	<form id="registerFormDriver" method="Post" action="#">
 	<p id="licenseSince">
-		<label for="licensePeriod">:</label>
+		<label for="licensePeriod">License</label>
 		Day: <input type = "text" name = "licensePeriodDay" required="required" />
 		Month: <input type = "text" name = "licensePeriodMonth" required="true" />
 		Year: <input type = "text" name = "licensePeriodYear" required="true" />
-	</p>
-	
-	<p id="numberOfTrips">
-		Trip count:
-		<!-- Tuk s jsp pokazvame broq na putuvaniqta -->
 	</p>
 	
 	<p id="emailField">

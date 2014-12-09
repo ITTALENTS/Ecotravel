@@ -14,7 +14,7 @@
 		</p>
 		
 		<p id="age">
-			<label for="bornYear">Name:</label>
+			<label for="bornYear">Born Year:</label>
 			<!-- da izbira ot 2000-1900 primerno s for-che shte go generirame -->
 		</p>
 		

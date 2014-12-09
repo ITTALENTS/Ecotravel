@@ -13,6 +13,6 @@
 		<input type="submit" name="submitButton" value="Send new password">
 	</form>
 	<a id="loginForm" href="/Welcome.jsp">Create new account<a/>	
-	<a id="registerForm" href="RegisterForm.html">Create new account<a/>	
+	<a id="registerForm" href="/RegisterForm.jsp">Create new account<a/>	
 </body>
 </html>

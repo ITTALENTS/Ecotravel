@@ -1,5 +1,11 @@
+package defaults;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import JdbcTemplates.PassengerJDBCTemplate;
+import JdbcTemplates.ProfileJDBCTemplate;
+import classes.Passenger;
+import classes.Profile;
 
 
 

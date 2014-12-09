@@ -20,8 +20,10 @@
 			</div>
 			<input type="submit" name="submitButton" value="Submit">
 		</form>
-			<a id="forgottenPassword" href="\WEB-INF\pages\ForgottenPassword.jsp">Forgotten password</a>
-			<a id="registerForm" href="\WEB-INF\RegisterForm.jsp">Create new account</a>	
+			<a id="forgottenPassword" href="/pages/ForgottenPassword.jsp">Forgotten password</a>
+			<a id="registerForm" href="/pages/RegisterForm.jsp">Create new account</a>
+			 
+			 	
 	</div>
 </body>
 </html>

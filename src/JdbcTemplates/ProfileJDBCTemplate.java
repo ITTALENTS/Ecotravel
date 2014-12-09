@@ -1,9 +1,13 @@
+package JdbcTemplates;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import classes.Profile;
+import DAOInterfaces.IProfileDAO;
 
-public class ProfileJDBCTemplate implements ProfileDAO{
+
+public class ProfileJDBCTemplate implements IProfileDAO{
 
 private	DataSource dataSource;
 private	JdbcTemplate jdbc;

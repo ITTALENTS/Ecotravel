@@ -1,3 +1,4 @@
+package JdbcTemplates;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -7,7 +8,14 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-public class PassengerJDBCTemplate implements PassengerDAO{
+import classes.Driver;
+import classes.Passenger;
+import classes.ProfilePass;
+import defaults.AdvertismentDtls;
+import defaults.ProfilePassMapper;
+import DAOInterfaces.IPassengerDAO;
+
+public class PassengerJDBCTemplate implements IPassengerDAO{
 
 	private	DataSource dataSource;
 	private	JdbcTemplate jdbc;

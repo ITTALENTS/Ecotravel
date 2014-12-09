@@ -8,22 +8,15 @@
 </head>
 <body>
 	<div>
-		<img src = "WEB-INF\pictures\driver\driverImg.gif">
-		<img src = "WEB-INF\pictures\passenger\passengerImg.jpg">
+		<img src = "pictures/driver/driverImg.gif">
+		<img src = "/pictures/passenger/passengerImg.jpg">
 	</div>
 	
 	<div>
-		<a href="#"><img src = "WEB-INF\pictures\driver\driverLogo.png"></a>
-		<a href="#"><img src = "WEB-INF\pictures\passenger\passengerLogo.png"></a>
+		<a href="#"><img src = "/pictures/driver/driverLogo.png"></a>
+		<a href="#"><img src = "/pictures/passenger/passengerLogo.png"></a>
 	</div>
 
-<!-- ChooseRole Page:
-(Това е страницата където избираш роля - Driver / Passenger)
-Има бутон Profile, който те праща към профила ти, т.е. към Profile Page.
-Ако потребителят е отметнал, че няма книжка и се опита да цъкне върху Driver – да изведе съобщение, че трябва да вземе книжка и тогава може да ползва опцията. Т.е. ако няма кнжка, мже да ползва само опцията Passenger.
-Ако шофьорът има книжка:
-           	ако цъкне на Passenger – отива в Passenger page
-           	ако цъкне на Driver – отива на Driver Page
 
 
  -->
