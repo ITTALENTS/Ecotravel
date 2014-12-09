@@ -38,7 +38,7 @@ public class Demo {
 		passengerJDBCTemplate.changeProfile("Update profile", "08888888",
 				"gosho");
 		List<AdvertismentDtls> ads = passengerJDBCTemplate.searchAdvertisment(
-				"Sofia", "Pernik", "2014-12-08 12:00:00");
+				"Sofia", "Pernik", "2014-12-08");
 		for (AdvertismentDtls advertismentDtls : ads) {
 			System.out.print("From" + advertismentDtls.getTownFrom());
 			System.out.print("To" + advertismentDtls.getTownTo());
@@ -55,7 +55,7 @@ public class Demo {
 		ProfileDriv pd = driverJDBCTemplate.showProfile("mitaka");
 		System.out.println(pd.getEmail());
 		Addvertisment ad = driverJDBCTemplate.openAdvertisment(1, "Sofia",
-				"Burgas", "2014-12-08 12:00:00", 5);
+				"Burgas", "2014-12-08", 5);
 		driverJDBCTemplate.increaseTravels("gosho");
 		driverJDBCTemplate.changeProfile("gosho", "New name", "0878222",
 				"Techo", false);
