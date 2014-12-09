@@ -1,7 +1,8 @@
+package DAOInterfaces;
 import javax.sql.DataSource;
 
 
-public interface AddvertismentDAO {
+public interface IAddvertismentDAO {
 	public void setDataSource(DataSource ds);
 	
 }
