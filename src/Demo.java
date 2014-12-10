@@ -15,7 +15,7 @@ public class Demo {
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"Beans.xml");
 
-		ProfileJDBCTemplate profileJDBCTemplate = (ProfileJDBCTemplate) context
+		ProfileDAO profileJDBCTemplate = (ProfileDAO) context
 				.getBean("profileJDBCTemplate");
 		// profileJDBCTemplate.createProfile("gosho","gosho@mail.bg",
 		// "parolata");
@@ -25,7 +25,7 @@ public class Demo {
 		p.setUsername("gosho");
 		profileJDBCTemplate.changePassword(p, "125696");
 
-		PassengerJDBCTemplate passengerJDBCTemplate = (PassengerJDBCTemplate) context
+		PassengerDAO passengerJDBCTemplate = (PassengerDAO) context
 				.getBean("passengerJDBCTemplate");
 		Passenger pas = new Passenger();
 		pas.setName("Passenger1");
@@ -50,7 +50,7 @@ public class Demo {
 		passengerJDBCTemplate.voteForDriver("gosho", 10);
 		Driver d = new Driver();
 		d.setProfile(p);
-		DriverJDBCTemplate driverJDBCTemplate = (DriverJDBCTemplate) context
+		DriverDAO driverJDBCTemplate = (DriverDAO) context
 				.getBean("driverJDBCTemplate");
 		ProfileDriv pd = driverJDBCTemplate.showProfile("mitaka");
 		System.out.println(pd.getEmail());

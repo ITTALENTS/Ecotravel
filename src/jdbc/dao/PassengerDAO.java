@@ -20,7 +20,7 @@ import jdbc.dao.*;
 import jdbc.model.*;
 import jdbc.mappers.*;
 
-public class PassengerJDBCTemplate implements IPassengerDAO {
+public class PassengerDAO implements IPassengerDAO {
 
 	private DataSource dataSource;
 	private JdbcTemplate jdbc;

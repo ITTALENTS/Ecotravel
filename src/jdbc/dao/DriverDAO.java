@@ -8,7 +8,7 @@ import jdbc.model.*;
 import jdbc.mappers.*;
 import jdbc.dao.*;
 
-public class DriverJDBCTemplate implements IDriverDAO {
+public class DriverDAO implements IDriverDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbc;
 
@@ -80,6 +80,7 @@ return ad;
 	}
 	
 	public void registerDriver(String username, String name,String birthYear,String telephone,int yearsInDriving, String musicInTheCar, boolean smokeInTheCar){
+		
 		String sql = "select profileId from profiles where username=?";
 		int profileId= jdbc.queryForInt(sql, username);
 		String insert= "Insert into drivers(profileId,nameOfDriver,telephone, rating, smokeInTheCar, travels,yearsInDriving,musicInTheCar,birthYear)  values(?,?,?,?,?,?,?,?,?) ";

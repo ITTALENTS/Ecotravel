@@ -16,7 +16,7 @@ import jdbc.dao.*;
 import jdbc.mappers.*;
 import jdbc.model.*;
 
-public class ProfileJDBCTemplate<Person> implements IProfileDAO {
+public class ProfileDAO<Person> implements IProfileDAO {
 
 	private DataSource dataSource;
 	private JdbcTemplate jdbc;
