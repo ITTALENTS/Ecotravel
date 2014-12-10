@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<h1>THIS PAGE IS UNDER CONSTRUCTION</h1>
+
 	<form id="registerFormDriver" method="Post" action="#">
 	<p id="licenseSince">
 		<label for="licensePeriod">License</label>

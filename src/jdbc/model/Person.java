@@ -6,6 +6,15 @@ public abstract class Person {
 	private int rating;
 	private String telephone;
 	private Profile profile;
+	private int bornYear;
+
+	public int getBornYear() {
+		return bornYear;
+	}
+
+	public void setBornYear(int bornYear) {
+		this.bornYear = bornYear;
+	}
 
 	public String getName() {
 		return name;

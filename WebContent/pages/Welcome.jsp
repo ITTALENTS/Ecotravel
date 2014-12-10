@@ -5,23 +5,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/welcomeStyle.css">
 </head>
 <body>
 	<div id="loginWrapper">
-		<form id="loginForm" method="Post" action="Welcome.html">
+		<form id="loginForm" method="Post" >
 			<div>
 				<label for="username">Username:</label>
-				<input type="text" name="username" value="Enter username" required="required"/>
+				<input type="text" name="username" placeholder="Enter your username" required="required"/>
 			</div>
 			
 			<div>
 				<label for="password">Password:</label>
-				<input type="password" name="password" value="Enter password" required="required"/>
+				<input type="password" name="password" placeholder="Enter your password" required="required"/>
 			</div>
-			<input type="submit" name="submitButton" value="Submit">
+			<div>
+				<input type="submit" name="submitButton" value="Submit">
+			</div>
 		</form>
-			<a id="forgottenPassword" href="/pages/ForgottenPassword.jsp">Forgotten password</a>
-			<a id="registerForm" href="/pages/RegisterForm.jsp">Create new account</a>
+			<a id="forgottenPassword" href="pages/ForgottenPassword.jsp">Forgotten password</a>
+			<a id="registerForm" href="pages/RegisterForm.jsp">Create new account</a>
+			
+		<% 
+			if(request.getAttribute("error_login_message") != null) {
+		%>
+		<div><h3><%
+				out.print(request.getAttribute("error_login_message"));
+			}
+		%>
+		</h3></div>
+		
+		<!-- or we could use this <h3> ${error_login_message} </h3> -->
+		
 			 
 			 	
 	</div>

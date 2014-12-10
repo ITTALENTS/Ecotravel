@@ -9,10 +9,10 @@
 <body>
 	<form id="forgottenPassword" method="Post" action="#">
 		<label for="email">Your email:</label>
-		<input type="text" name="email" value="Enter your email" required/>
+		<input type="text" name="email" value="Enter your email" required="true"/>
 		<input type="submit" name="submitButton" value="Send new password">
 	</form>
-	<a id="loginForm" href="/Welcome.jsp">Create new account<a/>	
-	<a id="registerForm" href="/RegisterForm.jsp">Create new account<a/>	
+	<a id="loginForm" href="Welcome.jsp">Login</a>	
+	<a id="registerForm" href="RegisterForm.jsp">Create new account</a>
 </body>
 </html>

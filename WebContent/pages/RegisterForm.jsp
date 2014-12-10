@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,15 +6,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form id="registerForm" method="Post" action="#">
+	<form id="registerForm" method="Post" action="register">
 		<p id="nameField">
 			<label for="name">Name:</label>
 			<input type = "text" name = "name" required="true"/>
 		</p>
 		
 		<p id="age">
-			<label for="bornYear">Born Year:</label>
-			<!-- da izbira ot 2000-1900 primerno s for-che shte go generirame -->
+			<label for="bornYear">Birth Year:</label>
+			<input type="number" name="year" min="1990" max="2000">
 		</p>
 		
 		<p id="phoneField">
@@ -39,6 +38,7 @@
 		</p>
 		
 		<p id="hasDriverLicense">
+			<label for="driverOption">Do you have a driving license?</label>
 			<input type="radio" name="driver license" value="Yes"/>Yes
 			<input type="radio" name="driver license" value="No" checked="checked" />No
 		</p>
