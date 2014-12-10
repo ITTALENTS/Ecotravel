@@ -27,18 +27,8 @@
 			<a id="forgottenPassword" href="pages/ForgottenPassword.jsp">Forgotten password</a>
 			<a id="registerForm" href="pages/RegisterForm.jsp">Create new account</a>
 			
-		<% 
-			if(request.getAttribute("error_login_message") != null) {
-		%>
-		<div><h3><%
-				out.print(request.getAttribute("error_login_message"));
-			}
-		%>
-		</h3></div>
 		
-		<!-- or we could use this <h3> ${error_login_message} </h3> -->
-		
-			 
+		<h3> ${login_error} </h3>
 			 	
 	</div>
 </body>
