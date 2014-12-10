@@ -34,27 +34,22 @@ public class LoginFormController {
 	
 	// the method attribute defines the service method to handle HTTP POST request.
 	@RequestMapping(method = RequestMethod.POST)
-	public String letUserLogin(HttpServletRequest request, HttpServletResponse response) {
+	public String letUserLogin(HttpSession session, HttpServletRequest request) {
+
 		String username = (String) request.getAttribute("username");
 		String password = (String) request.getAttribute("password");
 		
-		boolean doesUserExist = true;
+		boolean doesUserExist = false;
 		// here perform a check in DB: IF THIS USER EXISTS
 		// if user exists check his password
 		// only if user exists and his pass is correct, then set doesUserExist = true
-		HttpSession session = request.getSession();
+		
 		
 		// if user exists and the password is right:
 		if(doesUserExist) {
 			session.setAttribute("user", username);
 			session.setAttribute("password", password);
-			try {
-				response.getWriter().write("<h1>True</h1>");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// if user is driver 
+			// if user is driver
 			return "ChooseForm";
 			// else return Page with Advertisements
 		}
