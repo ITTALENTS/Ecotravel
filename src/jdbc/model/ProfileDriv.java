@@ -4,6 +4,19 @@ public class ProfileDriv extends Driver {
 	private String username;
 	private String email;
 
+	@Override
+	public String getBirthYear() {
+		// TODO Auto-generated method stub
+		return super.getBirthYear();
+	}
+
+	@Override
+	public void setBirthYear(String birthYear) {
+		// TODO Auto-generated method stub
+		super.setBirthYear(birthYear);
+	}
+
+	
 	public String getUsername() {
 		return username;
 	}

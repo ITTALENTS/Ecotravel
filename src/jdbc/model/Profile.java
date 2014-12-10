@@ -12,6 +12,10 @@ public class Profile {
 		return profileId;
 	}
 
+	public void setProfileId(int profileId) {
+		this.profileId = profileId;
+	}
+
 	public String getUsername() {
 		return username;
 	}

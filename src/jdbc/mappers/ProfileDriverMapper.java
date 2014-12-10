@@ -15,11 +15,12 @@ public class ProfileDriverMapper implements RowMapper<ProfileDriv> {
 		profile.setUsername(rs.getString("username"));
 		profile.setEmail(rs.getString("email"));
 		profile.setTelephone(rs.getString("telephone"));
-		profile.setRating(rs.getInt("rating"));
+		profile.setRating(rs.getInt("rating"));	
 		profile.setIsSmoking(rs.getBoolean("smokeInTheCar"));
 		profile.setMusicInTheCar(rs.getString("musicInTheCar"));
 		profile.setNumberOfTravels(rs.getInt("travels"));
 		profile.setYearsInDriving(rs.getInt("yearsInDriving"));
+		profile.setBirthYear(rs.getString("birthYear"));
 		return profile;
 	}
 

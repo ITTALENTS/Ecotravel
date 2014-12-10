@@ -17,7 +17,9 @@ public class ProfilePassMapper implements RowMapper<ProfilePass> {
 		profile.setUsername(rs.getString("username"));
 		profile.setEmail(rs.getString("email"));
 		profile.setTelephone(rs.getString("telephone"));
+		
 		profile.setRating(rs.getInt("rating"));
+		profile.setBirthYear(rs.getString("birthYear"));
 		return profile;
 	}
 

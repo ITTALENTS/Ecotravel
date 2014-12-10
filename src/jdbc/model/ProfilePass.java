@@ -69,4 +69,16 @@ public class ProfilePass extends Person {
 		super.setProfile(profile);
 	}
 
+	@Override
+	public String getBirthYear() {
+		// TODO Auto-generated method stub
+		return super.getBirthYear();
+	}
+
+	@Override
+	public void setBirthYear(String birthYear) {
+		// TODO Auto-generated method stub
+		super.setBirthYear(birthYear);
+	}
+
 }

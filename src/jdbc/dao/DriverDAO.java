@@ -8,7 +8,7 @@ import jdbc.model.*;
 import jdbc.mappers.*;
 import jdbc.dao.*;
 
-public class DriverJDBCTemplate implements IDriverDAO {
+public class DriverDAO implements IDriverDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbc;
 
@@ -30,9 +30,9 @@ public class DriverJDBCTemplate implements IDriverDAO {
 
 	@Override
 	public ProfileDriv showProfile(String username) {
-		String sql = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar,profiles.username, profiles.email from  "
+		String sql = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar, drivers.birthYear,profiles.username, profiles.email from  "
 				+ "drivers inner join profiles on drivers.profileId =profiles.profileId where drivers.profileId="
-				+ "(SELECT driverId FROM profiles where username like ?)";
+				+ "(SELECT profileId FROM profiles where username like ?)";
 		ProfileDriv profile = jdbc.queryForObject(sql,
 				new Object[] { username }, new ProfileDriverMapper());
 		return profile;
@@ -70,13 +70,25 @@ return ad;
 
 	@Override
 	public void changeProfile(String username, String name, String telephone,
-			String musicInTheCar, boolean isSmoking) {
+			String musicInTheCar, boolean isSmoking, String birthYear) {
 		int smoke=(isSmoking)?1:0;
-		String SQL = "update drivers set drivers.nameOfDriver=?, drivers.telephone=?, drivers.musicInTheCar=?, drivers.smokeInTheCar=? where profileId = "
+		String SQL = "update drivers set drivers.nameOfDriver=?, drivers.telephone=?, drivers.musicInTheCar=?, drivers.smokeInTheCar=?, drivers.birthYear=? where profileId = "
 				+ "( select profileId from profiles where username like ? )";
-		jdbc.update(SQL, name, telephone,musicInTheCar,smoke, username);
+		jdbc.update(SQL, name, telephone,musicInTheCar,smoke,birthYear, username);
 
 		
 	}
+	
+	public void registerDriver(String username, String name,String birthYear,String telephone,int yearsInDriving, String musicInTheCar, boolean smokeInTheCar){
+		
+		String sql = "select profileId from profiles where username=?";
+		int profileId= jdbc.queryForInt(sql, username);
+		String insert= "Insert into drivers(profileId,nameOfDriver,telephone, rating, smokeInTheCar, travels,yearsInDriving,musicInTheCar,birthYear)  values(?,?,?,?,?,?,?,?,?) ";
+		int smoke=(smokeInTheCar)?1:0;
+		jdbc.update(insert,profileId,name, telephone,0, smoke, 0, yearsInDriving , musicInTheCar, birthYear);
+		
+	}
+	
+
 
 }

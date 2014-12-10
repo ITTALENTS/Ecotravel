@@ -11,7 +11,7 @@ public interface IPassengerDAO {
 	public List<AdvertismentDtls> searchAdvertisment(String from, String to,
 			String date);
 
-	public void changeProfile(String name, String telephone, String username);
+	public void changeProfile(String name, String telephone,String birthYear, String username);
 
 	public ProfilePass showProfile(String username);
 
