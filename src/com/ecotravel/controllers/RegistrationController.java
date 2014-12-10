@@ -1,4 +1,4 @@
-package controllers;
+package com.ecotravel.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
