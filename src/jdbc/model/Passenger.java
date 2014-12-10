@@ -3,6 +3,18 @@ package jdbc.model;
 public class Passenger extends Person {
 
 	@Override
+	public String getBirthYear() {
+		// TODO Auto-generated method stub
+		return super.getBirthYear();
+	}
+
+	@Override
+	public void setBirthYear(String birthYear) {
+		// TODO Auto-generated method stub
+		super.setBirthYear(birthYear);
+	}
+
+	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return super.getName();

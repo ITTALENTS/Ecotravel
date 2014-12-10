@@ -13,7 +13,7 @@ public interface IDriverDAO {
 
 	public void updateAdvertisment(Addvertisment ad);
 
-	public void changeProfile(String username, String name, String telephone, String musicInTheCar, boolean isSmoking);
+	public void changeProfile(String username, String name, String telephone, String musicInTheCar, boolean isSmoking, String birthYear);
 
 	public ProfileDriv showProfile(String username);
 

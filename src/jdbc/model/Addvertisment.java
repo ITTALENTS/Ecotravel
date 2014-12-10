@@ -1,7 +1,7 @@
 package jdbc.model;
 
 public class Addvertisment {
-	private int AdvertismentId;
+	private int advertismentId;
 	private String travelFrom;
 	private String travelTo;
 	private int freePlaces;
@@ -9,11 +9,11 @@ public class Addvertisment {
 	private Driver driver;
 	
 	public int getAdvertismentId() {
-		return AdvertismentId;
+		return advertismentId;
 	}
 
 	public void setAdvertismentId(int advertismentId) {
-		AdvertismentId = advertismentId;
+		advertismentId = advertismentId;
 	}
 
 	public String getTravelFrom() {

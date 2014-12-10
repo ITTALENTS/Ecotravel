@@ -3,6 +3,7 @@ package jdbc.templates;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -14,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+
 import jdbc.dao.*;
 import jdbc.model.*;
 import jdbc.mappers.*;
@@ -64,7 +66,7 @@ public class PassengerJDBCTemplate implements IPassengerDAO {
 	@Override
 	public ProfilePass showProfile(String username) {
 
-		String sql = "select passengers.name,passengers.telephone,passengers.rating, profiles.username, profiles.email from  "
+		String sql = "select passengers.name,passengers.telephone,passengers.rating,passengers.birthYear, profiles.username, profiles.email from  "
 				+ "passengers inner join profiles on passengers.profileId =profiles.profileId where passengers.profileId="
 				+ "(SELECT profileId FROM profiles where username like ?)";
 		ProfilePass profile = jdbc.queryForObject(sql,
@@ -75,11 +77,11 @@ public class PassengerJDBCTemplate implements IPassengerDAO {
 	}
 
 	@Override
-	public void changeProfile(String name, String telephone, String username) {
+	public void changeProfile(String name, String telephone,String birthYear, String username) {
 
-		String SQL = "update passengers set passengers.name=?, passengers.telephone=? where profileId = "
+		String SQL = "update passengers set passengers.name=?, passengers.telephone=?, passengers.birthYear=? where profileId = "
 				+ "  (SELECT profileId FROM profiles where username like ?)";
-		jdbc.update(SQL, name, telephone, username);
+		jdbc.update(SQL, name, telephone,birthYear, username);
 
 	}
 
@@ -114,6 +116,13 @@ public class PassengerJDBCTemplate implements IPassengerDAO {
 			transactionManager.rollback(status);
 		}
 
+	}
+	public void registerPassenger(String username, String name, String birthYear, String telephone){
+		
+		String sql = "select profileId from profiles where username=?";
+		int profileId= jdbc.queryForInt(sql, username);
+		String insert ="Insert into passengers(profileId,name, rating , telephone, birthYear) values(?,?,?,?,?)";
+		jdbc.update(insert,profileId,name,0,telephone,birthYear);
 	}
 
 }

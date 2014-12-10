@@ -5,16 +5,16 @@ public abstract class Person {
 	private String name;
 	private int rating;
 	private String telephone;
+	private String birthYear;
+	public String getBirthYear() {
+		return birthYear;
+	}
+
+	public void setBirthYear(String birthYear) {
+		this.birthYear = birthYear;
+	}
+
 	private Profile profile;
-	private int bornYear;
-
-	public int getBornYear() {
-		return bornYear;
-	}
-
-	public void setBornYear(int bornYear) {
-		this.bornYear = bornYear;
-	}
 
 	public String getName() {
 		return name;
