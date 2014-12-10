@@ -1,6 +1,9 @@
 package com.ecotravel.controllers;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jdbc.model.Driver;
@@ -31,22 +34,27 @@ public class LoginFormController {
 	
 	// the method attribute defines the service method to handle HTTP POST request.
 	@RequestMapping(method = RequestMethod.POST)
-	public String letUserLogin(HttpSession session, HttpServletRequest request) {
-		
+	public String letUserLogin(HttpServletRequest request, HttpServletResponse response) {
 		String username = (String) request.getAttribute("username");
 		String password = (String) request.getAttribute("password");
 		
-		boolean doesUserExist = false;
+		boolean doesUserExist = true;
 		// here perform a check in DB: IF THIS USER EXISTS
 		// if user exists check his password
 		// only if user exists and his pass is correct, then set doesUserExist = true
-		
+		HttpSession session = request.getSession();
 		
 		// if user exists and the password is right:
 		if(doesUserExist) {
 			session.setAttribute("user", username);
 			session.setAttribute("password", password);
-			// if user is driver
+			try {
+				response.getWriter().write("<h1>True</h1>");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// if user is driver 
 			return "ChooseForm";
 			// else return Page with Advertisements
 		}

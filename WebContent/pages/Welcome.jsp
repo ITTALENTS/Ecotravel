@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="loginWrapper">
-		<form id="loginForm" method="Post" >
+		<form id="loginForm" method="POST" >
 			<div>
 				<label for="username">Username:</label>
 				<input type="text" name="username" placeholder="Enter your username" required="required"/>

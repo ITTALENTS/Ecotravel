@@ -21,7 +21,7 @@
 	</bean>
 	
 	<!-- mapping for the pictures -->
-	<mvc:resources mapping="pictures/**" location="/pictures/" />
+	<mvc:resources mapping="/pictures/**" location="/pictures/" />
 	
 	<!-- mapping for the CSS files -->
 	<mvc:resources mapping="**" location="/pages/" />

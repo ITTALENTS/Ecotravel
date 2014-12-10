@@ -13,14 +13,37 @@ class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 	<bean id="person" class="jdbc.model.Person" abstract="true">
 		<property name="rating" value="0"></property>
+		<property name="name" value =" "></property>
+		<property name="telephone" value =" "></property>
 	</bean>
-	<bean id="profile" class="jdbc.model.Profile"></bean>
+	<bean id="profile" class="jdbc.model.Profile">
+		
+		<property name="username" value =" "></property>
+		<property name="password" value =" "></property>
+		<property name="email" value =" "></property>
+	</bean>
 	<bean id="driver" class="jdbc.model.Driver" parent="person">
 		<property name="numberOfTravels" value="0"></property>
+		<property name="yearsInDriving" value ="0"></property>
+		<property name="isSmoking" value ="false"></property>
+		<property name="musicInTheCar" value =" "></property>
 	</bean>
 
-	<bean id="passenger" class="jdbc.model.Passenger" parent="person"></bean>
-	<bean id="advertisment" class="jdbc.model.Addvertisment"></bean>
+	<bean id="passenger" class="jdbc.model.Passenger" parent="person">
+		
+	</bean>
+<!-- <bean id="addvertisment" class="jdbc.model.Addvertisment">
+		<property name="advertismentId" value="0"></property>
+		<property name="travelFrom" value=" "></property>
+		<property name="travelTo" value=" "></property>
+		<property name="freePlaces" value="0"></property>
+		<property name="date" value=" "></property>
+		<property name="driver" value="null"></property>
+	
+	</bean> -->
+	
+	
+	
 	<bean id="driverJDBCTemplate" 
       class="jdbc.templates.DriverJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />    
@@ -35,11 +58,12 @@ class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       class="jdbc.templates.ProfileJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />  
             
-       
-   </bean>
+  </bean>
+  
     <bean id="transactionManager" 
       class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
       <property name="dataSource"  ref="dataSource" />    
    </bean>
+   
    
 </beans>
