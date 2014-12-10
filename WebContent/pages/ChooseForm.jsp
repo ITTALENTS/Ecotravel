@@ -27,6 +27,8 @@
 </head>
 <body>
 
+	<%@ include file="Header.jsp" %>
+
 	<div>
 		<img src = "${pageContext.request.contextPath}/pictures/driver/driverImg.gif" >
 		<img src = "${pageContext.request.contextPath}/pictures/passenger/passengerImg.jpg">
