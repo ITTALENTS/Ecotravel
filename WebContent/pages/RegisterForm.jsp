@@ -7,7 +7,7 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
-	<form id="registerForm" method="Post" action="register">
+	<form id="registerForm" method="POST" action="RegisterForm">
 		<p id="nameField">
 			<label for="name">Name:</label>
 			<input type = "text" name = "name" required="true"/>
@@ -15,7 +15,7 @@
 		
 		<p id="age">
 			<label for="birthYear">Birth Year:</label>
-			<input type="number" name="year" min="1990" max="2000">
+			<input type="number" name="birthYear" min="1990" max="2000">
 		</p>
 		
 		<p id="phoneField">
@@ -27,11 +27,13 @@
 			<label for="email">Email:</label>
 			<input type = "email" name = "email" required="true"/>
 		</p>
+		<h4 style="color:red">${email_taken_msg}</h4>
 		
-		<p id="sernameFiled">
+		<p id="usernameFiled">
 			<label for="username">Username:</label>
 			<input type = "text" name = "username" required="true"/>
 		</p>
+		<h4 style="color:red">${username_taken_msg}</h4>
 		
 		<p id="passwordField">
 			<label for="password">Password:</label>
@@ -42,6 +44,7 @@
 			<label for="password">Retype Password:</label>
 			<input type = "password" name = "rePassword" required="true"/>
 		</p>
+		<h4 >${rePassword_error_msg}</h4>
 		
 		<p id="hasDriverLicense">
 			<label for="driverOption">Do you have a driving license?</label>

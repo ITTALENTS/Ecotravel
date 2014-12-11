@@ -1,27 +1,31 @@
 package com.ecotravel.controllers;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("pages/RegisterForm")
 public class RegistrationController {
 	
-	@RequestMapping(value="/pages/RegisterForm", method = RequestMethod.POST)
-	public String registerNewUser(@RequestParam String username, 
+	@RequestMapping(method = RequestMethod.GET)
+	public String showRegistrationPage() {
+		return "RegisterForm";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public String registerNewUser(@RequestParam String name,
+								@RequestParam int birthYear,
+								@RequestParam String telephone,
+								@RequestParam String email,
+								@RequestParam String username, 
 								@RequestParam String password,
 								@RequestParam String rePassword,
-								@RequestParam String email,
-								@RequestParam String name,
-								@RequestParam String telephone,
-								@RequestParam int birthYear) {
+								@RequestParam String driverLicense, Model model) {
+		
+		// WARNING!!! the order of arguments must match order of inputs in <form> !!!
 		
 		System.out.println("username: " + username);
 		System.out.println("pass: " + password);
@@ -30,49 +34,56 @@ public class RegistrationController {
 		System.out.println("name: " + name);
 		System.out.println("telephone: " + telephone);
 		System.out.println("birthYear: " + birthYear);
+		System.out.println("driverLicense: " + driverLicense);
 		
 		
-		// get all parameters with @RequestParam()
-		// call DAO method which checks if user name and mail are free
-		// if not, print error message
-		// if yes, call another method which checks driving license parameter
-			// if license = yes
-				// ????
-			// if license = no
-				// call register method from DAO (it writes the new user in DB)
-				// and then send user to login page with message "reg. completed. please log in"
+		// call DAO methods which check if user name and mail are free
+		boolean usernameExists = true;
+		boolean emailExists = false;
+		boolean isUserAllwedToRegister = !usernameExists && !emailExists;
 		
+		// check password retype
+		if(!password.equals(rePassword)) {
+			model.addAttribute("rePassword_error_msg", "Password and Retype Password fields do not match!");
+			return "RegisterForm";
+		}
 		
-		
-		// Spring automatically sets attributes to session object
-		// System.out.println(request.getParameter("driver license"));
+		if(isUserAllwedToRegister) {
+			if(driverLicense.equalsIgnoreCase("No")) {
+				// here call register method from DAO (it writes the new user in DB)
+				model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
+				return "Welcome";
+			} else { // driverLicense.equalsIgnoreCase("Yes")
+				// ?????????
+				
+				
+				return "Welcome";
+			}
+		} else { // username or email - taken
+			if(emailExists) { // if mail taken
+				model.addAttribute("email_taken_msg", "This email is already registered!");
+				return "RegisterForm";
+			} else if(usernameExists){ // if username taken
+				model.addAttribute("username_taken_msg", "This username already taken!");
+				return "RegisterForm";
+			} 
+			else return null;
+		}
 
-		// here place code to validate the input
-		// if something is not valid, return "RegisterForm";
-		
-		// if everything is valid:
-//		if(request.getParameter("driver license").equals("Yes")) {
-//			return "RegisterFormDriver";
-//		}
-		
-		// here call method to validate and register user and update DB
-		
-		//else return "ChooseForm";
-		
-		return null;
 	}
 	
-	
-	@RequestMapping(value="/pages/RegisterFormDriver", method = RequestMethod.POST)
-	public String registerDriver(@RequestParam int numberOfTravels, 
-								@RequestParam boolean isSmoking,
-								@RequestParam String musicInTheCar) {
-		
-		return null;
-	}
-	
-	
 
+//	@RequestMapping(value="/pages/RegisterFormDriver", method = RequestMethod.POST)
+//	public String registerDriver(@RequestParam int numberOfTravels, 
+//								@RequestParam boolean isSmoking,
+//								@RequestParam String musicInTheCar) {
+//		
+//		// TODO: implement
+//		
+//		return null;
+//	}
+	
+	
 	
 //	// another implementation:
 //	@RequestMapping(method = RequestMethod.POST)
@@ -87,5 +98,6 @@ public class RegistrationController {
 //		}
 //		
 //	}
+
 	
 }
