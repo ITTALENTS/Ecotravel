@@ -5,13 +5,15 @@ public abstract class Person {
 	private String name;
 	private int rating;
 	private String telephone;
-	private String birthYear;
-	
-	public String getBirthYear() {
+
+	private int birthYear;
+	public int getBirthYear() {
 		return birthYear;
 	}
 
-	public void setBirthYear(String birthYear) {
+	
+
+	public void setBirthYear(int birthYear) {
 		this.birthYear = birthYear;
 	}
 

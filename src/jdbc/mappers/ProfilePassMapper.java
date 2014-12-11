@@ -1,10 +1,7 @@
 package jdbc.mappers;
 
 import java.sql.SQLException;
-
 import org.springframework.jdbc.core.RowMapper;
-
-import com.mysql.jdbc.ResultSet;
 import jdbc.model.*;
 
 public class ProfilePassMapper implements RowMapper<Passenger> {
@@ -23,7 +20,7 @@ public class ProfilePassMapper implements RowMapper<Passenger> {
 		profile.setTelephone(rs.getString("telephone"));
 		
 		profile.setRating(rs.getInt("rating"));
-		profile.setBirthYear(rs.getString("birthYear"));
+		profile.setBirthYear(rs.getInt("birthYear"));
 		return profile;
 	}
 

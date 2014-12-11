@@ -12,17 +12,17 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import jdbc.model.*;
 import jdbc.mappers.*;
 
-
 public class DriverDAO implements IDriverDAO {
-	private DataSource dataSource;
 	private JdbcTemplate jdbc;
 	private PlatformTransactionManager transactionManager;
+
 	@Override
 	public void deleteAdvertisment(Addvertisment ad) {
-		String sql = "delete from ads where adId=?";
-		jdbc.update(sql, ad.getAdvertismentId());
+		String deleteAdvertisment = "delete from ads where adId=?";
+		jdbc.update(deleteAdvertisment, ad.getAdvertismentId());
 
 	}
+
 	public void setTransactionManager(
 			PlatformTransactionManager transactionManager) {
 		this.transactionManager = transactionManager;
@@ -30,19 +30,18 @@ public class DriverDAO implements IDriverDAO {
 
 	@Override
 	public void updateAdvertisment(Addvertisment ad) {
-		String sql = "update ads set ads.TownFrom=?, ads.TownTo=?, ads.Date=?, ads.freePlaces=? where adId=?";
-		jdbc.update(sql, ad.getTravelFrom(), ad.getTravelTo(), ad.getDate(), ad.getFreePlaces(), ad.getAdvertismentId());
+		String updateAdvertisment = "update ads set ads.TownFrom=?, ads.TownTo=?, ads.Date=?, ads.freePlaces=? where adId=?";
+		jdbc.update(updateAdvertisment, ad.getTravelFrom(), ad.getTravelTo(),
+				ad.getDate(), ad.getFreePlaces(), ad.getAdvertismentId());
 
 	}
 
-	
-
 	@Override
 	public Driver showProfile(String username) {
-		String sql = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar, drivers.birthYear,profiles.username, profiles.email from  "
+		String showProfilePersonByUsername = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar, drivers.birthYear,profiles.username, profiles.email from  "
 				+ "drivers inner join profiles on drivers.profileId =profiles.profileId where drivers.profileId="
 				+ "(SELECT profileId FROM profiles where username like ?)";
-	Driver profile = jdbc.queryForObject(sql,
+		Driver profile = jdbc.queryForObject(showProfilePersonByUsername,
 				new Object[] { username }, new ProfileDriverMapper());
 		return profile;
 
@@ -50,14 +49,13 @@ public class DriverDAO implements IDriverDAO {
 
 	@Override
 	public void increaseTravels(String username) {
-		String SQL = "update drivers set drivers.travels=(travels+1) where profileId = "
+		String increaseTravelesOfDriver = "update drivers set drivers.travels=(travels+1) where profileId = "
 				+ "  (SELECT profileId FROM profiles where username like ?)";
-		jdbc.update(SQL, username);
+		jdbc.update(increaseTravelesOfDriver, username);
 
 	}
 
 	public void setDataSource(DataSource ds) {
-		this.dataSource = ds;
 		this.jdbc = new JdbcTemplate(ds);
 
 	}
@@ -72,39 +70,41 @@ public class DriverDAO implements IDriverDAO {
 		ad.setTravelFrom(from);
 		ad.setTravelTo(to);
 
-		String sql = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,freePlaces ) values(?,?,?,?,?) ";
-		jdbc.update(sql, driverId, from, to, date, freePlaces);
-return ad;
+		String insertAdvertisment = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,freePlaces ) values(?,?,?,?,?) ";
+		jdbc.update(insertAdvertisment, driverId, from, to, date, freePlaces);
+		return ad;
 	}
 
 	@Override
 	public void changeProfile(String username, String name, String telephone,
 			String musicInTheCar, boolean isSmoking, String birthYear) {
-		int smoke=(isSmoking)?1:0;
-		String SQL = "update drivers set drivers.nameOfDriver=?, drivers.telephone=?, drivers.musicInTheCar=?, drivers.smokeInTheCar=?, drivers.birthYear=? where profileId = "
+		int smoke = (isSmoking) ? 1 : 0;
+		String updateProfiles = "update drivers set drivers.nameOfDriver=?, drivers.telephone=?, drivers.musicInTheCar=?, drivers.smokeInTheCar=?, drivers.birthYear=? where profileId = "
 				+ "( select profileId from profiles where username like ? )";
-		jdbc.update(SQL, name, telephone,musicInTheCar,smoke,birthYear, username);
+		jdbc.update(updateProfiles, name, telephone, musicInTheCar, smoke,
+				birthYear, username);
 
-		
 	}
-	
-	public void registerDriver(String username, String name,String birthYear,String telephone,int yearsInDriving, String musicInTheCar, boolean smokeInTheCar){
+
+	public void registerDriver(String username, String name, String birthYear,
+			String telephone, int yearsInDriving, String musicInTheCar,
+			boolean smokeInTheCar) {
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);
-		try{
-		String sql = "select profileId from profiles where username=?";
-		int profileId= jdbc.queryForInt(sql, username);
-		String insert= "Insert into drivers(profileId,nameOfDriver,telephone, rating, smokeInTheCar, travels,yearsInDriving,musicInTheCar,birthYear)  values(?,?,?,?,?,?,?,?,?) ";
-		int smoke=(smokeInTheCar)?1:0;
-		jdbc.update(insert,profileId,name, telephone,0, smoke, 0, yearsInDriving , musicInTheCar, birthYear);
-		transactionManager.commit(status);}
-		catch (DataAccessException e) {
+		try {
+			String getProfileIdByUsername = "select profileId from profiles where username=?";
+			@SuppressWarnings("deprecation")
+			int profileId = jdbc.queryForInt(getProfileIdByUsername, username);
+			String insertIntoDrivers = "Insert into drivers(profileId,nameOfDriver,telephone, rating, smokeInTheCar, travels,yearsInDriving,musicInTheCar,birthYear)  values(?,?,?,?,?,?,?,?,?) ";
+			int smoke = (smokeInTheCar) ? 1 : 0;
+			jdbc.update(insertIntoDrivers, profileId, name, telephone, 0,
+					smoke, 0, yearsInDriving, musicInTheCar, birthYear);
+			transactionManager.commit(status);
+		} catch (DataAccessException e) {
 
 			transactionManager.rollback(status);
 		}
-		
-	}
-	
 
+	}
 
 }
