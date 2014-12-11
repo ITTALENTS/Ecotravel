@@ -1,19 +1,20 @@
 package jdbc.dao;
 
 import java.util.Map;
+
 import javax.sql.DataSource;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import jdbc.mappers.*;
 import jdbc.model.*;
 
 public class ProfileDAO implements IProfileDAO {
 
-	private DataSource dataSource;
 	private JdbcTemplate jdbc;
 
 	@Override
 	public void setDataSource(DataSource ds) {
-		this.dataSource = ds;
 		this.jdbc = new JdbcTemplate(ds);
 
 	}
@@ -21,6 +22,7 @@ public class ProfileDAO implements IProfileDAO {
 	public boolean usernameExist(String username) {
 
 		String sql = "select COUNT(*)  from profiles where username=?";
+		@SuppressWarnings("deprecation")
 		int exist = jdbc.queryForInt(sql, username);
 		return (exist > 0);
 	}
@@ -28,10 +30,15 @@ public class ProfileDAO implements IProfileDAO {
 	public boolean emailExist(String email) {
 
 		String countEmails = "select count(*) from profiles where email=?";
+		@SuppressWarnings("deprecation")
 		int emailExist = jdbc.queryForInt(countEmails, email);
 		return (emailExist > 0);
 	}
-
+	
+public boolean isRegistrationAllowed(String email, String username){
+	
+	return !(emailExist(email) || usernameExist(username));
+}
 	public boolean matchPassword(String username, String password) {
 		String passwordDB = null;
 		if (usernameExist(username)) {
@@ -45,6 +52,7 @@ public class ProfileDAO implements IProfileDAO {
 		return false;
 	}
 
+	@SuppressWarnings("deprecation")
 	public Person login(String username, String password) {
 		int isDriver = 0;
 		int isPerson = 0;

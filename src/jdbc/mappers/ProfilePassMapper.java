@@ -1,10 +1,7 @@
 package jdbc.mappers;
 
 import java.sql.SQLException;
-
 import org.springframework.jdbc.core.RowMapper;
-
-import com.mysql.jdbc.ResultSet;
 import jdbc.model.*;
 
 public class ProfilePassMapper implements RowMapper<Passenger> {

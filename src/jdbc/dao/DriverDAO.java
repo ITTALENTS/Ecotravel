@@ -8,11 +8,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+
 import jdbc.model.*;
 import jdbc.mappers.*;
 
 public class DriverDAO implements IDriverDAO {
-	private DataSource dataSource;
 	private JdbcTemplate jdbc;
 	private PlatformTransactionManager transactionManager;
 
@@ -56,7 +56,6 @@ public class DriverDAO implements IDriverDAO {
 	}
 
 	public void setDataSource(DataSource ds) {
-		this.dataSource = ds;
 		this.jdbc = new JdbcTemplate(ds);
 
 	}
@@ -94,6 +93,7 @@ public class DriverDAO implements IDriverDAO {
 		TransactionStatus status = transactionManager.getTransaction(def);
 		try {
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
+			@SuppressWarnings("deprecation")
 			int profileId = jdbc.queryForInt(getProfileIdByUsername, username);
 			String insertIntoDrivers = "Insert into drivers(profileId,nameOfDriver,telephone, rating, smokeInTheCar, travels,yearsInDriving,musicInTheCar,birthYear)  values(?,?,?,?,?,?,?,?,?) ";
 			int smoke = (smokeInTheCar) ? 1 : 0;

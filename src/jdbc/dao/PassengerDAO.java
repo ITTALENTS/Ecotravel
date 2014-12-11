@@ -3,7 +3,9 @@ package jdbc.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.sql.DataSource;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,12 +13,12 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+
 import jdbc.model.*;
 import jdbc.mappers.*;
 
 public class PassengerDAO implements IPassengerDAO {
 
-	private DataSource dataSource;
 	private JdbcTemplate jdbc;
 	private PlatformTransactionManager transactionManager;
 
@@ -26,7 +28,6 @@ public class PassengerDAO implements IPassengerDAO {
 	}
 
 	public void setDataSource(DataSource ds) {
-		this.dataSource = ds;
 		this.jdbc = new JdbcTemplate(ds);
 
 	}
@@ -97,8 +98,10 @@ public class PassengerDAO implements IPassengerDAO {
 					vote, username);
 
 			String getRatingOfDriver = "select drivers.rating from drivers inner join voting on drivers.driverId= voting.driverId inner join profiles on drivers.profileId= profiles.profileId where username=?";
+			@SuppressWarnings("deprecation")
 			int rating = jdbc.queryForInt(getRatingOfDriver, username);
 			String getNumberOfVotesForriver = "select voting .numberOfVotes from voting inner join drivers on drivers.driverId= voting.driverId inner join profiles on drivers.profileId= profiles.profileId where username=?";
+			@SuppressWarnings("deprecation")
 			int numberOfVotes = jdbc.queryForInt(getNumberOfVotesForriver,
 					username);
 			int newVote = rating / numberOfVotes;
@@ -122,6 +125,7 @@ public class PassengerDAO implements IPassengerDAO {
 		TransactionStatus status = transactionManager.getTransaction(def);
 		try {
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
+			@SuppressWarnings("deprecation")
 			int profileId = jdbc.queryForInt(getProfileIdByUsername, username);
 			String insertIntoPassengers = "Insert into passengers(profileId,name, rating , telephone, birthYear) values(?,?,?,?,?)";
 			jdbc.update(insertIntoPassengers, profileId, name, 0, telephone,
