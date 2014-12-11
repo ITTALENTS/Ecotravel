@@ -1,8 +1,13 @@
-package jdbc.templates;
+package jdbc.dao;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import jdbc.model.*;
 import jdbc.mappers.*;
@@ -11,12 +16,16 @@ import jdbc.dao.*;
 public class DriverDAO implements IDriverDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbc;
-
+	private PlatformTransactionManager transactionManager;
 	@Override
 	public void deleteAdvertisment(Addvertisment ad) {
 		String sql = "delete from ads where adId=?";
 		jdbc.update(sql, ad.getAdvertismentId());
 
+	}
+	public void setTransactionManager(
+			PlatformTransactionManager transactionManager) {
+		this.transactionManager = transactionManager;
 	}
 
 	@Override
@@ -80,12 +89,19 @@ return ad;
 	}
 	
 	public void registerDriver(String username, String name,String birthYear,String telephone,int yearsInDriving, String musicInTheCar, boolean smokeInTheCar){
-		
+		TransactionDefinition def = new DefaultTransactionDefinition();
+		TransactionStatus status = transactionManager.getTransaction(def);
+		try{
 		String sql = "select profileId from profiles where username=?";
 		int profileId= jdbc.queryForInt(sql, username);
 		String insert= "Insert into drivers(profileId,nameOfDriver,telephone, rating, smokeInTheCar, travels,yearsInDriving,musicInTheCar,birthYear)  values(?,?,?,?,?,?,?,?,?) ";
 		int smoke=(smokeInTheCar)?1:0;
 		jdbc.update(insert,profileId,name, telephone,0, smoke, 0, yearsInDriving , musicInTheCar, birthYear);
+		transactionManager.commit(status);}
+		catch (DataAccessException e) {
+
+			transactionManager.rollback(status);
+		}
 		
 	}
 	
