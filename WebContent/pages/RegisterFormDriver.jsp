@@ -9,20 +9,36 @@
 <body>
 
 	<form id="registerFormDriver" method="Post" action="#">
-	<p id="licenseSince">
-		<label for="licensePeriod">License</label>
-		Day: <input type="text" name = "licensePeriodDay" required="required" />
-		Month: <input type="text" name = "licensePeriodMonth" required="true" />
-		Year: <input type="number" name = "licensePeriodYear" required="true" min="1930" max="2014"/>
-	</p>
+		<p id="licenseSince">
+			<label for="licensePeriod">License</label>
+			Day: <input type="number" name="licensePeriodDay" min="1" max="31">
+			Month: <input type="number" name="licensePeriodMonth" min="1" max="12">
+			Year: <input type="number" name="licensePeriodYear" min="1950" max="2014">
+		</p>
+		
+		<p id="SmokingInTheCar">
+			<p>Is smoking in the car allowed:</p>
+			<label for="yes"></label>
+			<input type="radio" name="smoking" value="Yes"> Yes <br />
+			<label for="no"></label>
+			<input type="radio" name="smoking" value="Yes"> No <br />
+		</p>
+		
+		<p id="musicInCar">
+			<span>What music is allowed in the car:</span>
+			<select name="music">
+				<option name="everything" checked>Everything</option>
+				<option name="popFolk">Pop folk</option>
+				<option name="pop">Pop</option>
+				<option name="rock">Rock</option>
+				<option name="folk">Folk</option>
+			</select>
+		</p>
+		
+		<input type="submit" name="registerDriverSubmit" value="submit" />
 	
-	<p id="doesSmoke">
-		Do you smoke in car?
-		<input type="radio" name="smoke" value="Yes"/>Yes
-		<input type="radio" name="smoke" value="No" checked="checked" />No
-	</p>
+	</form>
 	
-	<input type="submit" name="registerSubmit" value="Finish" />
-</form>
+	<%@ include file="Footer.jsp" %>
 </body>
 </html>
