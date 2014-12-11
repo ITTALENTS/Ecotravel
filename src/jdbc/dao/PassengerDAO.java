@@ -1,4 +1,4 @@
-package jdbc.dao;
+package jdbc.templates;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -119,19 +119,10 @@ public class PassengerDAO implements IPassengerDAO {
 	}
 	public void registerPassenger(String username, String name, String birthYear, String telephone){
 		
-		TransactionDefinition def = new DefaultTransactionDefinition();
-		TransactionStatus status = transactionManager.getTransaction(def);
-		try{
 		String sql = "select profileId from profiles where username=?";
 		int profileId= jdbc.queryForInt(sql, username);
 		String insert ="Insert into passengers(profileId,name, rating , telephone, birthYear) values(?,?,?,?,?)";
 		jdbc.update(insert,profileId,name,0,telephone,birthYear);
-		transactionManager.commit(status);
-		}
-		catch (DataAccessException e) {
-
-			transactionManager.rollback(status);
-		}
 	}
 
 }

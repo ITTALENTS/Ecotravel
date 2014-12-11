@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <bean id="dataSource"
 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -48,18 +44,18 @@ class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	
 	
 	
-	<bean id="driverDAO" 
-      class="jdbc.dao.DriverDAO">
+	<bean id="driverJDBCTemplate" 
+      class="jdbc.templates.DriverJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />    
             
    </bean>
-   <bean id="passengerDAO" 
-      class="jdbc.dao.PassengerDAO">
+   <bean id="passengerJDBCTemplate" 
+      class="jdbc.templates.PassengerJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />    
       <property name="transactionManager"  ref="transactionManager" />    
    </bean>
-   <bean id="profileDAO" 
-      class="jdbc.dao.ProfileDAO">
+   <bean id="profileJDBCTemplate" 
+      class="jdbc.templates.ProfileJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />  
             
   </bean>

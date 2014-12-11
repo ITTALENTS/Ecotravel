@@ -1,4 +1,4 @@
-package jdbc.dao;
+package jdbc.templates;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
