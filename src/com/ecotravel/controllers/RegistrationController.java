@@ -34,7 +34,7 @@ public class RegistrationController {
 	}
 	
 	
-	
+	//TODO: Da se napravi metod koito sled registraciqta da preprashta kum login stranicata
 	
 //	// another implementation:
 //	@RequestMapping(method = RequestMethod.POST)

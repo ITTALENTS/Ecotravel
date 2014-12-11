@@ -1,4 +1,4 @@
-package jdbc.templates;
+package jdbc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,57 +29,51 @@ public class ProfileDAO<Person> implements IProfileDAO {
 	}
 	
 	
- public boolean usernameExist(String username){
+	public boolean usernameExist(String username) {
 
-	String sql="select COUNT(*)  from profiles where username=?";
-	int exist= jdbc.queryForInt(sql, username);
-return (exist>0);
+		String sql = "select COUNT(*)  from profiles where username=?";
+		int exist = jdbc.queryForInt(sql, username);
+		return (exist > 0);
+	}
+
+	public boolean emailExist(String email) {
+
+		String sql = "select count(*) from profiles where email=?";
+		int emailExist = jdbc.queryForInt(sql, email);
+		return (emailExist > 0);
+	}
+
+	public boolean matchPassword(String username, String password) {
+		String passwordDB = null;
+		if (usernameExist(username)) {
+
+			String sql = "select password from profiles where username=?";
+			Map<String, Object> userPass = jdbc.queryForMap(sql, username);
+
+			passwordDB = (String) userPass.get("password");
+
+		}
+		return passwordDB.equals(password);
 	}
  
- public boolean emailExist(String email)
- {
-	 
-	 String sql="select count(*) from profiles where email=?";
-	 int emailExist= jdbc.queryForInt(sql, email);
-	 return (emailExist>0);
- }
- 
- public boolean matchPassword(String username, String password){
-	String passwordDB=null;
-	if(usernameExist(username)){		
-		
-		String sql = "select password from profiles where username=?";
-		Map<String, Object > userPass= jdbc.queryForMap(sql, username);
-		
-	passwordDB= (String)userPass.get("password");
-	
-		
-	
-		 
-	 }
-	 return passwordDB.equals(password);
- }
- 
- public  <P extends Person>  P login (String username,String password){
-	 int isDriver=0;
-	 
-	 
-	 if(matchPassword(username, password)){
-		 String sql ="select count(*) from drivers where profileId like(select profileId from profiles where username =?)";
-		 isDriver= jdbc.queryForInt(sql,username);
-	 }
-	 if (isDriver>0){
-		 String sql = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar, drivers.birthYear,profiles.username, profiles.email from  "
+	public <P extends Person> P login(String username, String password) {
+		int isDriver = 0;
+
+		if (matchPassword(username, password)) {
+			String sql = "select count(*) from drivers where profileId like(select profileId from profiles where username =?)";
+			isDriver = jdbc.queryForInt(sql, username);
+		}
+		if (isDriver > 0) {
+			String sql = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar, drivers.birthYear,profiles.username, profiles.email from  "
 					+ "drivers inner join profiles on drivers.profileId =profiles.profileId where drivers.profileId="
 					+ "(SELECT driverId FROM profiles where username like ?)";
 			ProfileDriv profile = jdbc.queryForObject(sql,
 					new Object[] { username }, new ProfileDriverMapper());
-			
+
 			return (P) profile;
 
-	 }
-	 else {
-		 
+		} else {
+
 			String sql = "select passengers.name,passengers.telephone,passengers.rating,passengers.birthYear, profiles.username, profiles.email from  "
 					+ "passengers inner join profiles on passengers.profileId =profiles.profileId where passengers.profileId="
 					+ "(SELECT profileId FROM profiles where username like ?)";
@@ -87,8 +81,8 @@ return (exist>0);
 					new Object[] { username }, new ProfilePassMapper());
 
 			return (P) profile;
-	 }
-	 
+		}
+
  }
  
 

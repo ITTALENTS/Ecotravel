@@ -1,4 +1,4 @@
-package jdbc.templates;
+package jdbc.dao;
 
 import javax.sql.DataSource;
 

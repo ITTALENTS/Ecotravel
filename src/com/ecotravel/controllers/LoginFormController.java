@@ -2,9 +2,12 @@ package com.ecotravel.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import jdbc.dao.ProfileDAO;
 import jdbc.model.Driver;
 import jdbc.model.Person;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +37,11 @@ public class LoginFormController {
 			HttpSession session, Model model) {
 		
 		// check his user name and password:
-		Person p = loginPerson(username, password);
+		// Person p = loginPerson(username, password);
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+		Person p = (Person) profileDAO.login(username, password);
 		
 		if(p == null) { // no such user
 			model.addAttribute("login_error", "Error! No such user or invalid password.");
@@ -43,8 +50,8 @@ public class LoginFormController {
 			session.setAttribute("loggedInUser", p);
 			if(p instanceof Driver)
 				return "ChooseForm";
-			else // instanceof Passenger
-				return "ProfilePage";
+			else // instance of Passenger
+				return "AdvertisementsPage";
 		}
 		
 	}

@@ -8,37 +8,21 @@
 </head>
 <body>
 
-	<h1>THIS PAGE IS UNDER CONSTRUCTION</h1>
-
 	<form id="registerFormDriver" method="Post" action="#">
 	<p id="licenseSince">
 		<label for="licensePeriod">License</label>
-		Day: <input type = "text" name = "licensePeriodDay" required="required" />
-		Month: <input type = "text" name = "licensePeriodMonth" required="true" />
-		Year: <input type = "text" name = "licensePeriodYear" required="true" />
+		Day: <input type="text" name = "licensePeriodDay" required="required" />
+		Month: <input type="text" name = "licensePeriodMonth" required="true" />
+		Year: <input type="number" name = "licensePeriodYear" required="true" min="1930" max="2014"/>
 	</p>
 	
-	<p id="emailField">
-		<label for="email">Email:</label>
-		<input type = "email" name = "email" required="true"/>
+	<p id="doesSmoke">
+		Do you smoke in car?
+		<input type="radio" name="smoke" value="Yes"/>Yes
+		<input type="radio" name="smoke" value="No" checked="checked" />No
 	</p>
 	
-	<p id="passwordField">
-		<label for="password">Password:</label>
-		<input type = "password" name = "password" required="true"/>
-	</p>
-	
-	<p id="rePasswordField">
-		<label for="password">Retype Password:</label>
-		<input type = "password" name = "rePassword" required="true"/>
-	</p>
-	
-	<p id="hasDriverLicense">
-		<input type="radio" name="driver license" value="Yes"/>Yes
-		<input type="radio" name="driver license" value="No" checked="checked" />No
-	</p>
-	
-	<input type="submit" name="registerSubmit" value="submit" />
+	<input type="submit" name="registerSubmit" value="Finish" />
 </form>
 </body>
 </html>

@@ -13,12 +13,12 @@
 		<form id="loginForm" method="POST" >
 			<div>
 				<label for="username">Username:</label>
-				<input type="text" name="username" placeholder="Enter your username" required="required"/>
+				<input type="text" name="username" placeholder=" Enter your username" required="required"/>
 			</div>
 			
 			<div>
 				<label for="password">Password:</label>
-				<input type="password" name="password" placeholder="Enter your password" required="required"/>
+				<input type="password" name="password" placeholder=" Enter your password" required="required"/>
 			</div>
 			<div>
 				<input type="submit" name="submitButton" value="Submit">
