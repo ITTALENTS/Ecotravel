@@ -1,13 +1,13 @@
 package jdbc.model;
 
-public class AdvertismentDtls {
+public class AdvertismentUser {
 	private String townFrom;
 	private String townTo;
 	private int freePlaces;
 	private String date;
 	private String email;
 
-	public AdvertismentDtls(String townFrom, String townTo, int freePlaces,
+	public AdvertismentUser(String townFrom, String townTo, int freePlaces,
 			String date, String email) {
 		this.townFrom = townFrom;
 		this.townTo = townTo;

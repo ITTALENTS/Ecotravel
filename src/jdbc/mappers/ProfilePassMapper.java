@@ -23,7 +23,7 @@ public class ProfilePassMapper implements RowMapper<Passenger> {
 		profile.setTelephone(rs.getString("telephone"));
 		
 		profile.setRating(rs.getInt("rating"));
-		profile.setBirthYear(rs.getString("birthYear"));
+		profile.setBirthYear(rs.getInt("birthYear"));
 		return profile;
 	}
 

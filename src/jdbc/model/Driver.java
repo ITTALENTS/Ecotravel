@@ -8,13 +8,13 @@ public class Driver extends Person {
 	private String musicInTheCar;
 
 	@Override
-public String getBirthYear() {
+public int getBirthYear() {
 	// TODO Auto-generated method stub
 	return super.getBirthYear();
 }
 
 @Override
-public void setBirthYear(String birthYear) {
+public void setBirthYear(int birthYear) {
 	// TODO Auto-generated method stub
 	super.setBirthYear(birthYear);
 }

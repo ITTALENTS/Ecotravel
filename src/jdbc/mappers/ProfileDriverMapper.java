@@ -27,7 +27,7 @@ public class ProfileDriverMapper implements RowMapper<Driver> {
 		profile.setMusicInTheCar(rs.getString("musicInTheCar"));
 		profile.setNumberOfTravels(rs.getInt("travels"));
 		profile.setYearsInDriving(rs.getInt("yearsInDriving"));
-		profile.setBirthYear(rs.getString("birthYear"));
+		profile.setBirthYear(rs.getInt("birthYear"));
 		return profile;
 	}
 

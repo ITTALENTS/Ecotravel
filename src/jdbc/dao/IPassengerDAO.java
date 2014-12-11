@@ -8,7 +8,7 @@ import jdbc.model.*;
 public interface IPassengerDAO {
 	public void setDataSource(DataSource ds);
 
-	public List<AdvertismentDtls> searchAdvertisment(String from, String to,
+	public List<AdvertismentUser> searchAdvertisment(String from, String to,
 			String date);
 
 	public void changeProfile(String name, String telephone,String birthYear, String username);
