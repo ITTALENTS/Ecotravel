@@ -14,7 +14,7 @@
 		</p>
 		
 		<p id="age">
-			<label for="bornYear">Birth Year:</label>
+			<label for="birthYear">Birth Year:</label>
 			<input type="number" name="year" min="1990" max="2000">
 		</p>
 		
@@ -26,6 +26,11 @@
 		<p id="emailField">
 			<label for="email">Email:</label>
 			<input type = "email" name = "email" required="true"/>
+		</p>
+		
+		<p id="sernameFiled">
+			<label for="username">Username:</label>
+			<input type = "text" name = "username" required="true"/>
 		</p>
 		
 		<p id="passwordField">
@@ -40,8 +45,8 @@
 		
 		<p id="hasDriverLicense">
 			<label for="driverOption">Do you have a driving license?</label>
-			<input type="radio" name="driver license" value="Yes"/>Yes
-			<input type="radio" name="driver license" value="No" checked="checked" />No
+			<input type="radio" name="driverLicense" value="Yes"/>Yes
+			<input type="radio" name="driverLicense" value="No" checked="checked" />No
 		</p>
 		
 		<input type="submit" name="registerSubmit" value="submit" />

@@ -13,7 +13,7 @@ public class Addvertisment {
 	}
 
 	public void setAdvertismentId(int advertismentId) {
-		advertismentId = advertismentId;
+		this.advertismentId = advertismentId;
 	}
 
 	public String getTravelFrom() {
