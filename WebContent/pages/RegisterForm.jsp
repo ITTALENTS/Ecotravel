@@ -26,18 +26,21 @@
 		<p id="emailField">
 			<label for="email">Email:</label>
 			<input type = "email" name = "email" required="true"/>
+			<!-- name should be "profile.email" to to the mapping -->
 		</p>
 		<h4 style="color:red">${email_taken_msg}</h4>
 		
 		<p id="usernameFiled">
 			<label for="username">Username:</label>
 			<input type = "text" name = "username" required="true"/>
+			<!-- name should be "profile.username" to to the mapping -->
 		</p>
 		<h4 style="color:red">${username_taken_msg}</h4>
 		
 		<p id="passwordField">
 			<label for="password">Password:</label>
 			<input type = "password" name = "password" required="true"/>
+			<!-- name should be "profile.password" to to the mapping -->
 		</p>
 		
 		<p id="rePasswordField">
