@@ -27,6 +27,8 @@
 </head>
 <body>
 
+	<%@ include file="Header.jsp" %>
+
 	<div>
 		<img src = "${pageContext.request.contextPath}/pictures/driver/driverImg.gif" >
 		<img src = "${pageContext.request.contextPath}/pictures/passenger/passengerImg.jpg">
@@ -36,7 +38,8 @@
 		<a href="#"><img src = "${pageContext.request.contextPath}/pictures/driver/driverLogo.png" class="arrows"></a>
 		<a href="#"><img src = "${pageContext.request.contextPath}/pictures/passenger/passengerLogo.png" class="arrows"></a>
 	</div>
-
-
+	
+	
+	<%@ include file="Footer.jsp" %>
 </body>
 </html>

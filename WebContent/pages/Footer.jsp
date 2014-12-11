@@ -7,19 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<nav>
-		<div>
-			<ul>
-				<li><a href="#">About Us</a></li>
-				<li><a href="#">History</a></li>
-				<li><a href="/pages/ProfilePage.jsp">My Profile</a></li>
-						
-			</ul>
-			<form method="GET" action="#">
-				<input type="submit" value="Logout" />
-			</form>
-		</nav>
-		<hr />
-	<div>
+	<div> 
+	<hr />
+	SOME FOOTER
+	</div>
 </body>
 </html>

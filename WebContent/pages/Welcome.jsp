@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div id="loginWrapper">
+		<%@ include file="Header.jsp" %>
 		<form id="loginForm" method="POST" >
 			<div>
 				<label for="username">Username:</label>
@@ -24,12 +25,13 @@
 				<input type="submit" name="submitButton" value="Submit">
 			</div>
 		</form>
-			<a id="forgottenPassword" href="pages/ForgottenPassword.jsp">Forgotten password</a>
-			<a id="registerForm" href="pages/RegisterForm.jsp">Create new account</a>
+			<a id="forgottenPassword" href="/pages/ForgottenPassword.jsp">Forgotten password</a>
+			<a id="registerForm" href="/pages/RegisterForm.jsp">Create new account</a>
 			
 		
 		<h3> ${login_error} </h3>
 			 	
 	</div>
+	<%@ include file="Footer.jsp" %>
 </body>
 </html>

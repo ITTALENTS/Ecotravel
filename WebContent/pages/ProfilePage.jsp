@@ -7,19 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<nav>
-		<div>
-			<ul>
-				<li><a href="#">About Us</a></li>
-				<li><a href="#">History</a></li>
-				<li><a href="/pages/ProfilePage.jsp">My Profile</a></li>
-						
-			</ul>
-			<form method="GET" action="#">
-				<input type="submit" value="Logout" />
-			</form>
-		</nav>
-		<hr />
-	<div>
+	<form method="GET">
+		<h1>Profile</h1>
+		<p>Name: <p>
+		<p>Year of birth: </p>
+		<p>Phone: </p>
+		<p>Phone: </p>
+		<p>Phone: </p>
+		<p>Phone: </p>
+		<p>Phone: </p>
+		<p>Email: </p>
+		<input type="submit" value="Edit" />
+		<%@ include file="Footer.jsp" %>
+	</form>
 </body>
 </html>

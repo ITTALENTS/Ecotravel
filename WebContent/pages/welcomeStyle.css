@@ -8,6 +8,5 @@ html, body, header, article, div, h1, nav, a, p, img, span, footer, ul, li {
 }
 
 #loginWrapper {
-	float: left;
 	border: 2px solid red;
 }
