@@ -10,7 +10,7 @@
 
 	<%@ include file="Header.jsp" %>
 	
-	<form id="registerFormDriver" method="Post" action="#">
+	<form id="registerFormDriver" method="Post" action="RegisterFormDriver">
 		<p id="licenseSince">
 			<label for="licensePeriod">License Year</label>
 			<input type="number" name="licensePeriodYear" min="1950" max="2014">
@@ -19,14 +19,14 @@
 		<p id="SmokingInTheCar">
 			<p>Is smoking in the car allowed:</p>
 			<label for="yes"></label>
-			<input type="radio" name="smoking" value="Yes"> Yes <br />
+			<input type="radio" name="isSmoking" value="Yes"> Yes <br />
 			<label for="no"></label>
-			<input type="radio" name="smoking" value="Yes"> No <br />
+			<input type="radio" name="isSmoking" value="Yes"> No <br />
 		</p>
 		
 		<p id="musicInCar">
 			<span>What music is allowed in the car:</span>
-			<select name="music">
+			<select name="musicInTheCar">
 				<option name="everything" checked>Everything</option>
 				<option name="popFolk">Pop folk</option>
 				<option name="commercial">Commercial</option>

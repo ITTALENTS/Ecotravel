@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping(value={"/", "Welcome"})
 // when we run our PROJECT, it will send us to this controller, which will handle the request
 public class LoginFormController {
 	
@@ -39,12 +39,11 @@ public class LoginFormController {
 		 System.out.println("Logging in: " + username + " : " + password);
 		
 		 // check his user name and password:
-		 Person p = (Person)loginPerson(username, password);
+//		 Person p = (Person)loginPerson(username, password);
 		
-//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-//		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
-//		Person p = (Person) profileDAO.login(username, password);
-//		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+		Person p = (Person) profileDAO.login(username, password);		
 		
 		
 		if(p == null) { // no such user
@@ -67,5 +66,11 @@ public class LoginFormController {
 //		return new jdbc.model.Driver();
 	}
 
+	
+	
+	@RequestMapping(value="ForgottenPassword", method = RequestMethod.GET)
+	public String goToForgottenPassword() {
+		return "ForgottenPassword";
+	}
 	
 }

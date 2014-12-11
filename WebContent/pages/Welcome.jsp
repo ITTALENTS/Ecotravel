@@ -25,11 +25,11 @@
 				<input type="submit" name="submitButton" value="Submit">
 			</div>
 		</form>
-			<a id="forgottenPassword" href="pages/ForgottenPassword.jsp">Forgotten password</a>
-			<a id="registerForm" href="pages/RegisterForm.jsp">Create new account</a>
+			<a id="forgottenPassword" href="ForgottenPassword">Forgotten password</a>
+			<a id="registerForm" href="RegisterForm">Create new account</a>
 			
 		
-		<h3> ${login_error} </h3>
+		<h3 style="color:red"> ${login_error} </h3>
 		<h4>${reg_complete_msg}</h4>
 			 	
 	</div>

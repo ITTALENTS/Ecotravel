@@ -10,11 +10,11 @@
 	<%@ include file="Header.jsp" %>
 	<form id="forgottenPassword" method="Post" action="#">
 		<label for="email">Your email:</label>
-		<input type="text" name="email" value="Enter your email" required="true"/>
+		<input type="text" name="email" placeholder=" Enter your email" required="true"/>
 		<input type="submit" name="submitButton" value="Send new password">
 	</form>
-	<a id="loginForm" href="Welcome.jsp">Login</a>	
-	<a id="registerForm" href="RegisterForm.jsp">Create new account</a>
+	<a id="loginForm" href="Welcome">Login</a>	
+	<a id="registerForm" href="RegisterForm">Create new account</a>
 	<%@ include file="Footer.jsp" %>
 </body>
 </html>

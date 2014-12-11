@@ -44,7 +44,7 @@
 			<label for="password">Retype Password:</label>
 			<input type = "password" name = "rePassword" required="true"/>
 		</p>
-		<h4 >${rePassword_error_msg}</h4>
+		<h4 style="color:red">${rePassword_error_msg}</h4>
 		
 		<p id="hasDriverLicense">
 			<label for="driverOption">Do you have a driving license?</label>
