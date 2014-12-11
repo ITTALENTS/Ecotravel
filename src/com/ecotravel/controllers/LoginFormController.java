@@ -1,19 +1,12 @@
 package com.ecotravel.controllers;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jdbc.model.Driver;
 import jdbc.model.Person;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,53 +24,18 @@ public class LoginFormController {
 		return "Welcome";
 	}
 	
+
+//	@Autowired // we need this to validate via annotations
+//	private Person person;
 	
-	// the method attribute defines the service method to handle HTTP POST request.
-	@RequestMapping(method = RequestMethod.POST)
-	public String letUserLogin(HttpServletRequest request, HttpServletResponse response) {
-		String username = (String) request.getAttribute("username");
-		String password = (String) request.getAttribute("password");
-		
-		boolean doesUserExist = true;
-		// here perform a check in DB: IF THIS USER EXISTS
-		// if user exists check his password
-		// only if user exists and his pass is correct, then set doesUserExist = true
-		HttpSession session = request.getSession();
-		
-		// if user exists and the password is right:
-		if(doesUserExist) {
-			session.setAttribute("user", username);
-			session.setAttribute("password", password);
-			try {
-				response.getWriter().write("<h1>True</h1>");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// if user is driver 
-			return "ChooseForm";
-			// else return Page with Advertisements
-		}
-		
-		// if user doesn't exist
-		else {
-			request.setAttribute("error_login_message", "Invalid username or password!");
-			return "Welcome";
-		}
-		
-	}
-	
-/*	
-	@Autowired
-	private Person person;
-	
-	// another implementation:
+	// this method handles POST requests to from Welcome page:
 	@RequestMapping(method = RequestMethod.POST)
 	public String login(@RequestParam String username, @RequestParam String password, 
 			HttpSession session, Model model) {
 		
-		// check if driver
-		Person p = person.loginPerson(username, password);
+		// check his user name and password:
+		Person p = loginPerson(username, password);
+		
 		if(p == null) { // no such user
 			model.addAttribute("login_error", "Error! No such user or invalid password.");
 			return "Welcome";
@@ -85,18 +43,18 @@ public class LoginFormController {
 			session.setAttribute("loggedInUser", p);
 			if(p instanceof Driver)
 				return "ChooseForm";
-			else
+			else // instanceof Passenger
 				return "ProfilePage";
 		}
 		
 	}
-*/
+
 	
-/*	@RequestMapping(method = RequestMethod.POST)
-	public String logout(HttpSession session, Model model) {
-		session.removeAttribute("");
-		return "Welcome";
-	}*/
+	static Person loginPerson(String username, String password) {
+//		return null;
+//		return new jdbc.model.Passenger();
+		return new jdbc.model.Driver();
+	}
 
 	
 }

@@ -11,7 +11,7 @@
 
 	<!-- this tag will be use to activate Spring MVC annotation scanning capability which 
 	allows to make use of annotations like @Controller and @RequestMapping etc. -->
-	<context:component-scan base-package="controllers"></context:component-scan>
+	<context:component-scan base-package="com.ecotravel.controllers"></context:component-scan>
 	
 	<!-- The InternalResourceViewResolver will have rules defined to resolve the view names.
 	if controller return view name "home", spring searches the file "/WEB-INF/jsps/home.jsp" -->
@@ -21,7 +21,7 @@
 	</bean>
 	
 	<!-- mapping for the pictures -->
-	<mvc:resources mapping="/pictures/**" location="/pictures/" />
+	<mvc:resources mapping="pictures/**" location="/pictures/" />
 	
 	<!-- mapping for the CSS files -->
 	<mvc:resources mapping="**" location="/pages/" />
