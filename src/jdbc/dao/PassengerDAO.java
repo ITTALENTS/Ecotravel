@@ -16,7 +16,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 
-import jdbc.dao.*;
+
 import jdbc.model.*;
 import jdbc.mappers.*;
 
@@ -64,12 +64,12 @@ public class PassengerDAO implements IPassengerDAO {
 	}
 
 	@Override
-	public ProfilePass showProfile(String username) {
+	public Passenger showProfile(String username) {
 
 		String sql = "select passengers.name,passengers.telephone,passengers.rating,passengers.birthYear, profiles.username, profiles.email from  "
 				+ "passengers inner join profiles on passengers.profileId =profiles.profileId where passengers.profileId="
 				+ "(SELECT profileId FROM profiles where username like ?)";
-		ProfilePass profile = jdbc.queryForObject(sql,
+		Passenger profile = jdbc.queryForObject(sql,
 				new Object[] { username }, new ProfilePassMapper());
 
 		return profile;
