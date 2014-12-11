@@ -71,7 +71,7 @@ public class ProfileDAO<Person> implements IProfileDAO {
 			String sql = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar, drivers.birthYear,profiles.username, profiles.email from  "
 					+ "drivers inner join profiles on drivers.profileId =profiles.profileId where drivers.profileId="
 					+ "(SELECT profileId FROM profiles where username like ?)";
-			ProfileDriv profile = jdbc.queryForObject(sql,
+			Driver profile = jdbc.queryForObject(sql,
 					new Object[] { username }, new ProfileDriverMapper());
 
 			return  (Person ) profile;
@@ -81,7 +81,7 @@ public class ProfileDAO<Person> implements IProfileDAO {
 			String sql = "select passengers.name,passengers.telephone,passengers.rating,passengers.birthYear, profiles.username, profiles.email from  "
 					+ "passengers inner join profiles on passengers.profileId =profiles.profileId where passengers.profileId="
 					+ "(SELECT profileId FROM profiles where username like ?)";
-			ProfilePass profile = jdbc.queryForObject(sql,
+		Passenger profile = jdbc.queryForObject(sql,
 					new Object[] { username }, new ProfilePassMapper());
 
 			return  (Person) profile;

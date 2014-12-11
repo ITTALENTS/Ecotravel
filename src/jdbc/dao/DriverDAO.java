@@ -38,11 +38,11 @@ public class DriverDAO implements IDriverDAO {
 	
 
 	@Override
-	public ProfileDriv showProfile(String username) {
+	public Driver showProfile(String username) {
 		String sql = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar, drivers.birthYear,profiles.username, profiles.email from  "
 				+ "drivers inner join profiles on drivers.profileId =profiles.profileId where drivers.profileId="
 				+ "(SELECT profileId FROM profiles where username like ?)";
-		ProfileDriv profile = jdbc.queryForObject(sql,
+	Driver profile = jdbc.queryForObject(sql,
 				new Object[] { username }, new ProfileDriverMapper());
 		return profile;
 

@@ -13,7 +13,7 @@ public interface IPassengerDAO {
 
 	public void changeProfile(String name, String telephone,String birthYear, String username);
 
-	public ProfilePass showProfile(String username);
+	public Passenger showProfile(String username);
 
 	public void voteForDriver(String username, int vote);
 

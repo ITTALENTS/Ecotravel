@@ -4,7 +4,7 @@ public class Driver extends Person {
 
 	private int numberOfTravels;
 	private int yearsInDriving;
-	private Boolean isSmoking;
+	private boolean isSmoking;
 	private String musicInTheCar;
 
 	@Override
@@ -91,11 +91,11 @@ public void setBirthYear(String birthYear) {
 		this.yearsInDriving = yearsInDriving;
 	}
 
-	public Boolean getIsSmoking() {
+	public boolean getIsSmoking() {
 		return isSmoking;
 	}
 
-	public void setIsSmoking(Boolean isSmoking) {
+	public void setIsSmoking(boolean isSmoking) {
 		this.isSmoking = isSmoking;
 	};
 
