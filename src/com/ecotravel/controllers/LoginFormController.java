@@ -36,12 +36,16 @@ public class LoginFormController {
 	public String login(@RequestParam String username, @RequestParam String password, 
 			HttpSession session, Model model) {
 		
-		// check his user name and password:
-		// Person p = loginPerson(username, password);
+		 System.out.println("Logging in: " + username + " : " + password);
+		
+		 // check his user name and password:
+//		 Person p = (Person)loginPerson(username, password);
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
 		Person p = (Person) profileDAO.login(username, password);
+		
+		
 		
 		if(p == null) { // no such user
 			model.addAttribute("login_error", "Error! No such user or invalid password.");
@@ -58,9 +62,9 @@ public class LoginFormController {
 
 	
 	static Person loginPerson(String username, String password) {
-//		return null;
+		return null;
 //		return new jdbc.model.Passenger();
-		return new jdbc.model.Driver();
+//		return new jdbc.model.Driver();
 	}
 
 	

@@ -6,6 +6,7 @@ public abstract class Person {
 	private int rating;
 	private String telephone;
 	private String birthYear;
+	
 	public String getBirthYear() {
 		return birthYear;
 	}
