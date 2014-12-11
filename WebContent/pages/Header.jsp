@@ -15,7 +15,6 @@
 				<li><a href="/pages/ProfilePage.jsp">My Profile</a></li>
 						
 			</ul>
-			
 			<form method="GET" action="#">
 				<input type="submit" value="Logout" />
 			</form>

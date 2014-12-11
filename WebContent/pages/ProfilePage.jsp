@@ -19,5 +19,6 @@
 		<p>Email: </p>
 		<input type="submit" value="Edit" />
 		<%@ include file="Footer.jsp" %>
+	</form>
 </body>
 </html>

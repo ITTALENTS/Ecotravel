@@ -7,7 +7,7 @@ import jdbc.dao.*;
 
 import jdbc.mappers.*;
 import jdbc.model.*;
-import jdbc.templates.*;
+import jdbc.dao.*;
 
 public class Demo {
 
