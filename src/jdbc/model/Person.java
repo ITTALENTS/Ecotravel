@@ -1,17 +1,18 @@
 package jdbc.model;
 
+import javax.validation.constraints.Size;
+
 public abstract class Person {
 
+	//@Size(min=3)
 	private String name;
 	private int rating;
 	private String telephone;
-
 	private int birthYear;
+	
 	public int getBirthYear() {
 		return birthYear;
 	}
-
-	
 
 	public void setBirthYear(int birthYear) {
 		this.birthYear = birthYear;
@@ -49,6 +50,15 @@ public abstract class Person {
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", rating=" + rating + ", telephone="
+				+ telephone + ", birthYear=" + birthYear + ", profile="
+				+ profile + "]";
 	}
 
 }

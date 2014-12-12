@@ -1,21 +1,29 @@
 package com.ecotravel.controllers;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import jdbc.dao.DriverDAO;
 import jdbc.dao.PassengerDAO;
 import jdbc.dao.ProfileDAO;
+import jdbc.model.Driver;
+import jdbc.model.Passenger;
+import jdbc.model.Person;
+import jdbc.model.Profile;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/") //@RequestMapping("pages/RegisterForm")
+@RequestMapping("/")
 public class RegistrationController {
 	
 	@RequestMapping(value="RegisterForm", method = RequestMethod.GET)
@@ -23,7 +31,10 @@ public class RegistrationController {
 		return "RegisterForm";
 	}
 	
+	
+	
 	@RequestMapping(value="RegisterForm", method = RequestMethod.POST)
+	// WARNING!!! the order of arguments must match order of inputs in <form> !!!
 	public String registerNewUser(@RequestParam String name,
 								@RequestParam int birthYear,
 								@RequestParam String telephone,
@@ -31,9 +42,7 @@ public class RegistrationController {
 								@RequestParam String username, 
 								@RequestParam String password,
 								@RequestParam String rePassword,
-								@RequestParam String driverLicense, Model model) {
-		
-		// WARNING!!! the order of arguments must match order of inputs in <form> !!!
+								@RequestParam String driverLicense, Model model, HttpSession session) {
 		
 		System.out.println("username: " + username);
 		System.out.println("pass: " + password);
@@ -44,6 +53,13 @@ public class RegistrationController {
 		System.out.println("birthYear: " + birthYear);
 		System.out.println("driverLicense: " + driverLicense);
 		
+		session.setAttribute("username", username);
+		session.setAttribute("password", password);
+		session.setAttribute("email", email);
+		session.setAttribute("name", name);
+		session.setAttribute("telephone", telephone);
+		session.setAttribute("birthYear", birthYear);
+		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
 		
@@ -53,33 +69,32 @@ public class RegistrationController {
 			return "RegisterForm";
 		}
 		
-		// call DAO methods which check if user name and mail are free
-		boolean usernameExists = profileDAO.usernameExist(username);
-		boolean emailExists = profileDAO.emailExist(email);
-		// boolean isUserAllwedToRegister = !usernameExists && !emailExists;
-		boolean isUserAllwedToRegister = profileDAO.isRegistrationAllowed(email, username);
+		
+//		// call DAO methods which check if user name and mail are free
+//		boolean usernameExists = profileDAO.usernameExist(username);
+//		boolean emailExists = profileDAO.emailExist(email);
+//		// boolean isUserAllwedToRegister = !usernameExists && !emailExists;
+//		boolean isUserAllwedToRegister = profileDAO.isRegistrationAllowed(email, username);
+		
+		// these variables are jsut for the test
+		boolean usernameExists = false;
+		boolean emailExists = false;
+		boolean isUserAllwedToRegister = !usernameExists && !emailExists;
+		
 		
 		if(isUserAllwedToRegister) {
 			if(driverLicense.equalsIgnoreCase("No")) {
-				// here call register method from DAO (it writes the new user in DB)
-				profileDAO.createProfile(username, email, password);
-				// we register as passenger
-				PassengerDAO passengerDao = (PassengerDAO) context.getBean("passengerDAO");
-				passengerDao.registerPassenger(username, name, birthYear, telephone);
+//				// here call register method from DAO (it writes the new user in DB)
+//				profileDAO.createProfile(username, email, password);
+//				// we register as passenger
+//				PassengerDAO passengerDao = (PassengerDAO) context.getBean("passengerDAO");
+//				passengerDao.registerPassenger(username, name, birthYear, telephone);
 				
 				model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
+				session.invalidate();
 				return "Welcome";
 			} else { // driverLicense.equalsIgnoreCase("Yes")
-				model.addAttribute("username", username);
-				model.addAttribute("password", password);
-				model.addAttribute("rePassword", rePassword);
-				model.addAttribute("email", email);
-				model.addAttribute("name", name);
-				model.addAttribute("telephone", telephone);
-				model.addAttribute("birthYear", birthYear);
-				model.addAttribute("driverLicense", driverLicense);
-				// TODO: you should return the whole model with this data !!!
-				
+				// we have saved entered values in the session, so we can get them from other controller
 				return "RegisterFormDriver";
 			}
 		} else { // username or email - taken
@@ -96,47 +111,52 @@ public class RegistrationController {
 	}
 	
 	
+	
+	
+	
 	@RequestMapping(value="RegisterFormDriver", method = RequestMethod.GET)
 	public String showRegistrationPageForDriver() {
 		return "RegisterFormDriver";
 	}
 	
 	
+	
+	
 	@RequestMapping(value="RegisterFormDriver", method = RequestMethod.POST)
 	public String finishRegistrationOfDriver(@RequestParam int licensePeriodYear,
-												@RequestParam String isSmoking,
-												@RequestParam String musicInTheCar, Model model) {
+											@RequestParam String isSmoking,
+											@RequestParam String musicInTheCar, Model model, HttpSession session) {
 		
+		System.out.println();
 		System.out.println("License year: " + licensePeriodYear);
 		System.out.println("Smoking: " + isSmoking);
 		System.out.println("Music: " + musicInTheCar);
-		
+		System.out.println();
 		// get model attributes from previous page and print them in console
+		System.out.println("username: " + session.getAttribute("username"));
+		System.out.println("password: " + session.getAttribute("password"));
+		System.out.println("email: " + session.getAttribute("email"));
+		System.out.println("name: " + session.getAttribute("name"));
+		System.out.println("telephone: " + session.getAttribute("telephone"));
+		System.out.println("birthYear: " + session.getAttribute("birthYear"));
 		
 		// here call register method from DAO (it writes the new user in DB)
-//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-//		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
-//		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+		
 //		profileDAO.createProfile((String)session.getAttribute("username"), (String)session.getAttribute("email"), (String)session.getAttribute("password"));
 //		// we register as passenger
-//		DriverDAO passengerDao = (DriverDAO) context.getBean("driverDAO");
-//		passengerDao.registerDriver(username, name, birthYear, telephone);
+//		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+//		driverDao.registerDriver(username, name, birthYear, telephone);
 		
 		model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
+		session.invalidate();
 		return "Welcome";
 	}
 	
 	
-
-//	@RequestMapping(value="/pages/RegisterFormDriver", method = RequestMethod.POST)
-//	public String registerDriver(@RequestParam int numberOfTravels, 
-//								@RequestParam boolean isSmoking,
-//								@RequestParam String musicInTheCar) {
-//		
-//		// TODO: implement
-//		
-//		return null;
-//	}
+	
+	
 	
 	
 	
@@ -151,7 +171,6 @@ public class RegistrationController {
 //		} else {
 //			return "ChooseForm";
 //		}
-//		
 //	}
 
 	

@@ -11,6 +11,7 @@
 <body>
 	<div id="loginWrapper">
 		<%@ include file="Header.jsp" %>
+		
 		<form id="loginForm" method="POST" >
 			<div>
 				<label for="username">Username:</label>

@@ -27,9 +27,6 @@ public class LoginFormController {
 		return "Welcome";
 	}
 	
-
-//	@Autowired // we need this to validate via annotations
-//	private Person person;
 	
 	// this method handles POST requests to from Welcome page:
 	@RequestMapping(method = RequestMethod.POST)
@@ -38,12 +35,13 @@ public class LoginFormController {
 		
 		 System.out.println("Logging in: " + username + " : " + password);
 		
-		 // check his user name and password:
-//		 Person p = (Person)loginPerson(username, password);
+		 // this method is for local test only:
+		 Person p = (Person)loginPerson(username, password);
 		
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
-		Person p = (Person) profileDAO.login(username, password);		
+		// check his user name and password:
+//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+//		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+//		Person p = (Person) profileDAO.login(username, password);		
 		
 		
 		if(p == null) { // no such user
@@ -61,9 +59,9 @@ public class LoginFormController {
 
 	
 	static Person loginPerson(String username, String password) {
-		return null;
+//		return null;
 //		return new jdbc.model.Passenger();
-//		return new jdbc.model.Driver();
+		return new jdbc.model.Driver();
 	}
 
 	
@@ -72,5 +70,6 @@ public class LoginFormController {
 	public String goToForgottenPassword() {
 		return "ForgottenPassword";
 	}
+	
 	
 }

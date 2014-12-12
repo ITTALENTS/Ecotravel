@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
 	<nav>
@@ -12,14 +11,22 @@
 			<ul>
 				<li><a href="#">About Us</a></li>
 				<li><a href="#">History</a></li>
-				<li><a href="/pages/ProfilePage.jsp">My Profile</a></li>
-						
+				<li><a href="ProfilePage">My Profile</a></li>	
 			</ul>
-			<form method="GET" action="#">
-				<input type="submit" value="Logout" />
-			</form>
-		</nav>
-		<hr />
-	<div>
+		</div>
+		
+	</nav>
+	
+	<% if(!this.getClass().getSimpleName().equalsIgnoreCase("Welcome_jsp") &&
+			!this.getClass().getSimpleName().equalsIgnoreCase("RegisterForm_jsp")) { %>
+		<form method="POST" action="Logout">
+			<input type="submit" value="Logout" />
+		</form>
+	<% } %>
+	
+	<!-- <h3><% out.print(this.getClass().getSimpleName()); %></h3>  -->
+	
+	<hr />
+	
 </body>
 </html>

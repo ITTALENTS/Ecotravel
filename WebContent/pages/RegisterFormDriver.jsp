@@ -21,7 +21,7 @@
 			<label for="yes"></label>
 			<input type="radio" name="isSmoking" value="Yes"> Yes <br />
 			<label for="no"></label>
-			<input type="radio" name="isSmoking" value="Yes"> No <br />
+			<input type="radio" name="isSmoking" value="Yes" checked="checked"> No <br />
 		</p>
 		
 		<p id="musicInCar">
