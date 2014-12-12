@@ -24,7 +24,7 @@ public class ProfileDAO implements IProfileDAO {
 		String sql = "select COUNT(*)  from profiles where username=?";
 		@SuppressWarnings("deprecation")
 		int exist = jdbc.queryForInt(sql, username);
-		return (exist > 0);
+		return (exist >0);
 	}
 
 	public boolean emailExist(String email) {
@@ -32,7 +32,7 @@ public class ProfileDAO implements IProfileDAO {
 		String countEmails = "select count(*) from profiles where email=?";
 		@SuppressWarnings("deprecation")
 		int emailExist = jdbc.queryForInt(countEmails, email);
-		return (emailExist > 0);
+		return (emailExist>0);
 	}
 	
 public boolean isRegistrationAllowed(String email, String username){

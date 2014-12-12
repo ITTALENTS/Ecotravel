@@ -1,14 +1,10 @@
 package jdbc.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
@@ -33,28 +29,13 @@ public class PassengerDAO implements IPassengerDAO {
 	}
 
 	@Override
-	public List<AdvertismentUser> searchAdvertisment(String from, String to,
+	public List<Addvertisment> searchAdvertisment(String from, String to,
 			String date) {
 
 		return jdbc
-				.query("select ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel, profiles.email from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  townFrom=? and townTo=? and dateOfTravel=?",
+				.query("select ads.adId,ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel, profiles.email from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  townFrom=? and townTo=? and dateOfTravel=?",
 						new Object[] { from, to, date },
-						new RowMapper<AdvertismentUser>() {
-
-							@Override
-							public AdvertismentUser mapRow(ResultSet rs,
-									int rowNum) throws SQLException {
-
-								return new AdvertismentUser(rs
-										.getString("TownFrom"), rs
-										.getString("TownTo"), rs
-										.getInt("freePlaces"), rs
-										.getString("dateOfTravel"), rs
-										.getString("email"));
-
-							}
-
-						});
+						new AdvertismentDriverMapper());
 
 	}
 
@@ -118,8 +99,8 @@ public class PassengerDAO implements IPassengerDAO {
 
 	}
 
-	public void registerPassenger(String username, String name,
-			int birthYear, String telephone) {
+	public void registerPassenger(String username, String name, int birthYear,
+			String telephone) {
 
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);

@@ -11,13 +11,11 @@ public class ProfileDriverMapper implements RowMapper<Driver> {
 	@Override
 	public Driver mapRow(ResultSet rs, int rn) throws SQLException {
 		//ProfileDriv profile = new ProfileDriv();
-		Driver profile = new Driver();
-		
+		Driver profile = new Driver();		
 		Profile profileOfDriver= new Profile();
 		profile.setName(rs.getString("nameOfDriver"));
 		profileOfDriver.setEmail(rs.getString("email"));
-		profileOfDriver.setUsername(rs.getString("username"));
-		
+		profileOfDriver.setUsername(rs.getString("username"));	
 		profile.setProfile(profileOfDriver);
 		//profile.setUsername(rs.getString("username"));
 		//profile.setEmail(rs.getString("email"));
