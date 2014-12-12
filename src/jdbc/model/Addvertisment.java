@@ -7,7 +7,7 @@ public class Addvertisment {
 	private int freePlaces;
 	private String Date;
 	private Driver driver;
-	
+
 	public int getAdvertismentId() {
 		return advertismentId;
 	}

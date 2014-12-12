@@ -1,6 +1,5 @@
 package jdbc.dao;
 
-
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
@@ -9,7 +8,6 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
-
 import jdbc.model.*;
 import jdbc.mappers.*;
 

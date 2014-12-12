@@ -24,7 +24,7 @@ public class ProfileDAO implements IProfileDAO {
 		String sql = "select COUNT(*)  from profiles where username=?";
 		@SuppressWarnings("deprecation")
 		int exist = jdbc.queryForInt(sql, username);
-		return (exist >0);
+		return (exist > 0);
 	}
 
 	public boolean emailExist(String email) {
@@ -32,19 +32,21 @@ public class ProfileDAO implements IProfileDAO {
 		String countEmails = "select count(*) from profiles where email=?";
 		@SuppressWarnings("deprecation")
 		int emailExist = jdbc.queryForInt(countEmails, email);
-		return (emailExist>0);
+		return (emailExist > 0);
 	}
-	
-public boolean isRegistrationAllowed(String email, String username){
-	
-	return !(emailExist(email) || usernameExist(username));
-}
+
+	public boolean isRegistrationAllowed(String email, String username) {
+
+		return !(emailExist(email) || usernameExist(username));
+	}
+
 	public boolean matchPassword(String username, String password) {
 		String passwordDB = null;
 		if (usernameExist(username)) {
 
 			String getPasswordByUsername = "select password from profiles where username=?";
-			Map<String, Object> userPass = jdbc.queryForMap(getPasswordByUsername, username);
+			Map<String, Object> userPass = jdbc.queryForMap(
+					getPasswordByUsername, username);
 
 			passwordDB = (String) userPass.get("password");
 			return passwordDB.equals(password);
@@ -94,8 +96,8 @@ public boolean isRegistrationAllowed(String email, String username){
 		profile.setEmail(email);
 		profile.setPassword(password);
 		String insertIntoProfiles = "insert into profiles (username, email, password) values (?, ?,?)";
-		jdbc.update(insertIntoProfiles, profile.getUsername(), profile.getEmail(),
-				profile.getPassword());
+		jdbc.update(insertIntoProfiles, profile.getUsername(),
+				profile.getEmail(), profile.getPassword());
 	}
 
 	@Override
