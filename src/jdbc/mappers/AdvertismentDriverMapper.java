@@ -10,7 +10,7 @@ public class AdvertismentDriverMapper implements RowMapper<Addvertisment>{
 
 	@Override
 	public Addvertisment mapRow(ResultSet rs, int nr) throws SQLException {
-	Addvertisment advertisment =new Addvertisment();
+	TripBetweenTowns advertisment =new TripBetweenTowns();
 	Driver driver = new Driver();
 	Profile profile = new Profile();
 	advertisment.setAdvertismentId(rs.getInt("adId"));

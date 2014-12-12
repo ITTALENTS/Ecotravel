@@ -64,7 +64,7 @@ public class DriverDAO implements IDriverDAO {
 	public Addvertisment openAdvertisment(int driverId, String from, String to,
 			String date, int freePlaces) {
 
-		Addvertisment ad = new Addvertisment();
+		TripBetweenTowns ad = new TripBetweenTowns();
 		ad.setDate(date);
 		ad.setFreePlaces(freePlaces);
 		ad.setTravelFrom(from);

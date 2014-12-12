@@ -26,17 +26,7 @@ public class PassengerDAO implements IPassengerDAO {
 
 	}
 
-	@Override
-	public List<Addvertisment> searchAdvertisment(String from, String to,
-			String date) {
-
-		return jdbc
-				.query("select ads.adId,ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel, profiles.email from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  townFrom=? and townTo=? and dateOfTravel=?",
-						new Object[] { from, to, date },
-						new AdvertismentDriverMapper());
-
-	}
-
+	
 	@Override
 	public Passenger showProfile(String username) {
 
@@ -96,6 +86,8 @@ public class PassengerDAO implements IPassengerDAO {
 		}
 
 	}
+	
+	
 
 	public void registerPassenger(String username, String name, int birthYear,
 			String telephone) {

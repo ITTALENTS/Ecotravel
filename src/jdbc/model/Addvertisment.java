@@ -1,6 +1,6 @@
 package jdbc.model;
 
-public class Addvertisment {
+public abstract class Addvertisment {
 	private int advertismentId;
 	private String travelFrom;
 	private String travelTo;

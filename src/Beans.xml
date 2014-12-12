@@ -48,6 +48,11 @@ class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	
 	
 	
+	<bean id="tripBetweenTownsDAO" 
+      class="jdbc.dao.TripBetweenTownsDAO">
+      <property name="dataSource"  ref="dataSource" />    
+            
+   </bean>
 	<bean id="driverDAO" 
       class="jdbc.dao.DriverDAO">
       <property name="dataSource"  ref="dataSource" />    
