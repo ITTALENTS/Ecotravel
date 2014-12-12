@@ -1,6 +1,6 @@
 package jdbc.dao;
 
-import java.util.List;
+
 import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

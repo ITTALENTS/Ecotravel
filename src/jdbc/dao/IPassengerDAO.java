@@ -1,6 +1,5 @@
 package jdbc.dao;
 
-import java.util.List;
 
 import javax.sql.DataSource;
 import jdbc.model.*;
