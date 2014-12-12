@@ -119,7 +119,7 @@ public class PassengerDAO implements IPassengerDAO {
 	}
 
 	public void registerPassenger(String username, String name,
-			String birthYear, String telephone) {
+			int birthYear, String telephone) {
 
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);

@@ -1,5 +1,13 @@
 package com.ecotravel.controllers;
 
+import javax.servlet.http.HttpSession;
+
+import jdbc.dao.DriverDAO;
+import jdbc.dao.PassengerDAO;
+import jdbc.dao.ProfileDAO;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,11 +44,8 @@ public class RegistrationController {
 		System.out.println("birthYear: " + birthYear);
 		System.out.println("driverLicense: " + driverLicense);
 		
-		
-		// call DAO methods which check if user name and mail are free
-		boolean usernameExists = false;
-		boolean emailExists = false;
-		boolean isUserAllwedToRegister = !usernameExists && !emailExists;
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
 		
 		// check password retype
 		if(!password.equals(rePassword)) {
@@ -48,9 +53,20 @@ public class RegistrationController {
 			return "RegisterForm";
 		}
 		
+		// call DAO methods which check if user name and mail are free
+		boolean usernameExists = profileDAO.usernameExist(username);
+		boolean emailExists = profileDAO.emailExist(email);
+		// boolean isUserAllwedToRegister = !usernameExists && !emailExists;
+		boolean isUserAllwedToRegister = profileDAO.isRegistrationAllowed(email, username);
+		
 		if(isUserAllwedToRegister) {
 			if(driverLicense.equalsIgnoreCase("No")) {
 				// here call register method from DAO (it writes the new user in DB)
+				profileDAO.createProfile(username, email, password);
+				// we register as passenger
+				PassengerDAO passengerDao = (PassengerDAO) context.getBean("passengerDAO");
+				passengerDao.registerPassenger(username, name, birthYear, telephone);
+				
 				model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
 				return "Welcome";
 			} else { // driverLicense.equalsIgnoreCase("Yes")
@@ -63,6 +79,7 @@ public class RegistrationController {
 				model.addAttribute("birthYear", birthYear);
 				model.addAttribute("driverLicense", driverLicense);
 				// TODO: you should return the whole model with this data !!!
+				
 				return "RegisterFormDriver";
 			}
 		} else { // username or email - taken
@@ -95,7 +112,15 @@ public class RegistrationController {
 		System.out.println("Music: " + musicInTheCar);
 		
 		// get model attributes from previous page and print them in console
-		// System.out.println(model.ge);
+		
+		// here call register method from DAO (it writes the new user in DB)
+//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+//		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+//		
+//		profileDAO.createProfile((String)session.getAttribute("username"), (String)session.getAttribute("email"), (String)session.getAttribute("password"));
+//		// we register as passenger
+//		DriverDAO passengerDao = (DriverDAO) context.getBean("driverDAO");
+//		passengerDao.registerDriver(username, name, birthYear, telephone);
 		
 		model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
 		return "Welcome";
