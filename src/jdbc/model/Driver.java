@@ -2,8 +2,7 @@ package jdbc.model;
 
 public class Driver extends Person {
 
-	private int numberOfTravels;
-	
+	private int numberOfTravels;	
 	private int licenseYear;
 	private boolean isSmoking;
 	private String musicInTheCar;

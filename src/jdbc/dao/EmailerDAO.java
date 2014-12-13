@@ -16,9 +16,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class EmailerDAO {
-	public void sendMessage(String username){
+	public boolean sendMessage(String username){
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Emailer emailer = (Emailer) context.getBean("Emailer");
+		Emailer emailer = new Emailer();
 		Session session = emailer.getSession();
 		Properties props = emailer.getProps();
 		
@@ -27,7 +27,10 @@ public class EmailerDAO {
 			String emailText = "Be more careful next time! \n Your new password is: ";
 			ProfileDAO profileDao = (ProfileDAO)context.getBean("profileDAO");
 			String email = profileDao.getEmailByUsername(username);
-			emailText.concat(profileDao.generateRandomPassword(username)).concat("\nGreetings, Road Trip team!");			
+			if(email == null)
+				return false;
+			String newPassword = profileDao.generateRandomPassword(username);
+			emailText = emailText + newPassword + "\nGreetings, Road Trip team!";			
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("ittallentsproject@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
@@ -35,6 +38,7 @@ public class EmailerDAO {
 			message.setSubject(subject);
 			message.setText(emailText);
 			Transport.send(message);
+			return true;
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}

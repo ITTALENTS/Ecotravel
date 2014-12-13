@@ -11,10 +11,17 @@ public class Emailer {
 	private Properties props;
 	private Session session;
 	
-	private void init() {
+	public Emailer() {
+		this.username = "ittallentsproject";
+		this.password = "road_trip";
 		configureProperties(true, true, "smtp.gmail.com", 587);
 		configureSession(getUsername(), getPassword());
 	}
+	
+//	private void init() {
+//		configureProperties(true, true, "smtp.gmail.com", 587);
+//		configureSession(getUsername(), getPassword());
+//	}
 	
 	public Properties getProps() {
 		return props;

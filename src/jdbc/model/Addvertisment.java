@@ -6,6 +6,17 @@ public abstract class Addvertisment {
 	private String travelTo;
 	private int freePlaces;
 	private String Date;
+	private String timeOfTravel;
+	
+	
+	public String getTimeOfTravel() {
+		return timeOfTravel;
+	}
+
+	public void setTimeOfTravel(String timeOfTravel) {
+		this.timeOfTravel = timeOfTravel;
+	}
+
 	private Driver driver;
 
 	public int getAdvertismentId() {
