@@ -61,17 +61,19 @@ public class DriverDAO implements IDriverDAO {
 	}
 
 	@Override
-	public Addvertisment openAdvertisment(int driverId, String from, String to,
-			String date, int freePlaces) {
+	public Addvertisment openAdvertisment(String username, String from, String to,
+			String date,String time, int freePlaces) {
 
 		TripBetweenTowns ad = new TripBetweenTowns();
 		ad.setDate(date);
 		ad.setFreePlaces(freePlaces);
 		ad.setTravelFrom(from);
 		ad.setTravelTo(to);
-
-		String insertAdvertisment = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,freePlaces ) values(?,?,?,?,?) ";
-		jdbc.update(insertAdvertisment, driverId, from, to, date, freePlaces);
+String getDriverIdByUsername="select driverId from drivers where profileId like(select profileId from profiles where username like ?)";
+int driverId = jdbc.queryForInt(getDriverIdByUsername, username);
+System.out.println(driverId);
+		String insertAdvertisment = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,timeOfTravel,freePlaces  ) values(?,?,?,?,?,?) ";
+		jdbc.update(insertAdvertisment, driverId, from, to, date,time, freePlaces);
 		return ad;
 	}
 
