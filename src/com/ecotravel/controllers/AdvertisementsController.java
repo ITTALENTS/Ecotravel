@@ -1,7 +1,14 @@
 package com.ecotravel.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import jdbc.dao.TripBetweenTownsDAO;
+import jdbc.model.Addvertisment;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +32,7 @@ public class AdvertisementsController {
 	
 	
 	
-	@RequestMapping(value = "AdvertisementsPage", method = RequestMethod.POST)
+	@RequestMapping(value="AdvertisementsPage", method = RequestMethod.POST)
 	public String registerNewUser(@RequestParam String fromCity,
 								@RequestParam String toCity, 
 								@RequestParam String date, HttpSession session, Model model) {
@@ -36,8 +43,21 @@ public class AdvertisementsController {
 		System.out.println("to: " + toCity);
 		System.out.println("date: " + date);
 		model.addAttribute("searching_msg", "Searching...");
+		
+		// here call a method to find advertisements
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		TripBetweenTownsDAO tripDAO = (TripBetweenTownsDAO) context.getBean("tripBetweenTownsDAO");
 
+		List<Addvertisment> ads = tripDAO.showActiveAdvertisements(fromCity, toCity, date);
+		
+		session.setAttribute("all_valid_advertisements", ads);
+		
 		return "ChooseTrip";
 	}
+	
+	
+	
+	
 	
 }
