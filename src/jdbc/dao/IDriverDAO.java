@@ -6,8 +6,8 @@ import jdbc.model.*;
 public interface IDriverDAO {
 	public void setDataSource(DataSource ds);
 
-	public Addvertisment openAdvertisment(int driverId, String from, String to,
-			String date, int freePlaces);
+	public Addvertisment openAdvertisment(String username, String from, String to,
+			String date,String time, int freePlaces);
 
 	public void deleteAdvertisment(Addvertisment ad);
 

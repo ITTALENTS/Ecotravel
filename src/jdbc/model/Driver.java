@@ -7,6 +7,7 @@ public class Driver extends Person {
 	private boolean isSmoking;
 	private String musicInTheCar;
 	
+	
 	public int getLicenseYear() {
 		return licenseYear;
 	}
