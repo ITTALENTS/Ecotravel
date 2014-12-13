@@ -22,7 +22,7 @@ public class ForgottenPasswordController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String sendNewPassword(@RequestParam("username") String username, Model model) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		EmailerDAO emailer = (EmailerDAO) context.getBean("EmailerDao");
+		EmailerDAO emailer = (EmailerDAO) context.getBean("emailerDAO");
 		try{
 			emailer.sendMessage(username);
 			model.addAttribute("generatingPasswordStatus", "Check your email");

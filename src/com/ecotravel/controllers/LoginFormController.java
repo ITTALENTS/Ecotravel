@@ -36,12 +36,12 @@ public class LoginFormController {
 		 System.out.println("Logging in: " + username + " : " + password);
 		
 		 // this method is for local test only:
-		 Person p = (Person)loginPerson(username, password);
+//		 Person p = (Person)loginPerson(username, password);
 		
 		// check his user name and password:
-//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-//		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
-//		Person p = (Person) profileDAO.login(username, password);		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+		Person p = (Person) profileDAO.login(username, password);		
 		
 		
 		if(p == null) { // no such user

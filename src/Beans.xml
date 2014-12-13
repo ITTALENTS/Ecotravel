@@ -67,20 +67,22 @@
 	</bean>
 
 
-<!-- <bean id="emailer" class="jdbc.model.Emailer" scope="singleton"
+	<!--  <bean id="emailer" class="jdbc.model.Emailer" scope="singleton"
 		init-method="init">
 
 
-		<property name="properties"></property>
-		<property name="session"></property>
+		
+		
 		<constructor-arg name="username" value="ittallentsproject"
 			type="String" index="0">
 		</constructor-arg>
 		<constructor-arg value="road_trip" name="password"
 			index="1" type="String">
 		</constructor-arg>
-	</bean>
-	<bean id="emailerDAO" class="jdbc.dao.EmailerDAO"></bean> -->	
+	</bean>-->
+	
+	
+	<bean id="emailerDAO" class="jdbc.dao.EmailerDAO"></bean>	 
 	
 	
 </beans>

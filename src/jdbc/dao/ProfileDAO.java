@@ -111,11 +111,12 @@ public class ProfileDAO implements IProfileDAO {
 	}
 	
 	public String getEmailByUsername(String username){
-		
+		if(usernameExist(username)){
 		String selectEmailByUsername= "select email from profiles where username=?";	
 		Map<String, Object> email = jdbc.queryForMap(
 				selectEmailByUsername, username);
-		return (String)email.get("email");
+		return (String)email.get("email");}
+		return null;
 	}
 
 	
