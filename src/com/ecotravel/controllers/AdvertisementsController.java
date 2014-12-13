@@ -49,7 +49,7 @@ public class AdvertisementsController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		TripBetweenTownsDAO tripDAO = (TripBetweenTownsDAO) context.getBean("tripBetweenTownsDAO");
 
-		List<Addvertisment> ads = tripDAO.showActiveAdvertisements(fromCity, toCity, date);
+		List<Addvertisment> ads = tripDAO.showActiveAdvertisments(fromCity, toCity, date);
 		
 		session.setAttribute("all_valid_advertisements", ads);
 		

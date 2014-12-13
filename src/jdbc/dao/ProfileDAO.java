@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.mappers.*;
 import jdbc.model.*;
-import java.util.UUID;
 import java.security.SecureRandom;
 import java.util.Random;
 public class ProfileDAO implements IProfileDAO {
@@ -111,11 +110,12 @@ public class ProfileDAO implements IProfileDAO {
 	}
 	
 	public String getEmailByUsername(String username){
-		
+		if(usernameExist(username)){
 		String selectEmailByUsername= "select email from profiles where username=?";	
 		Map<String, Object> email = jdbc.queryForMap(
 				selectEmailByUsername, username);
-		return (String)email.get("email");
+		return (String)email.get("email");}
+		return null;
 	}
 
 	
