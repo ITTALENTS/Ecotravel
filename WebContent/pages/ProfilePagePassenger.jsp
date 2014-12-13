@@ -19,7 +19,7 @@
 	<p>Driving License: No</p>
 	<p>Rating: ${rating }</p>
 		
-	<form method="GET">
+	<form method="GET" action="EditProfile">
 		<input type="submit" value="Edit Profile" />
 	</form>
 	

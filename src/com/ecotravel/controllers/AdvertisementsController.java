@@ -57,7 +57,15 @@ public class AdvertisementsController {
 	}
 	
 	
-	
+	@RequestMapping(value="SubscribeForTrip", method = RequestMethod.POST)
+	public String subscribeUserToTrip(@RequestParam int advertismentId, HttpSession session) {
+		
+		session.setAttribute("advertisement_id", advertismentId);
+		
+		//TODO: IMPLEMENT
+		
+		return null;
+	}
 	
 	
 }
