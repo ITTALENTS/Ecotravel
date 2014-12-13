@@ -25,10 +25,9 @@ public class EmailerDAO {
 		try {
 			String subject = "Generating new Password";
 			String emailText = "Be more careful next time! \n Your new password is: ";
-			Profile p = (Profile)context.getBean("profile");
 			ProfileDAO profileDao = (ProfileDAO)context.getBean("profileDAO");
-			String email = p.getEmailByUsername(username);
-			emailText.compareTo(profileDao.generateRandomPassword()).concat("\nGreetings, Road Trip team!");			
+			String email = profileDao.getEmailByUsername(username);
+			emailText.concat(profileDao.generateRandomPassword(username)).concat("\nGreetings, Road Trip team!");			
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("ittallentsproject@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,

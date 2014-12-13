@@ -117,7 +117,7 @@ public class ProfileDAO implements IProfileDAO {
 	}
 
 	
-	public  String generateRandomPassword(String username){
+	public String generateRandomPassword(String username){
 		String newPassword= UUID.randomUUID().toString();
 		savePasswordByUsername(username, newPassword);
 		return newPassword;
