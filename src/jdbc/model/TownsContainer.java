@@ -10,18 +10,16 @@ import javax.servlet.jsp.JspWriter;
 import com.sun.mail.iap.Response;
 
 public class TownsContainer {
-	private static String[] towns = {"Sofia", "Lovech", "Varna", "Blagoevgrad", "Burgas"};
+	private static String[] towns = {"Burgas", "Blagoevgrad", 
+										"Lovech", 
+										"Pleven", "Plovdiv", "Sofia",
+										"Varna", "Veliko Turnovo", "Vidin", "Vraca"};
 	
 	public TownsContainer() {
 	}
 	
 	public static void printTownsInSelectMenu(JspWriter out) throws IOException{ 
-		sortArray(towns);
 		for(int i=0; i < towns.length; i++)
 			out.print("<option>" + towns[i] + "</option>");
-	}
-	
-	private static void sortArray(String[] towns){
-		Arrays.sort(towns);
 	}
 }

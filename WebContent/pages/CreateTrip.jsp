@@ -25,6 +25,12 @@
   		Date:
   		<input type="date" name="bday">
   		
+  		Time:
+  		<input type="time" name="time" >
+  		
+  		Number of Free places
+  		<input type="number" name="freePlaces" min="1" max="6">
+  		
   		<input type="submit" value="Search!">
 	</form>
 </body>
