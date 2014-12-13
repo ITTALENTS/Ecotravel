@@ -13,9 +13,8 @@
 </style>
 </head>
 <body>
-
+	<%@ include file="Header.jsp" %>
 	<h1>Search For Advertisements</h1>
-	
 	<form>
 		From:
 		<select>
@@ -45,7 +44,7 @@
   		<input type="submit" value="Search!">
 	</form>
 	
-	
+	<%@ include file="Footer.jsp" %>
 	<!-- 
 	<table border="1">
 		<tr>
