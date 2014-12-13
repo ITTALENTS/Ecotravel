@@ -1,78 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-<bean id="dataSource"
-class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-   <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-   <property name="url" value="jdbc:mysql://localhost:3306/ecotravel"/>
-   <property name="username" value="root"/>
-   <property name="password" value="hristobotev154"/>
-</bean>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/ecotravel" />
+		<property name="username" value="root" />
+		<property name="password" value="hristobotev154" />
+	</bean>
 
 	<bean id="person" class="jdbc.model.Person" abstract="true">
 		<property name="rating" value="0"></property>
-		<property name="name" value =" "></property>
-		<property name="telephone" value =" "></property>
+		<property name="name" value=" "></property>
+		<property name="telephone" value=" "></property>
 	</bean>
 	<bean id="profile" class="jdbc.model.Profile">
-		
-		<property name="username" value =" "></property>
-		<property name="password" value =" "></property>
-		<property name="email" value =" "></property>
+
+		<property name="username" value=" "></property>
+		<property name="password" value=" "></property>
+		<property name="email" value=" "></property>
 	</bean>
 	<bean id="driver" class="jdbc.model.Driver" parent="person">
 		<property name="numberOfTravels" value="0"></property>
-		<property name="yearsInDriving" value ="0"></property>
-		<property name="isSmoking" value ="false"></property>
-		<property name="musicInTheCar" value =" "></property>
+		<property name="yearsInDriving" value="0"></property>
+		<property name="isSmoking" value="false"></property>
+		<property name="musicInTheCar" value=" "></property>
 	</bean>
 
 	<bean id="passenger" class="jdbc.model.Passenger" parent="person">
-		
+
 	</bean>
-<!-- <bean id="addvertisment" class="jdbc.model.Addvertisment">
-		<property name="advertismentId" value="0"></property>
-		<property name="travelFrom" value=" "></property>
-		<property name="travelTo" value=" "></property>
-		<property name="freePlaces" value="0"></property>
-		<property name="date" value=" "></property>
-		<property name="driver" value="null"></property>
-	
-	</bean> -->
-	
-	
-	
-	<bean id="tripBetweenTownsDAO" 
-      class="jdbc.dao.TripBetweenTownsDAO">
-      <property name="dataSource"  ref="dataSource" />    
-            
-   </bean>
-	<bean id="driverDAO" 
-      class="jdbc.dao.DriverDAO">
-      <property name="dataSource"  ref="dataSource" />    
-            
-   </bean>
-   <bean id="passengerDAO" 
-      class="jdbc.dao.PassengerDAO">
-      <property name="dataSource"  ref="dataSource" />    
-      <property name="transactionManager"  ref="transactionManager" />    
-   </bean>
-   <bean id="profileDAO" 
-      class="jdbc.dao.ProfileDAO">
-      <property name="dataSource"  ref="dataSource" />  
-            
-  </bean>
-  
-    <bean id="transactionManager" 
-      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-      <property name="dataSource"  ref="dataSource" />    
-   </bean>
-   
-   
+	<!-- <bean id="addvertisment" class="jdbc.model.Addvertisment"> <property 
+		name="advertismentId" value="0"></property> <property name="travelFrom" value=" 
+		"></property> <property name="travelTo" value=" "></property> <property name="freePlaces" 
+		value="0"></property> <property name="date" value=" "></property> <property 
+		name="driver" value="null"></property> </bean> -->
+
+
+
+	<bean id="tripBetweenTownsDAO" class="jdbc.dao.TripBetweenTownsDAO">
+		<property name="dataSource" ref="dataSource" />
+
+	</bean>
+	<bean id="driverDAO" class="jdbc.dao.DriverDAO">
+		<property name="dataSource" ref="dataSource" />
+
+	</bean>
+	<bean id="passengerDAO" class="jdbc.dao.PassengerDAO">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	<bean id="profileDAO" class="jdbc.dao.ProfileDAO">
+		<property name="dataSource" ref="dataSource" />
+
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+	<bean id="emailer" class="jdbc.model.Emailer" scope="singleton"
+		init-method="init">
+
+
+		<property name="properties"></property>
+		<property name="session"></property>
+		<constructor-arg name="username" value="ittallentsproject"
+			type="String" index="0">
+		</constructor-arg>
+		<constructor-arg value="road_trip" name="password"
+			index="1" type="String">
+		</constructor-arg>
+	</bean>
+	<bean id="emailerDAO" class="jdbc.dao.EmailerDAO"></bean>
 </beans>
