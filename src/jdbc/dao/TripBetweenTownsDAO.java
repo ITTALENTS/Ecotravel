@@ -37,7 +37,7 @@ public class TripBetweenTownsDAO implements IAddvertismentDAO{
 		List<Addvertisment> activeAds= new ArrayList();
 		for (Addvertisment addvertisment : advertisments) {
 			String[] time=addvertisment.getTimeOfTravel().split("(:)");
-			int hoursAdd= Integer.parseInt(time[0]);
+			int hourAdd= Integer.parseInt(time[0]);
 			
 			int minutesAdd= Integer.parseInt(time[1]);	
 			
@@ -46,10 +46,10 @@ public class TripBetweenTownsDAO implements IAddvertismentDAO{
 		
 			int currentMinute= rightNow.get(Calendar.MINUTE);
 		
-			if((currentHour-hoursAdd<0)){
+			if(hourAdd-currentHour>0){
 				activeAds.add(addvertisment);
 			}
-			else if ((currentMinute-minutesAdd<0)){
+			else if (minutesAdd-currentMinute>0){
 				activeAds.add(addvertisment);
 				
 			}
