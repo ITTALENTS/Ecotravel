@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(value={"ForgottenPassword"})
+@RequestMapping("ForgottenPassword")
 public class ForgottenPasswordController {
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String sendNewPassword(@RequestParam String username, Model model) {
+	@RequestMapping(method = RequestMethod.POST)
+	public String sendNewPassword(@RequestParam("username") String username, Model model) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		EmailerDAO emailer = (EmailerDAO) context.getBean("EmailerDao");
 		try{

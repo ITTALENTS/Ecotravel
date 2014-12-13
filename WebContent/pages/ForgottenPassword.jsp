@@ -8,12 +8,12 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
-	<form id="forgottenPassword" method="Post" action="#">
+	<form id="forgottenPassword" method="POST" >
 		<label for="email">Your username:</label>
 		<input type="text" name="username" placeholder="Enter your username" required="true"/>
 		<input type="submit" name="submitButton" value="Send new password">
-		<h3>${generatingPasswordStatus}</h3>
 	</form>
+	<h3>${generatingPasswordStatus}</h3>
 	<a id="loginForm" href="Welcome">Login</a>	
 	<a id="registerForm" href="RegisterForm">Create new account</a>
 	<%@ include file="Footer.jsp" %>
