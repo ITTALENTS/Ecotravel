@@ -26,12 +26,12 @@
 				//printInCell(out, a.getTime());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
 				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" />");
-				printInCell(out, "<form method=\"GET\" action=\"SubscribeForTrip\"><input type=\"submit\" value=\"&#8594\"></form>");
+				printInCell(out, "<input type=\"submit\" value=\"&#8594\">");
 			out.print("</tr>");
 		}
 	%>
 	}
-		<form method="GET">
+		<form method="GET" name="selectedAdvertisment">
 			<table>
 				<% 
 					for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("all_valid_advertisements")) 
