@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import jdbc.mappers.*;
 import jdbc.model.*;
 import java.util.UUID;
+import java.security.SecureRandom;
+import java.util.Random;
 public class ProfileDAO implements IProfileDAO {
 
 	private JdbcTemplate jdbc;
@@ -118,7 +120,19 @@ public class ProfileDAO implements IProfileDAO {
 
 	
 	public String generateRandomPassword(String username){
-		String newPassword= UUID.randomUUID().toString();
+		Random RANDOM = new SecureRandom();
+		int PASSWORD_LENGTH = 8;
+		
+		 String letters = "abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789+@";
+
+	      String newPassword = "";
+	      for (int i=0; i<PASSWORD_LENGTH; i++)
+	      {
+	          int index = (int)(RANDOM.nextDouble()*letters.length());
+	          newPassword += letters.substring(index, index+1);
+	      }
+	 
+		//String newPassword= UUID.randomUUID().toString();
 		savePasswordByUsername(username, newPassword);
 		return newPassword;
 	}

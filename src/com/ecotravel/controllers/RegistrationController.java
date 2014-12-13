@@ -74,25 +74,25 @@ public class RegistrationController {
 		}
 		
 		
-//		// call DAO methods which check if user name and mail are free
-//		boolean usernameExists = profileDAO.usernameExist(username);
-//		boolean emailExists = profileDAO.emailExist(email);
-//		// boolean isUserAllwedToRegister = !usernameExists && !emailExists;
-//		boolean isUserAllwedToRegister = profileDAO.isRegistrationAllowed(email, username);
+		// call DAO methods which check if user name and mail are free
+		boolean usernameExists = profileDAO.usernameExist(username);
+		boolean emailExists = profileDAO.emailExist(email);
+		// boolean isUserAllwedToRegister = !usernameExists && !emailExists;
+		boolean isUserAllwedToRegister = profileDAO.isRegistrationAllowed(email, username);
 		
-		// these variables are jsut for the test
-		boolean usernameExists = false;
-		boolean emailExists = false;
-		boolean isUserAllwedToRegister = !usernameExists && !emailExists;
+//		// these variables are jsut for the test
+//		boolean usernameExists = false;
+//		boolean emailExists = false;
+//		boolean isUserAllwedToRegister = !usernameExists && !emailExists;
 		
 		
 		if(isUserAllwedToRegister) {
 			if(driverLicense.equalsIgnoreCase("No")) {
-//				// here call register method from DAO (it writes the new user in DB)
-//				profileDAO.createProfile(username, email, password);
-//				// we register as passenger
-//				PassengerDAO passengerDao = (PassengerDAO) context.getBean("passengerDAO");
-//				passengerDao.registerPassenger(username, name, birthYear, telephone);
+				// here call register method from DAO (it writes the new user in DB)
+				profileDAO.createProfile(username, email, password);
+				// we register as passenger
+				PassengerDAO passengerDao = (PassengerDAO) context.getBean("passengerDAO");
+				passengerDao.registerPassenger(username, name, birthYear, telephone);
 				
 				model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
 				session.invalidate();
@@ -148,10 +148,12 @@ public class RegistrationController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
 		
-//		profileDAO.createProfile((String)session.getAttribute("username"), (String)session.getAttribute("email"), (String)session.getAttribute("password"));
-//		// we register as passenger
-//		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
-//		driverDao.registerDriver(username, name, birthYear, telephone);
+		profileDAO.createProfile((String)session.getAttribute("username"), (String)session.getAttribute("email"), (String)session.getAttribute("password"));
+		// we register as driver
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+		driverDAO.registerDriver((String)session.getAttribute("username"), (String)session.getAttribute("name"), 
+				(int)session.getAttribute("birthYear"), (String)session.getAttribute("telephone"), licensePeriodYear,
+				musicInTheCar, Boolean.parseBoolean(isSmoking));
 		
 		model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
 		session.invalidate();
