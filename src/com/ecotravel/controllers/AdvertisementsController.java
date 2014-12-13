@@ -102,7 +102,7 @@ public class AdvertisementsController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
 		
-		Driver currentUser = (Driver) session.getAttribute("logeInUser");
+		Driver currentUser = (Driver) session.getAttribute("loggedInUser");
 		String username = currentUser.getProfile().getUsername();
 		
 		driverDAO.openAdvertisment(username, fromCity, toCity, date, time, freePlaces);
