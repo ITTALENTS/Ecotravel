@@ -1,3 +1,4 @@
+<%@page import="java.io.IOException"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="jdbc.model.Addvertisment"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -10,36 +11,33 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
-	<%! static void printInCell(String a){
+	<%! static void printInCell(JspWriter out, String a) throws IOException{
 			out.print("<td>");
 				out.print(a);
 			out.print("</td>");
-		
+		}
+	
+		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
+			out.print("<tr>");
+				printInCell(out, a.getDriver().getName());
+				printInCell(out, a.getTravelFrom());
+				printInCell(out, a.getTravelTo());
+				printInCell(out, a.getDate());
+				//printInCell(out, a.getTime());
+				printInCell(out, String.valueOf(a.getFreePlaces()));
+				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" />");
+				printInCell(out, "<form method=\"GET\" action=\"SubscribeForTrip\"><input type=\"submit\" value=\"&#8594\"></form>");
+			out.print("</tr>");
 		}
 	%>
 	}
 		<form method="GET">
 			<table>
-				<!-- ${trips} -->
-				
 				<% 
-				for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("all_valid_advertisements")) 
-				{
-					out.print("<tr>");
-						out.print("<td>");
-							out.print(a.getTravelFrom());
-						out.print("</td>");
-						out.print("<td>");
-							out.print(a.getTravelFrom());
-						out.print("</td>");
-						out.print("<td>");
-							out.print(a.getTravelFrom());
-						out.print("</td>");
-						out.print("<td>");
-							out.print(a.getTravelFrom());
-						out.print("<td>");
-					out.print("</tr>");
-				} 
+					for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("all_valid_advertisements")) 
+					{
+						printAnAdvertisment(out, a);
+					} 
 				%>
 			
 			</table>
