@@ -4,9 +4,10 @@ import javax.validation.constraints.Size;
 
 public abstract class Person {
 
-	//@Size(min=3)
+	//@Size(min=2, message="Name can't be shorter than {min} symbols.")
 	private String name;
 	private int rating;
+	// validation for telephone ??
 	private String telephone;
 	private int birthYear;
 	

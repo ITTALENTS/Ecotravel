@@ -15,15 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LogoutController {
 	 
 	@RequestMapping(method = RequestMethod.POST)
-	public void logout(HttpServletResponse response, HttpSession session, Model model) {
+	public String logout(HttpServletResponse response, HttpSession session, Model model) {
 		// session.removeAttribute("logedInUser");
 		session.invalidate();
-		try {
-			response.sendRedirect("Welcome");
-		} catch (IOException e) {
-			System.out.println("Check out the logout controller");
-			e.printStackTrace();
-		}
+		return "redirect:Welcome";
 	}
 	
 	

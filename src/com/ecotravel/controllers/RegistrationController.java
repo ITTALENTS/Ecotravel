@@ -1,5 +1,8 @@
 package com.ecotravel.controllers;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -42,7 +45,8 @@ public class RegistrationController {
 								@RequestParam String username, 
 								@RequestParam String password,
 								@RequestParam String rePassword,
-								@RequestParam String driverLicense, Model model, HttpSession session) {
+								@RequestParam String driverLicense, Model model, 
+								HttpSession session, HttpServletResponse response) {
 		
 		System.out.println("username: " + username);
 		System.out.println("pass: " + password);

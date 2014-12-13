@@ -18,7 +18,8 @@
 	</nav>
 	
 	<% if(!this.getClass().getSimpleName().equalsIgnoreCase("Welcome_jsp") &&
-			!this.getClass().getSimpleName().equalsIgnoreCase("RegisterForm_jsp")) { %>
+			!this.getClass().getSimpleName().equalsIgnoreCase("RegisterForm_jsp") &&
+			!this.getClass().getSimpleName().equalsIgnoreCase("RegisterFormDriver_jsp")) { %>
 		<form method="POST" action="Logout">
 			<input type="submit" value="Logout" />
 		</form>
