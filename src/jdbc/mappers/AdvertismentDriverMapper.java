@@ -15,9 +15,11 @@ public class AdvertismentDriverMapper implements RowMapper<Addvertisment>{
 	Profile profile = new Profile();
 	advertisment.setAdvertismentId(rs.getInt("adId"));
 	advertisment.setDate(rs.getString("dateOfTravel"));
+	advertisment.setTimeOfTravel(rs.getString("timeOfTravel"));
 	advertisment.setFreePlaces(rs.getInt("freePlaces"));
 	advertisment.setTravelFrom(rs.getString("TownFrom"));
 	advertisment.setTravelTo(rs.getString("TownTo"));
+	
 	profile.setEmail(rs.getString("email"));
 	driver.setProfile(profile);
 	advertisment.setDriver(driver);
