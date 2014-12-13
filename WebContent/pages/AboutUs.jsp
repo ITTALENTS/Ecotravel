@@ -29,6 +29,10 @@
 				Grade 3: 
 			</p>
 			
+			<p>
+				You can contact us at: <input type="email" href="">
+			</p>
+			
 		</div>
 	<%@ include file="Footer.jsp" %>
 </body>

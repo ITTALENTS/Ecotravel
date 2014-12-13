@@ -6,9 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-	<div> 
-	<hr />
-	SOME FOOTER
+	<div id="Footer"> 
+		<hr />
+		<p>Road trip: 2014</p>
+		<p>ItTallents project</p>
 	</div>
 </body>
 </html>

@@ -9,9 +9,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/welcomeStyle.css">
 </head>
 <body>
-	<div id="loginWrapper">
-		<%@ include file="Header.jsp" %>
-		
+	<%@ include file="Header.jsp" %>
+	<div id="welcome">
 		<form id="loginForm" method="POST" >
 			<div>
 				<label for="username">Username:</label>

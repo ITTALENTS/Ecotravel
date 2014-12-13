@@ -1,12 +1,10 @@
-body {
-	background-color: #FFFFCC;
-}
-
 html, body, header, article, div, h1, nav, a, p, img, span, footer, ul, li {
 	margin: 5px;
 	padding: 5px;
 }
 
-#loginWrapper {
-	border: 2px solid red;
+#welcome {
+	background-color: #FFCC00;
+	height: 60%;
+	width: 100%;
 }
