@@ -33,7 +33,7 @@ public class AdvertisementsController {
 	
 	
 	@RequestMapping(value="AdvertisementsPage", method = RequestMethod.POST)
-	public String registerNewUser(@RequestParam String fromCity,
+	public String searchAdvertisements(@RequestParam String fromCity,
 								@RequestParam String toCity, 
 								@RequestParam String date, HttpSession session, Model model) {
 
