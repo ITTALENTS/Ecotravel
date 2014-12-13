@@ -23,7 +23,7 @@
 	<p>Number of travels: ${numberOfTravels}</p>
 	<p>Rating: ${rating }</p>
 	
-	<!-- HERE TO PRINT USER'S ADVERTISEMENT -->
+	<!-- HERE TO PRINT USER'S ADVERTISEMENT !!! -->
 	
 	<form method="GET" action="EditAdvertisement">
 		<input type="submit" value="Edit My Advertisement" />

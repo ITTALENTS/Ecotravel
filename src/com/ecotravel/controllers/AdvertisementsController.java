@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import jdbc.dao.DriverDAO;
 import jdbc.dao.TripBetweenTownsDAO;
 import jdbc.model.Addvertisment;
+import jdbc.model.Driver;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -81,13 +83,19 @@ public class AdvertisementsController {
 		System.out.println("time: " + time);
 		System.out.println("fromCfreePlaces" + freePlaces);
 		
-		// TODO: ????
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+		
+		Driver currentUser = (Driver) session.getAttribute("logeInUser");
+		String username = currentUser.getProfile().getUsername();
+		
+		driverDAO.openAdvertisment(username, fromCity, toCity, date, time, freePlaces);
 
 		return "ProfilePageDriver";
 		
 	}
 	
 	
-	//TODO: controller for edit advertisement
+	//TODO: add controller for edit advertisement
 	
 }
