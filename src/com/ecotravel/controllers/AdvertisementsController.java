@@ -3,7 +3,10 @@ package com.ecotravel.controllers;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdvertisementsController {
@@ -22,20 +25,19 @@ public class AdvertisementsController {
 	
 	
 	
-//	@RequestMapping(value="AdvertismentsPage", method = RequestMethod.POST)
-//	public String registerNewUser(@RequestParam String townFrom,
-//								@RequestParam String townTo,
-//								@RequestParam String bday,
-//								 Model model) {
-//		
-//		// WARNING!!! the order of arguments must match order of inputs in <form> !!!
-//		
-//		System.out.println("from: " +townFrom );
-//		System.out.println("to: " + townTo);
-//		System.out.println("date: " + bday);
-//		model.addAttribute("reg_complete_msg", "getting atributes is done");
-//		
-//		return "AdvertismentsPage";
-//		}
+	@RequestMapping(value = "AdvertismentsPage", method = RequestMethod.POST)
+	public String registerNewUser(@RequestParam String fromCity,
+								@RequestParam String toCity, 
+								@RequestParam String date, Model model) {
+
+		// WARNING!!! the order of arguments must match order of inputs in <form> !!!
+
+		System.out.println("from: " + fromCity);
+		System.out.println("to: " + toCity);
+		System.out.println("date: " + date);
+		model.addAttribute("searching_msg", "Searching...");
+
+		return "ChooseTrip";
+	}
 	
 }

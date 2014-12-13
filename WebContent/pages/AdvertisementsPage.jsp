@@ -17,7 +17,7 @@
 	<h1>Search For Advertisements</h1>
 	<form>
 		From:
-		<select>
+		<select name="fromCity">
 			<!-- must be sorted by alphabetically -->
 			<!-- can't visualize cyrillics -->
 			<!-- use spring for these lists -->
@@ -29,7 +29,7 @@
 		</select>
 		
 		To:
-		<select>
+		<select name="toCity">
 			<!-- must be sorted by alphabetically -->
 			<option>Sofia</option>
 			<option>Lovech</option>
@@ -39,10 +39,12 @@
 		</select>
 	
   		Date:
-  		<input type="date" name="bday">
+  		<input type="date" name="date">
   		
   		<input type="submit" value="Search!">
 	</form>
+	
+	<h3>${searching_msg}</h3>
 	
 	<%@ include file="Footer.jsp" %>
 	
