@@ -4,22 +4,32 @@ public class Driver extends Person {
 
 	private int numberOfTravels;
 	private int yearsInDriving;
+	
+	private int licenseYear;
 	private boolean isSmoking;
 	private String musicInTheCar;
+	
+	public int getLicenseYear() {
+		return licenseYear;
+	}
+
+	public void setLicenseYear(int licenseYear) {
+		this.licenseYear = licenseYear;
+	}
+
+	public void setSmoking(boolean isSmoking) {
+		this.isSmoking = isSmoking;
+	}
 
 	@Override
-
-public int getBirthYear() {
-	// TODO Auto-generated method stub
-	return super.getBirthYear();
-}
-
-@Override
-public void setBirthYear(int birthYear) {
-	// TODO Auto-generated method stub
-	super.setBirthYear(birthYear);
-}
-
+	public int getBirthYear() {
+		return super.getBirthYear();
+	}
+	
+	@Override
+	public void setBirthYear(int birthYear) {
+		super.setBirthYear(birthYear);
+	}
 
 	public String getMusicInTheCar() {
 		return musicInTheCar;
@@ -31,49 +41,41 @@ public void setBirthYear(int birthYear) {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return super.getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
 		super.setName(name);
 	}
 
 	@Override
 	public int getRating() {
-		// TODO Auto-generated method stub
 		return super.getRating();
 	}
 
 	@Override
 	public void setRating(int rating) {
-		// TODO Auto-generated method stub
 		super.setRating(rating);
 	}
 
 	@Override
 	public String getTelephone() {
-		// TODO Auto-generated method stub
 		return super.getTelephone();
 	}
 
 	@Override
 	public void setTelephone(String telephone) {
-		// TODO Auto-generated method stub
 		super.setTelephone(telephone);
 	}
 
 	@Override
 	public Profile getProfile() {
-		// TODO Auto-generated method stub
 		return super.getProfile();
 	}
 
 	@Override
 	public void setProfile(Profile profile) {
-		// TODO Auto-generated method stub
 		super.setProfile(profile);
 	}
 
