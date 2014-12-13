@@ -23,13 +23,13 @@
 		</select>
 	
   		Date:
-  		<input type="date" name="bday">
+  		<input type="date" name="bday" required="required">
   		
   		Time:
-  		<input type="time" name="time" >
+  		<input type="time" name="time"  required="required">
   		
   		Number of Free places
-  		<input type="number" name="freePlaces" min="1" max="6">
+  		<input type="number" name="freePlaces" min="1" max="6"  required="required">
   		
   		<input type="submit" value="Create">
 	</form>
