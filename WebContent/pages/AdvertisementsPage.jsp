@@ -45,6 +45,7 @@
 	</form>
 	
 	<h3>${searching_msg}</h3>
+	<h3>${email_sent_msg}</h3>
 	
 	<%@ include file="Footer.jsp" %>
 	

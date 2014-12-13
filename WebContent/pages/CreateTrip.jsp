@@ -10,20 +10,20 @@
 </head>
 <body>
 	
-	<form>
+	<form method="POST" action="CreateTrip">
 		From:
-		<select>
+		<select name="fromCity">
 			<!-- use spring for these lists -->
 			<% TownsContainer.printTownsInSelectMenu(out);	%>
 		</select>
 		
 		To:
-		<select>
+		<select name="toCity">
 			<% TownsContainer.printTownsInSelectMenu(out);	%>
 		</select>
 	
   		Date:
-  		<input type="date" name="bday" required="required">
+  		<input type="date" name="date" required="required">
   		
   		Time:
   		<input type="time" name="time"  required="required">

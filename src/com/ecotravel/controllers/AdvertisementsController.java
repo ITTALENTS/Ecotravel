@@ -58,14 +58,36 @@ public class AdvertisementsController {
 	
 	
 	@RequestMapping(value="SubscribeForTrip", method = RequestMethod.POST)
-	public String subscribeUserToTrip(@RequestParam int advertismentId, HttpSession session) {
+	public String subscribeUserToTrip(@RequestParam int advertismentId, HttpSession session, Model model) {
 		
 		session.setAttribute("advertisement_id", advertismentId);
 		
-		//TODO: IMPLEMENT
+		model.addAttribute("email_sent_msg", "Successfully sent email :) \n Wait the driver to mail you.");
 		
-		return null;
+		return "AdvertiementsPage";
 	}
 	
+	
+	@RequestMapping(value="CreateTrip", method = RequestMethod.POST)
+	public String createNewTrip(@RequestParam String fromCity,
+							@RequestParam String toCity,
+							@RequestParam String date,
+							@RequestParam String time,
+							@RequestParam int freePlaces, Model model, HttpSession session) {
+		
+		System.out.println("fromCity: " + fromCity);
+		System.out.println("toCity: " + toCity);
+		System.out.println("date: " + date);
+		System.out.println("time: " + time);
+		System.out.println("fromCfreePlaces" + freePlaces);
+		
+		// TODO: ????
+
+		return "ProfilePageDriver";
+		
+	}
+	
+	
+	//TODO: controller for edit advertisement
 	
 }
