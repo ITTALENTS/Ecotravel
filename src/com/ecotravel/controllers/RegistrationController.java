@@ -131,9 +131,15 @@ public class RegistrationController {
 											@RequestParam String isSmoking,
 											@RequestParam String musicInTheCar, Model model, HttpSession session) {
 		
+		boolean smokingAllowed;
+		if(isSmoking.equalsIgnoreCase("Yes"))
+			smokingAllowed = true;
+		else
+			smokingAllowed = false;
+		
 		System.out.println();
 		System.out.println("License year: " + licensePeriodYear);
-		System.out.println("Smoking: " + isSmoking);
+		System.out.println("Smoking: " + smokingAllowed);
 		System.out.println("Music: " + musicInTheCar);
 		System.out.println();
 		// get model attributes from previous page and print them in console
@@ -153,7 +159,7 @@ public class RegistrationController {
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
 		driverDAO.registerDriver((String)session.getAttribute("username"), (String)session.getAttribute("name"), 
 				(int)session.getAttribute("birthYear"), (String)session.getAttribute("telephone"), licensePeriodYear,
-				musicInTheCar, Boolean.parseBoolean(isSmoking));
+				musicInTheCar, smokingAllowed);
 		
 		model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
 		session.invalidate();
