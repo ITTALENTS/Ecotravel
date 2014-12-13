@@ -11,7 +11,6 @@
 			<ul>
 				<li><a href="#">About Us</a></li>
 				<li><a href="#">History</a></li>
-				<li><a href="ProfilePage">My Profile</a></li>	
 			</ul>
 		</div>
 		
@@ -19,7 +18,9 @@
 	
 	<% if(!this.getClass().getSimpleName().equalsIgnoreCase("Welcome_jsp") &&
 			!this.getClass().getSimpleName().equalsIgnoreCase("RegisterForm_jsp") &&
-			!this.getClass().getSimpleName().equalsIgnoreCase("RegisterFormDriver_jsp")) { %>
+			!this.getClass().getSimpleName().equalsIgnoreCase("RegisterFormDriver_jsp") &&
+			!this.getClass().getSimpleName().equalsIgnoreCase("ForgottenPassword_jsp")) { %>
+		<li><a href="Profile">My Profile</a></li>
 		<form method="POST" action="Logout">
 			<input type="submit" value="Logout" />
 		</form>
