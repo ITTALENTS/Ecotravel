@@ -15,7 +15,7 @@
 <body>
 	<%@ include file="Header.jsp" %>
 	<h1>Search For Advertisements</h1>
-	<form>
+	<form method="POST" >
 		From:
 		<select name="fromCity">
 			<!-- must be sorted by alphabetically -->
@@ -39,7 +39,7 @@
 		</select>
 	
   		Date:
-  		<input type="date" name="date">
+  		<input type="date" name="date" required="required">
   		
   		<input type="submit" value="Search!">
 	</form>

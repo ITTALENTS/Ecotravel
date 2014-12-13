@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdvertisementsController {
 
 	// redirects driver from choose form to create trip
-	@RequestMapping("CreateTrip")
+	@RequestMapping(value="CreateTrip", method = RequestMethod.GET)
 	public String sendDriverToCreateTrip(HttpSession session) {
 		return "CreateTrip";
 	}
 	
 	// redirects to driver/passenger to AdvertisementsPage
-	@RequestMapping("AdvertisementsPage")
+	@RequestMapping(value="AdvertisementsPage", method = RequestMethod.GET)
 	public String sendPassengerTo(HttpSession session) {
 		return "AdvertisementsPage";
 	}
 	
 	
 	
-	@RequestMapping(value = "AdvertismentsPage", method = RequestMethod.POST)
+	@RequestMapping(value = "AdvertisementsPage", method = RequestMethod.POST)
 	public String registerNewUser(@RequestParam String fromCity,
 								@RequestParam String toCity, 
-								@RequestParam String date, Model model) {
+								@RequestParam String date, HttpSession session, Model model) {
 
 		// WARNING!!! the order of arguments must match order of inputs in <form> !!!
 
