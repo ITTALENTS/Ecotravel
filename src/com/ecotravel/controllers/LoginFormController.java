@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import jdbc.dao.ProfileDAO;
 import jdbc.model.Driver;
 import jdbc.model.Person;
+import jdbc.model.Profile;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -33,15 +34,26 @@ public class LoginFormController {
 	public String login(@RequestParam String username, @RequestParam String password, 
 			HttpSession session, Model model) {
 		
-		 System.out.println("Logging in: " + username + " : " + password);
+		System.out.println("Logging in: " + username + " - " + password);
 		
-		 // this method is for local test only:
+		// this method is for local test only:
 		// Person p = (Person)loginPerson(username, password);
+		Person p = new Driver();
+		Profile prof = new Profile();
+		prof.setEmail("hard_trck18@abv.bg");
+		prof.setPassword("dddpass");
+		prof.setUsername("shofer4eto93");
+		p.setProfile(prof);
+		p.setBirthYear(1993);
+		p.setName("Ivan");
+		p.setRating(0);
+		p.setTelephone("0889 723 711");
+		
 		
 		// check his user name and password:
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
-		Person p = (Person) profileDAO.login(username, password);		
+//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+//		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+//		Person p = (Person) profileDAO.login(username, password);		
 		
 		
 		if(p == null) { // no such user

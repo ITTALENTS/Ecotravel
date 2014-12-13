@@ -45,21 +45,7 @@
 	</form>
 	
 	<%@ include file="Footer.jsp" %>
-	<!-- 
-	<table border="1">
-		<tr>
-			<th>Drive off hour</th>
-			<td>blabla</td>
-			<td>hihihi</td>
-			<td>hehhe</td>
-		</tr>
-		<tr>
-			<td>hoooohoo</td>
-			<td>merry</td>
-			<td>christmas</td>
-		</tr>
-	</table>
-	 -->
+	
 	
 </body>
 </html>
