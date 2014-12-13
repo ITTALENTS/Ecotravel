@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.mappers.*;
 import jdbc.model.*;
-
+import java.util.UUID;
 public class ProfileDAO implements IProfileDAO {
 
 	private JdbcTemplate jdbc;
@@ -107,5 +107,26 @@ public class ProfileDAO implements IProfileDAO {
 		jdbc.update(changePasswordOfProfile, password, email);
 
 	}
+	
+	public String getEmailByUsername(String username){
+		
+		String selectEmailByUsername= "select email from profiles where username=?";	
+		Map<String, Object> email = jdbc.queryForMap(
+				selectEmailByUsername, username);
+		return (String)email.get("email");
+	}
 
+	
+	public  String generateRandomPassword(String username){
+		String newPassword= UUID.randomUUID().toString();
+		savePasswordByUsername(username, newPassword);
+		return newPassword;
+	}
+	
+	private void savePasswordByUsername(String username,String newPassword){
+	
+		String changeProfile= "update profiles set password=? where username=?";
+		jdbc.update(changeProfile, newPassword, username);
+	}
+	
 }
