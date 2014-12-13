@@ -43,4 +43,32 @@ public class EmailerDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void sendTripEmail(String driverUsername, String passengerUsername){
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		Emailer emailer = new Emailer();
+		Session session = emailer.getSession();
+		Properties props = emailer.getProps();
+		
+		try {
+			String subject = "Passengers for your trip";
+			String emailText = "The user with username: ";
+			ProfileDAO profileDao = (ProfileDAO)context.getBean("profileDAO");
+
+			String email = profileDao.getEmailByUsername(driverUsername);
+			
+			emailText = emailText + passengerUsername + " wants to trip with you! " + 
+			 "You can contact him at " + profileDao.getEmailByUsername(passengerUsername);		
+			
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("ittallentsproject@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(email));
+			message.setSubject(subject);
+			message.setText(emailText);
+			Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
