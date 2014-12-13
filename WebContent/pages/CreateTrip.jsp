@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Create Trip</title>
 </head>
 <body>
 	
@@ -31,7 +31,7 @@
   		Number of Free places
   		<input type="number" name="freePlaces" min="1" max="6">
   		
-  		<input type="submit" value="Search!">
+  		<input type="submit" value="Create">
 	</form>
 </body>
 </html>

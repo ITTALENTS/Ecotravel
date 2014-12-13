@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Search Advertisements</title>
 <style>
 	body {
 		text-align: center;
@@ -15,9 +15,9 @@
 <body>
 	<%@ include file="Header.jsp" %>
 	<h1>Search For Advertisements</h1>
-	<form>
+	<form method="POST" >
 		From:
-		<select>
+		<select name="fromCity">
 			<!-- must be sorted by alphabetically -->
 			<!-- can't visualize cyrillics -->
 			<!-- use spring for these lists -->
@@ -29,7 +29,7 @@
 		</select>
 		
 		To:
-		<select>
+		<select name="toCity">
 			<!-- must be sorted by alphabetically -->
 			<option>Sofia</option>
 			<option>Lovech</option>
@@ -39,27 +39,15 @@
 		</select>
 	
   		Date:
-  		<input type="date" name="bday">
+  		<input type="date" name="date" required="required">
   		
   		<input type="submit" value="Search!">
 	</form>
 	
+	<h3>${searching_msg}</h3>
+	
 	<%@ include file="Footer.jsp" %>
-	<!-- 
-	<table border="1">
-		<tr>
-			<th>Drive off hour</th>
-			<td>blabla</td>
-			<td>hihihi</td>
-			<td>hehhe</td>
-		</tr>
-		<tr>
-			<td>hoooohoo</td>
-			<td>merry</td>
-			<td>christmas</td>
-		</tr>
-	</table>
-	 -->
+	
 	
 </body>
 </html>

@@ -35,8 +35,8 @@
 	</div>
 	
 	<div>
-		<a href="#"><img src = "${pageContext.request.contextPath}/pictures/driver/driverLogo.png" class="arrows"></a>
-		<a href="#"><img src = "${pageContext.request.contextPath}/pictures/passenger/passengerLogo.png" class="arrows"></a>
+		<a href="CreateTrip"><img src = "${pageContext.request.contextPath}/pictures/driver/driverLogo.png" class="arrows"></a>
+		<a href="AdvertisementsPage"><img src = "${pageContext.request.contextPath}/pictures/passenger/passengerLogo.png" class="arrows"></a>
 	</div>
 	
 	
