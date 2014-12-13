@@ -86,7 +86,7 @@ public class DriverDAO implements IDriverDAO {
 
 	}
 
-	public void registerDriver(String username, String name, String birthYear,
+	public void registerDriver(String username, String name, int birthYear,
 			String telephone, int yearsInDriving, String musicInTheCar,
 			boolean smokeInTheCar) {
 		TransactionDefinition def = new DefaultTransactionDefinition();

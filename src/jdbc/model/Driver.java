@@ -3,7 +3,6 @@ package jdbc.model;
 public class Driver extends Person {
 
 	private int numberOfTravels;
-	private int yearsInDriving;
 	
 	private int licenseYear;
 	private boolean isSmoking;
@@ -87,13 +86,7 @@ public class Driver extends Person {
 		this.numberOfTravels = numberOfTravels;
 	}
 
-	public int getYearsInDriving() {
-		return yearsInDriving;
-	}
 
-	public void setYearsInDriving(int yearsInDriving) {
-		this.yearsInDriving = yearsInDriving;
-	}
 
 	public boolean getIsSmoking() {
 		return isSmoking;

@@ -27,7 +27,7 @@
 	</bean>
 	<bean id="driver" class="jdbc.model.Driver" parent="person">
 		<property name="numberOfTravels" value="0"></property>
-		<property name="yearsInDriving" value="0"></property>
+		<property name="licenseYear" value="0"></property>
 		<property name="isSmoking" value="false"></property>
 		<property name="musicInTheCar" value=" "></property>
 	</bean>
@@ -49,6 +49,7 @@
 	</bean>
 	<bean id="driverDAO" class="jdbc.dao.DriverDAO">
 		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
 
 	</bean>
 	<bean id="passengerDAO" class="jdbc.dao.PassengerDAO">
@@ -66,7 +67,7 @@
 	</bean>
 
 
-	<bean id="emailer" class="jdbc.model.Emailer" scope="singleton"
+<!-- <bean id="emailer" class="jdbc.model.Emailer" scope="singleton"
 		init-method="init">
 
 
@@ -79,5 +80,7 @@
 			index="1" type="String">
 		</constructor-arg>
 	</bean>
-	<bean id="emailerDAO" class="jdbc.dao.EmailerDAO"></bean>
+	<bean id="emailerDAO" class="jdbc.dao.EmailerDAO"></bean> -->	
+	
+	
 </beans>
