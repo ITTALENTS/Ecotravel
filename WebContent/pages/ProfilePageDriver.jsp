@@ -56,7 +56,7 @@
 	 		  		+ "<div class=\"col-lg-1\">Free places</div>"
 	 			+ "</div>");
 			for(int i=0; i < listOfAllActiveAds.size(); i++)
-				
+				printAnAdvertisment(out, listOfAllActiveAds.get(i));
 			%>
 			<form method="GET" action="EditAdvertisement" class="form-horizontal">
 				<input type="submit" value="Edit My Advertisement" class="btn btn-warning"/>

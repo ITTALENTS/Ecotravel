@@ -1,3 +1,5 @@
+<%@page import="jdbc.model.Passenger"%>
+<%@page import="jdbc.model.Driver"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,7 +22,18 @@
 	  </div>
 	  <div class="navbar-collapse collapse navbar-responsive-collapse">
 	    <ul class="nav navbar-nav">
-	    	<li><a href="/Ecotravel/">Home</a></li>	
+	    	<% if(session.getAttribute("loggedInUser") instanceof  Driver){
+	    		out.print("<li><a href=\"/ChooseForm\">Home</a></li>");
+	    		}
+	    		else if(session.getAttribute("loggedInUser") instanceof  Passenger){
+	    			out.print("<li><a href=\"/AdvertisementsPage\">Home</a></li>");
+	    		}
+	    		else{
+	    	    	out.print("<li><a href=\"/Ecotravel/\">Home</a></li>");
+	    		}
+	    		
+	    		
+	    	%>
 	      	<li><a href="/Ecotravel/pages/AboutUs.jsp">About Us</a></li>
 			<li><a href="/Ecotravel/pages/History.jsp">History</a></li>			
 	    </ul>
