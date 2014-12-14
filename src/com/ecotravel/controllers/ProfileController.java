@@ -32,7 +32,7 @@ public class ProfileController {
 		model.addAttribute("phone", p.getTelephone());
 		
 		if(p instanceof Driver) {
-			model.addAttribute("isSmoking", ((Driver) p).getIsSmoking());
+			model.addAttribute("isSmoking", ((Driver) p).getIsSmoking() ? "Yes" : "No");
 			model.addAttribute("licenseYear", ((Driver) p).getLicenseYear());
 			model.addAttribute("music", ((Driver) p).getMusicInTheCar());
 			model.addAttribute("numberOfTravels", ((Driver) p).getNumberOfTravels());

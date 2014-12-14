@@ -39,7 +39,7 @@
 			<p>Driving License: Yes</p>
 			<p>License year: ${licenseYear}</p>
 			<p>Is smoking in car allowed: ${isSmoking}</p>
-			<p>Music: ${licenseYear} </p>
+			<p>Music: ${music} </p>
 			<p>Number of travels: ${numberOfTravels}</p>
 			<p>Rating: ${rating }</p>
 		</div>
