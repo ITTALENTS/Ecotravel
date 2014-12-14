@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import jdbc.model.Addvertisment;
 
 
-public interface IAddvertismentDAO {
+public interface IAdvertismentDAO {
 	public void setDataSource(DataSource ds);
 	
 
