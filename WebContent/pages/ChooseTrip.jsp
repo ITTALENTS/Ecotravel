@@ -20,18 +20,17 @@
 	
 		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
 			out.print("<div class=\"row\">");
-				printInCell(out, a.getDriver().getName());
+				printInCell(out, a.getDriver().getProfile().getUsername());
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
 				printInCell(out, a.getDate());
 				//printInCell(out, a.getTime());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
 				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" class=\"btn btn-primary\">Driver Profile</a>");
-				printInCell(out, "<ul class=\"pager\"><li class=\"next\"><input  type=\"submit\" value=\"→\"></li></ul>");
+				printInCell(out, "<ul class=\"pager\"><li class=\"next\"><input btn btn-warning type=\"submit\" value=\"U+21f0\"></li></ul>");
 			out.print("</div>");
 		}
 	%>
-	}
 		<form method="GET" name="selectedAdvertisment">
 				<% 
 					for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("all_valid_advertisements")) 
