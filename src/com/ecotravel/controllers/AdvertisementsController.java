@@ -127,16 +127,16 @@ public class AdvertisementsController {
 	@RequestMapping(value="DeleteAdvertisement", method = RequestMethod.GET)
 	public String deleteAdvertisement(HttpSession session, Model model) {
 		
-		String currentUser = (String) session.getAttribute("loggedInUser");
+		Person currentUser = (Person) session.getAttribute("loggedInUser");
 		Addvertisment adv = ((List<Addvertisment>)session.getAttribute("active_ads")).get(0);
 		String dateOfAdv = adv.getDate();
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
-		driverDAO.deleteAdvertisment(currentUser, dateOfAdv);
+		driverDAO.deleteAdvertisment(currentUser.getProfile().getUsername(), dateOfAdv);
 		
 		// here update session attribute "active_ads"
-		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser);
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser.getProfile().getUsername());
 		session.setAttribute("active_ads", activeAds);
 		
 		return "redirect:ProfilePageDriver";
@@ -150,16 +150,16 @@ public class AdvertisementsController {
 									HttpSession session, Model model) {
 		
 		
-		String currentUser = (String) session.getAttribute("loggedInUser");
+		Person currentUser = (Person) session.getAttribute("loggedInUser");
 		Addvertisment adv = ((List<Addvertisment>)session.getAttribute("active_ads")).get(0);
 		String dateOfAdv = adv.getDate();
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
-		driverDAO.updateAdvertisment(currentUser, dateOfAdv, freePlaces);
+		driverDAO.updateAdvertisment(currentUser.getProfile().getUsername(), dateOfAdv, freePlaces);
 		
 		// here update session attribute "active_ads"
-		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser);
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser.getProfile().getUsername());
 		session.setAttribute("active_ads", activeAds);
 		
 		return "redirect:ProfilePageDriver";
