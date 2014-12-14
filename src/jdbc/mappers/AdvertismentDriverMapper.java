@@ -19,7 +19,7 @@ public class AdvertismentDriverMapper implements RowMapper<Addvertisment>{
 	advertisment.setFreePlaces(rs.getInt("freePlaces"));
 	advertisment.setTravelFrom(rs.getString("TownFrom"));
 	advertisment.setTravelTo(rs.getString("TownTo"));	
-	profile.setEmail(rs.getString("username"));
+	profile.setUsername(rs.getString("username"));
 	driver.setProfile(profile);
 	advertisment.setDriver(driver);
 		return advertisment;
