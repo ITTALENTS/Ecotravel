@@ -38,29 +38,30 @@ public class LoginFormController {
 		
 		// this method is for local test only:
 		// Person p = (Person)loginPerson(username, password);
-		Person p = new Driver();
-		Profile prof = new Profile();
-		prof.setEmail("hard_trck18@abv.bg");
-		prof.setPassword("dddpass");
-		prof.setUsername("shofer4eto93");
-		p.setProfile(prof);
-		p.setBirthYear(1993);
-		p.setName("Ivan");
-		p.setRating(0);
-		p.setTelephone("0889 723 711");
+//		Person p = new Driver();
+//		Profile prof = new Profile();
+//		prof.setEmail("hard_trck18@abv.bg");
+//		prof.setPassword("dddpass");
+//		prof.setUsername("shofer4eto93");
+//		p.setProfile(prof);
+//		p.setBirthYear(1993);
+//		p.setName("Ivan");
+//		p.setRating(0);
+//		p.setTelephone("0889 723 711");
 		
 		
 		// check his user name and password:
-//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-//		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
-//		Person p = (Person) profileDAO.login(username, password);		
-//		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+		Person p = (Person) profileDAO.login(username, password);		
+		
 		
 		if(p == null) { // no such user
 			model.addAttribute("login_error", "Error! No such user or invalid password.");
 			return "Welcome";
 		} else {
 			session.setAttribute("loggedInUser", p);
+			 session.setMaxInactiveInterval(1*60); // 15 minutes
 			if(p instanceof Driver)
 				return "ChooseForm";
 			else // instance of Passenger
