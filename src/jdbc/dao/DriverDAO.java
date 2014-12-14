@@ -77,6 +77,7 @@ public class DriverDAO implements IDriverDAO {
 		TransactionStatus status = transactionManager.getTransaction(def);
 		try{
 				String getDriverIdByUsername="select driverId from drivers where profileId like(select profileId from profiles where username like ?)";
+					@SuppressWarnings("deprecation")
 					int driverId = jdbc.queryForInt(getDriverIdByUsername, username);
 					System.out.println("driver id: " + driverId);
 		String insertAdvertisment = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,timeOfTravel,freePlaces  ) values(?,?,?,?,?,?) ";
@@ -84,6 +85,7 @@ public class DriverDAO implements IDriverDAO {
 		transactionManager.commit(status);
 		}
 		catch (DataAccessException e) {
+
 			transactionManager.rollback(status);
 		}
 		
