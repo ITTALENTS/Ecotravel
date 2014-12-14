@@ -111,7 +111,11 @@ public class AdvertisementsController {
 		
 		driverDAO.openAdvertisment(username, fromCity, toCity, date, time, freePlaces);
 
-		// TODO: update session attribute "active_ads" !!!
+		// here update session attribute "active_ads"
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
+		session.setAttribute("active_ads", activeAds);
 		
 		return "ProfilePageDriver";
 		
@@ -129,7 +133,7 @@ public class AdvertisementsController {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
-		driverDAO.deleteAdvertisement((String)session.getAttribute("loggedInUser"), dateOfAdv);
+		driverDAO.deleteAdvertisement(currentUser, dateOfAdv);
 		
 		// here update session attribute "active_ads"
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
@@ -141,13 +145,22 @@ public class AdvertisementsController {
 	
 	
 	//if driver wants to edit his edit advertisement
-	@RequestMapping(value="EditAdvertisement", method = RequestMethod.POST) 
+	@RequestMapping(value="EditAdvertisement", method = RequestMethod.GET) 
 	public String deleteAdvertisement(@RequestParam int freePlaces,
 									HttpSession session, Model model) {
 		
 		
+		String currentUser = (String) session.getAttribute("loggedInUser");
+		Addvertisment adv = ((List<Addvertisment>)session.getAttribute("active_ads")).get(0);
+		String dateOfAdv = adv.getDate();
 		
-		// TODO: update session attribute "active_ads" !!!
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+		driverDAO.updateAdvertisement(currentUser, dateOfAdv, freePlaces);
+		
+		// here update session attribute "active_ads"
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
+		session.setAttribute("active_ads", activeAds);
 		
 		return "redirect:ProfilePageDriver";
 	}

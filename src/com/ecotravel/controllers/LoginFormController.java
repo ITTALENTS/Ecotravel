@@ -76,7 +76,7 @@ public class LoginFormController {
 			else if(p instanceof Passenger)// instance of Passenger
 				return "AdvertisementsPage";
 			else{
-				model.addAttribute("login_error", "nito driver nito passenger");
+				model.addAttribute("login_error", "Critical error! Check out login controller!");
 				return "Welcome";
 			}
 		}
