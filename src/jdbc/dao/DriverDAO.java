@@ -124,7 +124,7 @@ public class DriverDAO implements IDriverDAO {
 	}
 private List<Addvertisment> getAdsForDriver(String username){
 	return jdbc
-			.query("select ads.adId,ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel,ads.timeOfTravel, profiles.username from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  username=?",
+			.query("select ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel,ads.timeOfTravel, profiles.username from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  username=?",
 					new Object[] {username},
 					new AdvertismentDriverMapper());
 }
@@ -161,26 +161,7 @@ private List<Addvertisment> getAdsForDriver(String username){
 		int currentMinute = rightNow.get(Calendar.MINUTE);
 	
 		
-	/*System.out.println("All trips: " + allAdvertisments.size());	
-	System.out.println("=================");	
-	System.out.println("year of travel: "+yearOfTravel);
-	System.out.println("current year: "+currentYear);
-	System.out.println();	
-	System.out.println("month of travel: "+monthOfTravel);
-	System.out.println("current month: "+currentMonth);
-	System.out.println();
-	System.out.println("day of travel: "+dayOfTravel);
-	System.out.println("current day: "+currentDay);
-	System.out.println();
-	System.out.println("hour of travel: "+hourAdd);
-	System.out.println("current hour: "+currentHour);
-	System.out.println();
-	System.out.println("minute of travel: "+minutesAdd);
-	System.out.println("current minute: "+currentMinute);
-	System.out.println("=================");*/
-		//if((yearOfTravel-currentYear>0 ||yearOfTravel-currentYear==0 )&&(monthOfTravel-currentMonth>0 || monthOfTravel-currentMonth==0)&& (dayOfTravel-currentDay>0 || dayOfTravel-currentDay==0)&&(hourAdd-currentHour>0 || hourAdd-currentHour==0)&&(minutesAdd-currentMinute>0)){
-		//	upToDateAds.add(addvertisment);
-		//}
+	
 		
 		if(yearOfTravel>currentYear){
 			upToDateAds.add(addvertisment);

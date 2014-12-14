@@ -26,7 +26,7 @@ public class TripBetweenTownsDAO implements IAdvertismentDAO {
 	private List<Addvertisment> searchAdvertisment(String from, String to,
 			String date) {
 		return jdbc
-				.query("select ads.adId,ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel,ads.timeOfTravel, profiles.username from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  TownFrom=? and TownTo=? and dateOfTravel=?",
+				.query("select ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel,ads.timeOfTravel, profiles.username from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  TownFrom=? and TownTo=? and dateOfTravel=?",
 						new Object[] { from, to, date },
 						new AdvertismentDriverMapper());
 

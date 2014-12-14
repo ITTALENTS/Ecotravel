@@ -13,7 +13,6 @@ public class AdvertismentDriverMapper implements RowMapper<Addvertisment>{
 	TripBetweenTowns advertisment =new TripBetweenTowns();
 	Driver driver = new Driver();
 	Profile profile = new Profile();
-	advertisment.setAdvertismentId(rs.getInt("adId"));
 	advertisment.setDate(rs.getString("dateOfTravel"));
 	advertisment.setTimeOfTravel(rs.getString("timeOfTravel"));
 	advertisment.setFreePlaces(rs.getInt("freePlaces"));
