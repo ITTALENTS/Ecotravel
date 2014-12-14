@@ -32,7 +32,7 @@ public class TripBetweenTownsDAO implements IAdvertismentDAO {
 
 	}
 
-	public List<Addvertisment> showActiveAdvertisments(String from, String to,
+	public List<Addvertisment> showMatchingAdvertisments(String from, String to,
 			String date) {
 		List<Addvertisment> advertisments = searchAdvertisment(from, to, date);
 		List<Addvertisment> activeAds = new ArrayList();

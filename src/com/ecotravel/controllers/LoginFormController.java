@@ -65,7 +65,7 @@ public class LoginFormController {
 			if(p instanceof Driver)
 				return "ChooseForm";
 			else // instance of Passenger
-				return "AdvertisementsPage";
+				return "redirect:AdvertisementsPage";
 		}
 		
 	}

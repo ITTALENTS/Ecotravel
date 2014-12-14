@@ -10,6 +10,6 @@ public interface IAdvertismentDAO {
 	public void setDataSource(DataSource ds);
 	
 
-	public List<Addvertisment> showActiveAdvertisments(String from, String to,
+	public List<Addvertisment> showMatchingAdvertisments(String from, String to,
 			String date);
 }

@@ -1,5 +1,9 @@
 package jdbc.dao;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.dao.DataAccessException;
@@ -17,9 +21,9 @@ public class DriverDAO implements IDriverDAO {
 	private PlatformTransactionManager transactionManager;
 
 	@Override
-	public void deleteAdvertisment(Addvertisment ad) {
-		String deleteAdvertisment = "delete from ads where adId=?";
-		jdbc.update(deleteAdvertisment, ad.getAdvertismentId());
+	public void deleteAdvertisment(String username, String date) {
+		String deleteAdvertisment = "delete from ads where driverId=(select driverId from drivers where profileId= (select profileId from profiles where username =?)) and dateOfTravel=?";
+		jdbc.update(deleteAdvertisment, username, date);
 
 	}
 
@@ -29,10 +33,10 @@ public class DriverDAO implements IDriverDAO {
 	}
 
 	@Override
-	public void updateAdvertisment(Addvertisment ad) {
-		String updateAdvertisment = "update ads set ads.TownFrom=?, ads.TownTo=?, ads.Date=?, ads.freePlaces=? where adId=?";
-		jdbc.update(updateAdvertisment, ad.getTravelFrom(), ad.getTravelTo(),
-				ad.getDate(), ad.getFreePlaces(), ad.getAdvertismentId());
+	public void updateAdvertisment(String username, String date, int freePlaces) {
+		String updateAdvertisment = "update ads set  ads.freePlaces=?  where driverId=(select driverId from drivers where profileId= (select profileId from profiles where username =?)) and dateOfTravel=?";
+		jdbc.update(updateAdvertisment, freePlaces, username,
+				date);
 
 	}
 
@@ -117,6 +121,101 @@ System.out.println(driverId);
 			transactionManager.rollback(status);
 		}
 
+	}
+private List<Addvertisment> getAdsForDriver(String username){
+	return jdbc
+			.query("select ads.adId,ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel,ads.timeOfTravel, profiles.username from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  username=?",
+					new Object[] {username},
+					new AdvertismentDriverMapper());
+}
+	@Override
+	public List<Addvertisment> getActiveAdvertismentsForDriver(String username) {
+		List<Addvertisment> allAdvertisments= getAdsForDriver(username);
+		
+		List<Addvertisment> upToDateAds= new ArrayList<Addvertisment>();
+
+	for (Addvertisment addvertisment : allAdvertisments) {
+		String [] dateOfTravel = addvertisment.getDate().split("(-)");
+		int yearOfTravel= Integer.parseInt(dateOfTravel[0]);
+		
+		int monthOfTravel= Integer.parseInt(dateOfTravel[1]);
+		
+		int dayOfTravel= Integer.parseInt(dateOfTravel[2]);
+		
+		String [] timeOfTravel= addvertisment.getTimeOfTravel().split("(:)");
+		int hourAdd = Integer.parseInt(timeOfTravel[0]);
+		
+		int minutesAdd = Integer.parseInt(timeOfTravel[1]);
+	
+		Calendar rightNow = Calendar.getInstance();
+		
+		int currentYear=  rightNow.get(Calendar.YEAR);
+	
+		int currentMonth= rightNow.get(Calendar.MONTH) +1;
+		
+		int currentDay= rightNow.get(Calendar.DAY_OF_MONTH);
+	
+		
+		int currentHour = rightNow.get(Calendar.HOUR_OF_DAY);
+	
+		int currentMinute = rightNow.get(Calendar.MINUTE);
+	
+		
+	/*System.out.println("All trips: " + allAdvertisments.size());	
+	System.out.println("=================");	
+	System.out.println("year of travel: "+yearOfTravel);
+	System.out.println("current year: "+currentYear);
+	System.out.println();	
+	System.out.println("month of travel: "+monthOfTravel);
+	System.out.println("current month: "+currentMonth);
+	System.out.println();
+	System.out.println("day of travel: "+dayOfTravel);
+	System.out.println("current day: "+currentDay);
+	System.out.println();
+	System.out.println("hour of travel: "+hourAdd);
+	System.out.println("current hour: "+currentHour);
+	System.out.println();
+	System.out.println("minute of travel: "+minutesAdd);
+	System.out.println("current minute: "+currentMinute);
+	System.out.println("=================");*/
+		//if((yearOfTravel-currentYear>0 ||yearOfTravel-currentYear==0 )&&(monthOfTravel-currentMonth>0 || monthOfTravel-currentMonth==0)&& (dayOfTravel-currentDay>0 || dayOfTravel-currentDay==0)&&(hourAdd-currentHour>0 || hourAdd-currentHour==0)&&(minutesAdd-currentMinute>0)){
+		//	upToDateAds.add(addvertisment);
+		//}
+		
+		if(yearOfTravel>currentYear){
+			upToDateAds.add(addvertisment);
+			break;
+		}
+		else if(yearOfTravel==currentYear){
+			if(monthOfTravel>currentMonth){
+				upToDateAds.add(addvertisment);
+				break;
+			}
+			else if(monthOfTravel==currentMonth){
+				
+				if(dayOfTravel>currentDay){
+					upToDateAds.add(addvertisment);
+					break;
+				}
+				else if(dayOfTravel==currentDay){
+					if(hourAdd>currentHour)
+					{
+						upToDateAds.add(addvertisment);
+						break;
+					}
+					else if(hourAdd==currentHour){
+						if(minutesAdd>currentMinute)
+							upToDateAds.add(addvertisment);
+					}
+				}
+			}
+			
+		}
+
+	
+
+	}
+		return upToDateAds;
 	}
 
 }
