@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import jdbc.dao.DriverDAO;
 import jdbc.dao.ProfileDAO;
+import jdbc.model.Addvertisment;
 import jdbc.model.Driver;
 import jdbc.model.Passenger;
 import jdbc.model.Person;
@@ -72,8 +73,6 @@ public class LoginFormController {
 				List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(username);
 				session.setAttribute("active_ads", activeAds);
 				return "ChooseForm";
-			else // instance of Passenger
-				return "AdvertisementsPage";
 			}
 			else if(p instanceof Passenger)// instance of Passenger
 				return "AdvertisementsPage";

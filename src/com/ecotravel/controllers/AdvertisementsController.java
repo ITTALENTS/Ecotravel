@@ -112,9 +112,7 @@ public class AdvertisementsController {
 		driverDAO.openAdvertisment(username, fromCity, toCity, date, time, freePlaces);
 
 		// here update session attribute "active_ads"
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
-		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(username);
 		session.setAttribute("active_ads", activeAds);
 		
 		return "ProfilePageDriver";
@@ -133,10 +131,10 @@ public class AdvertisementsController {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
-		driverDAO.deleteAdvertisement(currentUser, dateOfAdv);
+		driverDAO.deleteAdvertisment(currentUser, dateOfAdv);
 		
 		// here update session attribute "active_ads"
-		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser);
 		session.setAttribute("active_ads", activeAds);
 		
 		return "redirect:ProfilePageDriver";
@@ -156,10 +154,10 @@ public class AdvertisementsController {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
-		driverDAO.updateAdvertisement(currentUser, dateOfAdv, freePlaces);
+		driverDAO.updateAdvertisment(currentUser, dateOfAdv, freePlaces);
 		
 		// here update session attribute "active_ads"
-		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser);
 		session.setAttribute("active_ads", activeAds);
 		
 		return "redirect:ProfilePageDriver";
