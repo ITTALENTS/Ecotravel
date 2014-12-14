@@ -1,7 +1,10 @@
 package com.ecotravel.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import jdbc.dao.DriverDAO;
 import jdbc.dao.ProfileDAO;
 import jdbc.model.Driver;
 import jdbc.model.Passenger;
@@ -53,6 +56,7 @@ public class LoginFormController {
 		
 		// check his user name and password:
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		
 		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
 		Person p = (Person) profileDAO.login(username, password);		
 		
@@ -63,8 +67,12 @@ public class LoginFormController {
 		} else {
 			session.setAttribute("loggedInUser", p);
 			//session.setMaxInactiveInterval(15*60); // 15 minutes
-			if(p instanceof Driver)
+			if(p instanceof Driver) {
+				DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+				List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(username);
+				session.setAttribute("active_ads", activeAds);
 				return "ChooseForm";
+			}
 			else if(p instanceof Passenger)// instance of Passenger
 				return "AdvertisementsPage";
 			else{
