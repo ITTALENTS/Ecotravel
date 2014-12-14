@@ -76,9 +76,9 @@ public class DriverDAO implements IDriverDAO {
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);
 		try{
-String getDriverIdByUsername="select driverId from drivers where profileId like(select profileId from profiles where username like ?)";
-int driverId = jdbc.queryForInt(getDriverIdByUsername, username);
-System.out.println(driverId);
+				String getDriverIdByUsername="select driverId from drivers where profileId like(select profileId from profiles where username like ?)";
+					int driverId = jdbc.queryForInt(getDriverIdByUsername, username);
+					System.out.println("driver id: " + driverId);
 		String insertAdvertisment = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,timeOfTravel,freePlaces  ) values(?,?,?,?,?,?) ";
 		jdbc.update(insertAdvertisment, driverId, from, to, date,time, freePlaces);
 		transactionManager.commit(status);
@@ -184,24 +184,24 @@ private List<Addvertisment> getAdsForDriver(String username){
 		
 		if(yearOfTravel>currentYear){
 			upToDateAds.add(addvertisment);
-			break;
+			continue;
 		}
 		else if(yearOfTravel==currentYear){
 			if(monthOfTravel>currentMonth){
 				upToDateAds.add(addvertisment);
-				break;
+				continue;
 			}
 			else if(monthOfTravel==currentMonth){
 				
 				if(dayOfTravel>currentDay){
 					upToDateAds.add(addvertisment);
-					break;
+					continue;
 				}
 				else if(dayOfTravel==currentDay){
 					if(hourAdd>currentHour)
 					{
 						upToDateAds.add(addvertisment);
-						break;
+						continue;
 					}
 					else if(hourAdd==currentHour){
 						if(minutesAdd>currentMinute)

@@ -36,7 +36,7 @@ public class AdvertisementsController {
 	
 	
 	
-	@RequestMapping(value="AdvertisementsPage", method = RequestMethod.POST)
+	@RequestMapping(value="SearchAdvertisement", method = RequestMethod.GET)
 	public String searchAdvertisements(@RequestParam String fromCity,
 								@RequestParam String toCity, 
 								@RequestParam String date, HttpSession session, Model model) {
@@ -53,10 +53,13 @@ public class AdvertisementsController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		TripBetweenTownsDAO tripDAO = (TripBetweenTownsDAO) context.getBean("tripBetweenTownsDAO");
 
-		List<Addvertisment> ads = tripDAO.showActiveAdvertisments(fromCity, toCity, date);
+		List<Addvertisment> ads = tripDAO.showMatchingAdvertisments(fromCity, toCity, date);
 		
-		session.setAttribute("all_valid_advertisements", ads);
+		for(Addvertisment ad : ads) {
+			System.out.println("driver: " + ad.getDriver().getProfile().getUsername());
+		}
 		
+		session.setAttribute("matcing_advertisements", ads);
 		return "ChooseTrip";
 	}
 	
@@ -86,6 +89,7 @@ public class AdvertisementsController {
 	}
 	
 	
+	// ADDs an advertisement
 	@RequestMapping(value="CreateTrip", method = RequestMethod.POST)
 	public String createNewTrip(@RequestParam String fromCity,
 							@RequestParam String toCity,
@@ -97,7 +101,7 @@ public class AdvertisementsController {
 		System.out.println("toCity: " + toCity);
 		System.out.println("date: " + date);
 		System.out.println("time: " + time);
-		System.out.println("fromCfreePlaces" + freePlaces);
+		System.out.println("fromCfreePlaces: " + freePlaces);
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
@@ -107,11 +111,60 @@ public class AdvertisementsController {
 		
 		driverDAO.openAdvertisment(username, fromCity, toCity, date, time, freePlaces);
 
+		// here update session attribute "active_ads"
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
+		session.setAttribute("active_ads", activeAds);
+		
 		return "ProfilePageDriver";
 		
 	}
 	
 	
-	//TODO: add controller for edit advertisement
+	
+	// if driver wants to delete his advertisement
+	@RequestMapping(value="DeleteAdvertisement", method = RequestMethod.GET)
+	public String deleteAdvertisement(HttpSession session, Model model) {
+		
+		String currentUser = (String) session.getAttribute("loggedInUser");
+		Addvertisment adv = ((List<Addvertisment>)session.getAttribute("active_ads")).get(0);
+		String dateOfAdv = adv.getDate();
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+		driverDAO.deleteAdvertisement(currentUser, dateOfAdv);
+		
+		// here update session attribute "active_ads"
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
+		session.setAttribute("active_ads", activeAds);
+		
+		return "redirect:ProfilePageDriver";
+	}
+	
+	
+	
+	//if driver wants to edit his edit advertisement
+	@RequestMapping(value="EditAdvertisement", method = RequestMethod.GET) 
+	public String deleteAdvertisement(@RequestParam int freePlaces,
+									HttpSession session, Model model) {
+		
+		
+		String currentUser = (String) session.getAttribute("loggedInUser");
+		Addvertisment adv = ((List<Addvertisment>)session.getAttribute("active_ads")).get(0);
+		String dateOfAdv = adv.getDate();
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+		driverDAO.updateAdvertisement(currentUser, dateOfAdv, freePlaces);
+		
+		// here update session attribute "active_ads"
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertisementsForDriver(currentUser);
+		session.setAttribute("active_ads", activeAds);
+		
+		return "redirect:ProfilePageDriver";
+	}
+	
+	
 	
 }
