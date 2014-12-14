@@ -68,6 +68,7 @@ public class ProfileDAO implements IProfileDAO {
 			isPerson = jdbc.queryForInt(findMatchPassenger, username);
 		}
 		if (isDriver > 0) {
+			
 			String selectProfileOfDriver = "select drivers.nameOfDriver,drivers.telephone,drivers.rating,drivers.yearsInDriving,drivers.travels, drivers.SmokeInTheCar, drivers.musicInTheCar, drivers.birthYear,profiles.username, profiles.email from  "
 					+ "drivers inner join profiles on drivers.profileId =profiles.profileId where drivers.profileId="
 					+ "(SELECT profileId FROM profiles where username like ?)";

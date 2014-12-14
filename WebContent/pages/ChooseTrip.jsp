@@ -11,37 +11,36 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
+	<div id="welcome" class="container">
 	<%! static void printInCell(JspWriter out, String a) throws IOException{
-			out.print("<td>");
+			out.print("<div class=\"col-lg-1\">");
 				out.print(a);
-			out.print("</td>");
+			out.print("</div>");
 		}
 	
 		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
-			out.print("<tr>");
+			out.print("<div class=\"row\">");
 				printInCell(out, a.getDriver().getName());
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
 				printInCell(out, a.getDate());
 				//printInCell(out, a.getTime());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
-				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" />");
-				printInCell(out, "<input type=\"submit\" value=\"&#8594\">");
-			out.print("</tr>");
+				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" class=\"btn btn-primary\">Driver Profile</a>");
+				printInCell(out, "<ul class=\"pager\"><li class=\"next\"><input  type=\"submit\" value=\"→\"></li></ul>");
+			out.print("</div>");
 		}
 	%>
 	}
 		<form method="GET" name="selectedAdvertisment">
-			<table>
 				<% 
 					for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("all_valid_advertisements")) 
 					{
 						printAnAdvertisment(out, a);
 					} 
 				%>
-			
-			</table>
 		</form>
+	</div>
 	<%@ include file="Footer.jsp" %>
 </body>
 </html>

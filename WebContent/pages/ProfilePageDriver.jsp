@@ -8,31 +8,32 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
-	
-	<h1>My Profile:</h1>
-	<hr>
-	<p>Name: ${name} <p>
-	<p>Username: ${username} </p>
-	<p>Year of birth: ${birthYear}</p>
-	<p>E-mail: ${email} </p>
-	<p>Phone: ${phone} </p>
-	<p>Driving License: Yes</p>
-	<p>License year: ${licenseYear}</p>
-	<p>Is smoking in car allowed: ${isSmoking}</p>
-	<p>Music: ${licenseYear} </p>
-	<p>Number of travels: ${numberOfTravels}</p>
-	<p>Rating: ${rating }</p>
-	
-	<!-- HERE TO PRINT USER'S ADVERTISEMENT !!! -->
-	
-	<form method="GET" action="EditAdvertisement">
-		<input type="submit" value="Edit My Advertisement" />
-	</form>
-	
-	<form method="GET" action="EditProfile">
-		<input type="submit" value="Edit Profile" />
-	</form>
-	
+	<div id="welcome" class="container">
+		<h1>My Profile:</h1>
+		<hr>
+		<div class="text-success">
+			<p>Name: <strong>${name}</strong> <p>
+			<p>Username: ${username} </p>
+			<p>Year of birth: ${birthYear}</p>
+			<p>E-mail: ${email} </p>
+			<p>Phone: ${phone} </p>
+			<p>Driving License: Yes</p>
+			<p>License year: ${licenseYear}</p>
+			<p>Is smoking in car allowed: ${isSmoking}</p>
+			<p>Music: ${licenseYear} </p>
+			<p>Number of travels: ${numberOfTravels}</p>
+			<p>Rating: ${rating }</p>
+		</div>
+		<!-- HERE TO PRINT USER'S ADVERTISEMENT !!! -->
+		
+		<form method="GET" action="EditAdvertisement" class="form-horizontal">
+			<input type="submit" value="Edit My Advertisement" class="btn btn-warning"/>
+		</form>
+		
+		<form method="GET" action="EditProfile" class="form-horizontal">
+			<input type="submit" value="Edit Profile" class="btn btn-info"/>
+		</form>
+	</div>
 	<%@ include file="Footer.jsp" %>
 </body>
 </html>

@@ -7,15 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="Header.jsp" %>
-	<form id="forgottenPassword" method="POST" >
-		<label for="email">Your username:</label>
-		<input type="text" name="username" placeholder="Enter your username" required="true"/>
-		<input type="submit" name="submitButton" value="Send new password">
-	</form>
-	<h3>${generatingPasswordStatus}</h3>
-	<a id="loginForm" href="Welcome">Login</a>	
-	<a id="registerForm" href="RegisterForm">Create new account</a>
+	<%@ include file="Header.jsp"%> 
+	<div id="welcome" class="container">
+		<form id="forgottenPassword" method="POST" class="form-horizontal">
+			<div class="form-group">
+			
+				<label for="email" class="col-md-2 control-label">Your username:</label> 
+				<div class="col-md-10">
+					<input type="text" name="username" placeholder="Enter your username" required="required" class="form-control"/>
+				</div>
+				<input type="submit" name="submitButton" value="Send new password" class="btn btn-default">
+			</div>
+		</form>
+		<h3>${generatingPasswordStatus}</h3>
+		<a id="loginForm" href="Welcome" class="text-success">Login</a>	
+		<a id="registerForm" href="RegisterForm" class="text-warning">Create new account</a>
+	</div>
 	<%@ include file="Footer.jsp" %>
 </body>
 </html>

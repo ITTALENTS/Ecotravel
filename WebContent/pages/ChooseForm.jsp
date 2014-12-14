@@ -28,18 +28,17 @@
 <body>
 
 	<%@ include file="Header.jsp" %>
-
-	<div>
-		<img src = "${pageContext.request.contextPath}/pictures/driver/driverImg.gif" >
-		<img src = "${pageContext.request.contextPath}/pictures/passenger/passengerImg.jpg">
-	</div>
-	
-	<div>
-		<a href="CreateTrip"><img src = "${pageContext.request.contextPath}/pictures/driver/driverLogo.png" class="arrows"></a>
-		<a href="AdvertisementsPage"><img src = "${pageContext.request.contextPath}/pictures/passenger/passengerLogo.png" class="arrows"></a>
-	</div>
-	
-	
+	<div id="welcome" class="container">
+		<div>
+			<img src = "${pageContext.request.contextPath}/pictures/driver/driverImg.gif" >
+			<img src = "${pageContext.request.contextPath}/pictures/passenger/passengerImg.jpg">
+		</div>
+		
+		<div>
+			<a href="CreateTrip"><img src = "${pageContext.request.contextPath}/pictures/driver/driverLogo.png" class="arrows"></a>
+			<a href="AdvertisementsPage"><img src = "${pageContext.request.contextPath}/pictures/passenger/passengerLogo.png" class="arrows"></a>
+		</div>
+	<div id="welcome" class="container">	
 	<%@ include file="Footer.jsp" %>
 </body>
 </html>

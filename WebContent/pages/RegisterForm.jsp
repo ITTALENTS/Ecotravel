@@ -9,58 +9,68 @@
 <body>
 
 	<%@ include file="Header.jsp" %>
-	
-	<form id="registerForm" method="POST" action="RegisterForm">
-		<p id="nameField">
-			<label for="name">Name:</label>
-			<input type = "text" name = "name" required="true"/>
-		</p>
-		
-		<p id="age">
-			<label for="birthYear">Birth Year:</label>
-			<input type="number" name="birthYear" min="1990" max="2000">
-		</p>
-		
-		<p id="phoneField">
-			<label for="telephone">Phone:</label>
-			<input type = "tel" name = "telephone" required="true"/>
-		</p>
-		
-		<p id="emailField">
-			<label for="email">Email:</label>
-			<input type = "email" name = "email" required="true"/>
-			<!-- name should be "profile.email" to to the mapping -->
-		</p>
-		<h4 style="color:red">${email_taken_msg}</h4>
-		
-		<p id="usernameFiled">
-			<label for="username">Username:</label>
-			<input type = "text" name = "username" required="true"/>
-			<!-- name should be "profile.username" to to the mapping -->
-		</p>
-		<h4 style="color:red">${username_taken_msg}</h4>
-		
-		<p id="passwordField">
-			<label for="password">Password:</label>
-			<input type = "password" name = "password" required="true"/>
-			<!-- name should be "profile.password" to to the mapping -->
-		</p>
-		
-		<p id="rePasswordField">
-			<label for="password">Retype Password:</label>
-			<input type = "password" name = "rePassword" required="true"/>
-		</p>
-		<h4 style="color:red">${rePassword_error_msg}</h4>
-		
-		<p id="hasDriverLicense">
-			<label for="driverOption">Do you have a driving license?</label>
-			<input type="radio" name="driverLicense" value="Yes"/>Yes
-			<input type="radio" name="driverLicense" value="No" checked="checked" />No
-		</p>
-		
-		<input type="submit" name="registerSubmit" value="submit" />
-	</form>	
-	
+	<div class="container">
+		<form id="registerForm" method="POST" action="RegisterForm" class="form-horizontal">
+			<div class="form-group" id="nameField">
+				<label class="control-label" for="name">Name:</label>
+				<input class="form-control" id="name" type = "text" name = "name" required="true"/>
+			</div>
+			
+			<div class="form-group" id="age">
+				<label class="control-label" for="birthYear">Birth Year:</label>
+				<input class="form-control" id="birthYear" type="number" name="birthYear" min="1990" max="2000">
+			</div>
+			
+			<div class="form-group" id="phoneField">
+				<label class="control-label" for="telephone">Phone:</label>
+				<input class="form-control" id="telephone" type = "tel" name = "telephone" required="true"/>
+			</div>
+			
+			<div class="form-group" id="emailField">
+				<label class="control-label" for="email">Email:</label>
+				<input class="form-control" id="email"  type = "email" name = "email" required="true"/>
+				<!-- name should be "profile.email" to to the mapping -->
+			</div>
+			<h4 style="color:red">${email_taken_msg}</h4>
+			
+			<div class="form-group" id="usernameFiled">
+				<label class="control-label" for="username">Username:</label>
+				<input id="username" class="form-control" type = "text" name = "username" required="true"/>
+				<!-- name should be "profile.username" to to the mapping -->
+			</div>
+			<h4 style="color:red">${username_taken_msg}</h4>
+			
+			<div class="form-group" id="passwordField">
+				<label class="control-label" for="password">Password:</label>
+				<input id="password" class="form-control" type = "password" name = "password" required="true"/>
+				<!-- name should be "profile.password" to to the mapping -->
+			</div>
+			
+			<div class="form-group" id="rePasswordField">
+				<label class="control-label" for="retype-password">Retype Password:</label>
+				<input id="retype-password" class="form-control" type = "password" name = "rePassword" required="true"/>
+			</div>
+			<h4 style="color:red">${rePassword_error_msg}</h4>
+			
+			<div class="form-group" id="hasDriverLicense">
+				<label class="control-label" for="driverOption">Do you have a driving license?</label>
+				<div class="row">
+				<label class="control-label">Yes</label>
+				</div>
+				<div class="row">
+				<input type="radio" name="driverLicense" value="Yes"/>
+				</div>
+				<div class="row">
+				<label class="control-label">No</label>
+				</div>
+				<div class="row">
+				<input type="radio" name="driverLicense" value="No" checked="checked" />
+				</div>
+			</div>
+			
+			<input type="submit" name="registerSubmit" value="submit" class="btn btn-primary"/>
+		</form>	
+	</div>
 	<%@ include file="Footer.jsp" %>
 	
 </body>

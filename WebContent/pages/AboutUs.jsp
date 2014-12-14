@@ -8,31 +8,57 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
+	<div id="welcome" class="container">
 		<div>
 			<h1>Who we are?<h1>
-			<p>
-				Viktoriq Slavcheva Borisova
-				Student at <a href="http://www.tu-sofia.bg/" value="Technical University Of Sofia" />
+			<div class="row">
+				<div class="row">
+					<h2>Viktoriq Slavcheva Borisova</h2>
+				</div>
+				<div class="row">
+				Student at <a href="http://www.tu-sofia.bg/"> <abbr title="Technical University Of Sofia">TU</abbr>  </a>
+				</div>
+				<div class="row"  style="font-style: italic;">
 				Studying: Computer and Software technology
+				</div>
+				<div class="row"  style="font-style: italic;">
 				Grade 3: 
-			</p>
-			<p>
-				Vladimir Penchev Pechev
-				Student at: <a href="https://www.uni-sofia.bg/" value="Sofia University" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="row">
+					<h2>Vladimir Penchev Pechev</h2>
+				</div>
+				<div class="row" style="font-style: italic;">
+					Student at: <a href="https://www.uni-sofia.bg/" > <abbr title="Sofia University">SU</abbr></a>
+				</div>
+				<div class="row"  style="font-style: italic;">
 				Studying: Software engineering 
+				</div>
+				<div class="row"  style="font-style: italic;">
 				Grade 2:
-			</p>
-			<p>
-				Nikola Monov
-				Student at: <a href="https://www.uni-sofia.bg/" value="Sofia University" /> 
+				</div>
+			</div>
+			<div class="row">
+				<div class="row">
+					<h2>Nikola Monov</h2>
+				</div>
+				<div class="row"  style="font-style: italic;">
+				Student at: <a href="https://www.uni-sofia.bg/"> <abbr title="Sofia University">SU</abbr></a>
+				</div>
+				<div class="row"  style="font-style: italic;">
 				Studying: Software engineering
-				Grade 3: 
-			</p>
+				</div>
+				<div class="row"  style="font-style: italic;">
+				Grade 3:
+				</div> 
+			</div>
 			
-			<p>
-				You can contact us at: <input type="email" href="">
-			</p>
+			<div>
+				You can contact us at: 
+			</div>
 			
+			</div>
 		</div>
 	<%@ include file="Footer.jsp" %>
 </body>

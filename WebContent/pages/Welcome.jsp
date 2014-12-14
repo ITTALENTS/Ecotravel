@@ -10,23 +10,27 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
-	<div id="welcome">
-		<form id="loginForm" method="POST" >
-			<div>
-				<label for="username">Username:</label>
-				<input type="text" name="username" placeholder=" Enter your username" required="required"/>
+	<div id="welcome" class="container">
+		<form id="loginForm" method="POST" class="fom-horizontal">
+			<div class="form-group">
+				<label for="username" class="col-md-2 control-label">Username:</label>
+				<div class="col-md-10">
+					<input id="username" type="text" class="form-control control-field" name="username" placeholder=" Enter your username" required="required"/>
+				</div>
 			</div>
 			
-			<div>
-				<label for="password">Password:</label>
-				<input type="password" name="password" placeholder=" Enter your password" required="required"/>
+			<div class="form-group">
+				<label for="password" class="col-md-2 control-label">Password:</label>
+				<div class="col-md-10">
+					<input id="password" type="password" class="form-control control-field" name="password" placeholder=" Enter your password" required="required"/>
+				</div>
 			</div>
 			<div>
-				<input type="submit" name="submitButton" value="Submit">
+				<input type="submit" name="submitButton" value="Submit" class="btn btn-success">
 			</div>
 		</form>
-			<a id="forgottenPassword" href="ForgottenPassword">Forgotten password</a>
-			<a id="registerForm" href="RegisterForm">Create new account</a>
+			<a id="forgottenPassword" href="ForgottenPassword" class="text-danger">Forgotten password</a>
+			<a id="registerForm" href="RegisterForm" class="text-info">Create new account</a>
 			
 		
 		<h3 style="color:red"> ${login_error} </h3>
