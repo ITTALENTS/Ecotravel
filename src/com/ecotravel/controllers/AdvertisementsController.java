@@ -29,7 +29,7 @@ public class AdvertisementsController {
 	}
 	
 	// redirects to driver/passenger to AdvertisementsPage
-	@RequestMapping(value="AdvertisementsPage", method = RequestMethod.GET)
+	@RequestMapping(value={"SubscribeForTrip", "AdvertisementsPage"}, method = RequestMethod.GET)
 	public String sendPassengerTo(HttpSession session) {
 		return "AdvertisementsPage";
 	}
@@ -65,25 +65,27 @@ public class AdvertisementsController {
 	
 	
 	@RequestMapping(value="SubscribeForTrip", method = RequestMethod.POST)
-	public String subscribeUserToTrip(@RequestParam String selectedAdvertisement, 
+	public String subscribeUserToTrip(@RequestParam int selectedAdvertisement, 
 									HttpSession session, Model model) {
 		
-		System.out.println(selectedAdvertisement);
+		System.out.println("Subscribing for ad: " + selectedAdvertisement);
 		
-//		session.setAttribute("advertisement_id", advertismentId);
-//		
-//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-//		EmailerDAO emailer = (EmailerDAO) context.getBean("emailerDAO");
-//		try{
-//			Person currentUser = (Person) session.getAttribute("loggedInUser");
-//			
-//			emailer.sendTripEmail(driverUsername, currentUser.getProfile().getUsername());
-//			model.addAttribute("email_sent_msg", "Successfully sent email :) \n Wait the driver to mail you.");
-//		}
-//		catch(RuntimeException e){
-//			model.addAttribute("email_sent_msg", "For some reasons you can't apply for this trip now! Please try again!");
-//		}
+		List<Addvertisment> matchingAds = (List<Addvertisment>)session.getAttribute("matching_ads");
+		String driverUsername = matchingAds.get(selectedAdvertisement).getDriver().getProfile().getUsername();
 		
+		System.out.println("Driver in this ad is: " + driverUsername);
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		EmailerDAO emailer = (EmailerDAO) context.getBean("emailerDAO");
+		try{
+			Person currentUser = (Person) session.getAttribute("loggedInUser");
+			
+			emailer.sendTripEmail(driverUsername, currentUser.getProfile().getUsername());
+			model.addAttribute("email_sent_msg", "Successfully sent email :) \n Wait the driver to mail you.");
+		}
+		catch(RuntimeException e){
+			model.addAttribute("email_sent_msg", "For some reasons you can't apply for this trip now! Please try again!");
+		}
 		
 		return "AdvertiementsPage";
 	}
