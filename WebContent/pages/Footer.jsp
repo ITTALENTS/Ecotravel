@@ -6,10 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-	<div id="Footer"> 
-		<hr />
-		<p>Road trip: 2014</p>
-		<p>ItTallents project</p>
+	<div id="Footer" class="jumbotron"> 
+		<p class="text-info">Road trip: 2014</p>
+		<p class="text-info">ItTallents project</p>
 	</div>
 </body>
 </html>

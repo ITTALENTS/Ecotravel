@@ -9,39 +9,43 @@
 <body>
 
 	<%@ include file="Header.jsp" %>
-	
-	<form id="registerFormDriver" method="Post" action="RegisterFormDriver">
-		<p id="licenseSince">
-			<label for="licensePeriod">License Year</label>
-			<input type="number" name="licensePeriodYear" min="1950" max="2014">
-		</p>
+	<div id="welcome" class="container">
+		<form id="registerFormDriver" method="Post" action="RegisterFormDriver">
+			<div class="form-group" id="licenseSince">
+				<label for="licensePeriod">License Year</label>
+				<input id="licensePeriod" type="number" name="licensePeriodYear" min="1950" max="2014"  class="form-control">
+			</div>
+			
+			<div class="form-group" id="SmokingInTheCar">
+				<div class="row">
+				<label class="control-label">Is smoking in the car allowed:</label>
+				</div>
+				<div class="row">
+				<label for="yes">Yes</label>
+				<input id="yes" type="radio" name="isSmoking" value="Yes">
+				<label for="no">No</label>
+				<input id="no" type="radio" name="isSmoking" value="Yes" checked="checked">
+				</div>
+			</div>
+			
+			<div class="form-group" id="musicInCar">
+				<label for="musicInTheCar">What music is allowed in the car:</label>
+				<select id="musicInTheCar" name="musicInTheCar" class="form-control">
+					<option name="everything" checked>Everything</option>
+					<option name="popFolk">Pop folk</option>
+					<option name="commercial">Commercial</option>
+					<option name="pop">Pop</option>
+					<option name="rap">Rap</option>
+					<option name="rock">Rock</option>
+					<option name="folk">Folk</option>
+					<option name="techno">Techno</option>
+				</select>
+			</div>
+			
+			<input type="submit" name="registerDriverSubmit" value="submit" class="btn btn-primary" />
 		
-		<p id="SmokingInTheCar">
-			<p>Is smoking in the car allowed:</p>
-			<label for="yes"></label>
-			<input type="radio" name="isSmoking" value="Yes"> Yes <br />
-			<label for="no"></label>
-			<input type="radio" name="isSmoking" value="Yes" checked="checked"> No <br />
-		</p>
-		
-		<p id="musicInCar">
-			<span>What music is allowed in the car:</span>
-			<select name="musicInTheCar">
-				<option name="everything" checked>Everything</option>
-				<option name="popFolk">Pop folk</option>
-				<option name="commercial">Commercial</option>
-				<option name="pop">Pop</option>
-				<option name="rap">Rap</option>
-				<option name="rock">Rock</option>
-				<option name="folk">Folk</option>
-				<option name="techno">Techno</option>
-			</select>
-		</p>
-		
-		<input type="submit" name="registerDriverSubmit" value="submit" />
-	
-	</form>
-	
+		</form>
+	</div>
 	<%@ include file="Footer.jsp" %>
 </body>
 </html>

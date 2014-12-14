@@ -8,31 +8,57 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
+	<div id="welcome" class="container">
 		<div>
 			<h1>Who we are?<h1>
-			<p>
+			<div class="row">
+				<div class="row">
 				Viktoriq Slavcheva Borisova
-				Student at <a href="http://www.tu-sofia.bg/" value="Technical University Of Sofia" />
+				</div>
+				<div class="row">
+				Student at <a href="http://www.tu-sofia.bg/"> <abbr title="Technical University Of Sofia">TU</abbr>  </a>
+				</div>
+				<div class="row">
 				Studying: Computer and Software technology
+				</div>
+				<div class="row">
 				Grade 3: 
-			</p>
-			<p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="row">
 				Vladimir Penchev Pechev
-				Student at: <a href="https://www.uni-sofia.bg/" value="Sofia University" />
+				</div>
+				<div class="row">
+				Student at: <a href="https://www.uni-sofia.bg/" > <abbr title="Sofia University">SU</abbr></a>
+				</div>
+				<div class="row">
 				Studying: Software engineering 
+				</div>
+				<div class="row">
 				Grade 2:
-			</p>
-			<p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="row">
 				Nikola Monov
-				Student at: <a href="https://www.uni-sofia.bg/" value="Sofia University" /> 
+				</div>
+				<div class="row">
+				Student at: <a href="https://www.uni-sofia.bg/"> <abbr title="Sofia University">SU</abbr></a>
+				</div>
+				<div class="row">
 				Studying: Software engineering
-				Grade 3: 
-			</p>
+				</div>
+				<div class="row">
+				Grade 3:
+				</div> 
+			</div>
 			
-			<p>
-				You can contact us at: <input type="email" href="">
-			</p>
+			<div>
+				You can contact us at: 
+			</div>
 			
+			</div>
 		</div>
 	<%@ include file="Footer.jsp" %>
 </body>

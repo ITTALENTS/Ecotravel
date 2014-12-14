@@ -1,3 +1,4 @@
+<%@page import="jdbc.model.TownsContainer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,41 +15,40 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
-	<h1>Search For Advertisements</h1>
-	<form method="POST" >
-		From:
-		<select name="fromCity">
-			<!-- must be sorted by alphabetically -->
-			<!-- can't visualize cyrillics -->
-			<!-- use spring for these lists -->
-			<option>Sofia</option>
-			<option>Lovech</option>
-			<option>Varna</option>
-			<option>Blagoevgrad</option>
-			<option>Burgas</option>
-		</select>
+	<div id="welcome" class="container">
+		<div class="jumbotron"><h1>Search For Advertisements</h1></div>
+		<form method="POST" >
+			<div class="form-group">
+				<label for="fromCity" class="col-md-2 control-label">From:</label> 
+				<div class="col-md-10">
+					<select id="fromCity" name="fromCity" class="form-control">
+						<!-- use spring for these lists -->
+						<% TownsContainer.printTownsInSelectMenu(out);	%>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="toCity" class="col-md-2 control-label">To:</label> 
+				<div class="col-md-10">
+					<select id="toCity" name="toCity" class="form-control">
+						<!-- use spring for these lists -->
+						<% TownsContainer.printTownsInSelectMenu(out);	%>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="date" class="col-md-2 control-label">Date:</label> 
+				<div class="col-md-10">
+					<input id="date" type="date" name="date" required="required" class="form-control">
+				</div>
+			</div>
+			
+	  		<input type="submit" value="Search!" class="btn btn-primary">
+		</form>
 		
-		To:
-		<select name="toCity">
-			<!-- must be sorted by alphabetically -->
-			<option>Sofia</option>
-			<option>Lovech</option>
-			<option>Varna</option>
-			<option>Blagoevgrad</option>
-			<option>Burgas</option>
-		</select>
-	
-  		Date:
-  		<input type="date" name="date" required="required">
-  		
-  		<input type="submit" value="Search!">
-	</form>
-	
-	<h3>${searching_msg}</h3>
-	<h3>${email_sent_msg}</h3>
-	
-	<%@ include file="Footer.jsp" %>
-	
-	
+		<h3>${searching_msg}</h3>
+		<h3>${email_sent_msg}</h3>
+	</div>	
+	<%@ include file="Footer.jsp" %>	
 </body>
 </html>

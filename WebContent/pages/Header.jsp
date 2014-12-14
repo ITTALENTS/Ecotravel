@@ -4,31 +4,40 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Header.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap-theme.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/site.css">
 </head>
-
-	<nav>
-		<div id="header">
-				<ul>
-					<li><%= new java.util.Date() %></li>
-					<li><a href="AboutUs">About Us</a></li>
-					<li><a href="History">History</a></li>
-				</ul>
-			
-		
-		<% if(!this.getClass().getSimpleName().equalsIgnoreCase("Welcome_jsp") &&
+<body>
+		<div class="navbar navbar-default">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="#">RoadTrip</a>
+	  </div>
+	  <div class="navbar-collapse collapse navbar-responsive-collapse">
+	    <ul class="nav navbar-nav">
+	    	<li><a href="/Ecotravel/">Home</a></li>	
+	      	<li><a href="/Ecotravel/pages/AboutUs.jsp">About Us</a></li>
+			<li><a href="/Ecotravel/pages/History.jsp">History</a></li>			
+	    </ul>
+	    <ul class="nav navbar-nav pull-right">
+	    <% if(!this.getClass().getSimpleName().equalsIgnoreCase("Welcome_jsp") &&
 				!this.getClass().getSimpleName().equalsIgnoreCase("RegisterForm_jsp") &&
 				!this.getClass().getSimpleName().equalsIgnoreCase("RegisterFormDriver_jsp") &&
 				!this.getClass().getSimpleName().equalsIgnoreCase("ForgottenPassword_jsp")) { %>
-					<li><a href="Profile">My Profile</a></li>
-				<form method="POST" action="Logout">
-					<input type="submit" value="Logout" />
+				<li><a href="Profile" class="text-info">My Profile</a></li>
+				<li><form method="POST" action="Logout">
+					<input type="submit" value="Logout" class="btn btn-danger" />
 				</form>
+				</li>
 		<% } %>
-		
-		<!-- <h3><% out.print(this.getClass().getSimpleName()); %></h3>  -->
-			<hr />
+	    </ul>
 		</div>
-	</nav>
+	  </div>
+	<!-- <h3><% out.print(this.getClass().getSimpleName()); %></h3>  -->	
 </body>
 </html>
