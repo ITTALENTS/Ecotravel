@@ -25,10 +25,7 @@
 			<li><a href="/Ecotravel/pages/History.jsp">History</a></li>			
 	    </ul>
 	    <ul class="nav navbar-nav pull-right">
-	    <% if(!this.getClass().getSimpleName().equalsIgnoreCase("Welcome_jsp") &&
-				!this.getClass().getSimpleName().equalsIgnoreCase("RegisterForm_jsp") &&
-				!this.getClass().getSimpleName().equalsIgnoreCase("RegisterFormDriver_jsp") &&
-				!this.getClass().getSimpleName().equalsIgnoreCase("ForgottenPassword_jsp")) { %>
+	    <% if(session.getAttribute("loggedInUser") != null) { %>
 				<li><a href="Profile" class="text-info">My Profile</a></li>
 				<li><form method="POST" action="Logout">
 					<input type="submit" value="Logout" class="btn btn-danger" />
