@@ -84,7 +84,6 @@ public class DriverDAO implements IDriverDAO {
 		transactionManager.commit(status);
 		}
 		catch (DataAccessException e) {
-
 			transactionManager.rollback(status);
 		}
 		

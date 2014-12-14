@@ -29,7 +29,7 @@ public class AdvertisementsController {
 	}
 	
 	// redirects to driver/passenger to AdvertisementsPage
-	@RequestMapping(value={"SubscribeForTrip", "AdvertisementsPage"}, method = RequestMethod.GET)
+	@RequestMapping(value="AdvertisementsPage", method = RequestMethod.GET)
 	public String sendPassengerTo(HttpSession session) {
 		return "AdvertisementsPage";
 	}
@@ -65,13 +65,13 @@ public class AdvertisementsController {
 	
 	
 	@RequestMapping(value="SubscribeForTrip", method = RequestMethod.POST)
-	public String subscribeUserToTrip(@RequestParam int selectedAdv, 
+	public String subscribeUserToTrip(@RequestParam String driverUsername, 
 									HttpSession session, Model model) {
 		
-		System.out.println("Subscribing for ad: " + selectedAdv);
-		
-		List<Addvertisment> matchingAds = (List<Addvertisment>)session.getAttribute("matching_ads");
-		String driverUsername = matchingAds.get(selectedAdv).getDriver().getProfile().getUsername();
+//		System.out.println("Subscribing for ad: " + selectedAdv);
+//		
+//		List<Addvertisment> matchingAds = (List<Addvertisment>)session.getAttribute("matching_ads");
+//		String driverUsername = matchingAds.get(selectedAdv).getDriver().getProfile().getUsername();
 		
 		System.out.println("Driver in this ad is: " + driverUsername);
 		

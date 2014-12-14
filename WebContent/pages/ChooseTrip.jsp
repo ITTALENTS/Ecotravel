@@ -21,7 +21,7 @@
 		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
 			out.print("<div class=\"row\">");
 				String driverUsername = a.getDriver().getProfile().getUsername();
-				printInCell(out,"<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"radio\" name=\"selectedAdv\" value=" + driverUsername + "></li></ul>");
+				printInCell(out,"<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"radio\" name=\"driverUsername\" value=" + driverUsername + "></li></ul>");
 				printInCell(out, driverUsername);
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
@@ -32,7 +32,7 @@
 			out.print("</div>");
 		}
 	%>
-		<form method="GET" name="selectedAdvertisment">
+		<form method="GET" name="selectedAdvertisment" action="SubscribeForTrip">
 				<% 
 					out.print(  "<div class=\"row\">"
 									+ "<div class=\"col-lg-1\">Select Trip</div>"
@@ -48,7 +48,11 @@
 					{
 						printAnAdvertisment(out, a);
 					}
-					out.print("<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"submit\" value=\"Connect this driver\"></li></ul>");
+				
+					if((ArrayList<Addvertisment>)session.getAttribute("matching_advertisements") != null)
+						out.print("<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"submit\" value=\"Connect this driver\"></li></ul>");
+					else
+						out.print("<div>No matching trips</div>");
 				%>
 		</form>
 	</div>
