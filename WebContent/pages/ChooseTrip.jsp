@@ -20,14 +20,15 @@
 	
 		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
 			out.print("<div class=\"row\">");
-				printInCell(out, a.getDriver().getProfile().getUsername());
+				String driverUsername = a.getDriver().getProfile().getUsername();
+				printInCell(out, driverUsername);
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
 				printInCell(out, a.getDate());
 				printInCell(out, a.getTimeOfTravel());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
 				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" class=\"btn btn-primary\">Driver Profile</a>");
-				printInCell(out, "<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"submit\" value=\"Subscribe\"></li></ul>");
+				printInCell(out,"<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"radio\" name=\"option\" value=\"driverUsername\"></li></ul>"); 
 			out.print("</div>");
 		}
 	%>
@@ -45,7 +46,8 @@
 				for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("matching_advertisements")) 
 					{
 						printAnAdvertisment(out, a);
-					} 
+					}
+					out.print("<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"submit\" value=\"Connect this driver\"></li></ul>");
 				%>
 		</form>
 	</div>
