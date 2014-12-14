@@ -13,43 +13,43 @@
 			<h1>Who we are?<h1>
 			<div class="row">
 				<div class="row">
-				Viktoriq Slavcheva Borisova
+					<h2>Viktoriq Slavcheva Borisova</h2>
 				</div>
 				<div class="row">
 				Student at <a href="http://www.tu-sofia.bg/"> <abbr title="Technical University Of Sofia">TU</abbr>  </a>
 				</div>
-				<div class="row">
+				<div class="row"  style="font-style: italic;">
 				Studying: Computer and Software technology
 				</div>
-				<div class="row">
+				<div class="row"  style="font-style: italic;">
 				Grade 3: 
 				</div>
 			</div>
 			<div class="row">
 				<div class="row">
-				Vladimir Penchev Pechev
+					<h2>Vladimir Penchev Pechev</h2>
 				</div>
-				<div class="row">
-				Student at: <a href="https://www.uni-sofia.bg/" > <abbr title="Sofia University">SU</abbr></a>
+				<div class="row" style="font-style: italic;">
+					Student at: <a href="https://www.uni-sofia.bg/" > <abbr title="Sofia University">SU</abbr></a>
 				</div>
-				<div class="row">
+				<div class="row"  style="font-style: italic;">
 				Studying: Software engineering 
 				</div>
-				<div class="row">
+				<div class="row"  style="font-style: italic;">
 				Grade 2:
 				</div>
 			</div>
 			<div class="row">
 				<div class="row">
-				Nikola Monov
+					<h2>Nikola Monov</h2>
 				</div>
-				<div class="row">
+				<div class="row"  style="font-style: italic;">
 				Student at: <a href="https://www.uni-sofia.bg/"> <abbr title="Sofia University">SU</abbr></a>
 				</div>
-				<div class="row">
+				<div class="row"  style="font-style: italic;">
 				Studying: Software engineering
 				</div>
-				<div class="row">
+				<div class="row"  style="font-style: italic;">
 				Grade 3:
 				</div> 
 			</div>
