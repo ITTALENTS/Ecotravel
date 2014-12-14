@@ -139,7 +139,7 @@ public class AdvertisementsController {
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser.getProfile().getUsername());
 		session.setAttribute("active_ads", activeAds);
 		
-		return "redirect:ProfilePageDriver";
+		return "ProfilePageDriver";
 	}
 	
 	
