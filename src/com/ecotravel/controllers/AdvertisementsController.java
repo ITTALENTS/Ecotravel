@@ -96,7 +96,7 @@ public class AdvertisementsController {
 		System.out.println("toCity: " + toCity);
 		System.out.println("date: " + date);
 		System.out.println("time: " + time);
-		System.out.println("fromCfreePlaces" + freePlaces);
+		System.out.println("fromCfreePlaces: " + freePlaces);
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");

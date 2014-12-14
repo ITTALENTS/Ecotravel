@@ -62,7 +62,7 @@ public class LoginFormController {
 			return "Welcome";
 		} else {
 			session.setAttribute("loggedInUser", p);
-			 session.setMaxInactiveInterval(1*60); // 15 minutes
+			//session.setMaxInactiveInterval(15*60); // 15 minutes
 			if(p instanceof Driver)
 				return "ChooseForm";
 			else if(p instanceof Passenger)// instance of Passenger
