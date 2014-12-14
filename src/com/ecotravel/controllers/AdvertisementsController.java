@@ -64,7 +64,7 @@ public class AdvertisementsController {
 	}
 	
 	
-	@RequestMapping(value="SubscribeForTrip", method = RequestMethod.POST)
+	@RequestMapping(value="SubscribeForTrip", method = RequestMethod.GET)
 	public String subscribeUserToTrip(@RequestParam String driverUsername, 
 									HttpSession session, Model model) {
 		
@@ -87,7 +87,7 @@ public class AdvertisementsController {
 			model.addAttribute("email_sent_msg", "For some reasons you can't apply for this trip now! Please try again!");
 		}
 		
-		return "AdvertiementsPage";
+		return "AdvertisementsPage";
 	}
 	
 	
@@ -139,14 +139,14 @@ public class AdvertisementsController {
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser.getProfile().getUsername());
 		session.setAttribute("active_ads", activeAds);
 		
-		return "redirect:ProfilePageDriver";
+		return "ProfilePageDriver";
 	}
 	
 	
 	
 	//if driver wants to edit his edit advertisement
 	@RequestMapping(value="EditAdvertisement", method = RequestMethod.GET) 
-	public String deleteAdvertisement(@RequestParam int freePlaces,
+	public String editAdvertisement(@RequestParam int freePlaces,
 									HttpSession session, Model model) {
 		
 		

@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProfileController {
 	
-	@RequestMapping(value = "Profile", method = RequestMethod.GET)
+//	@RequestMapping(value="ProfilePageDriver")
+//	public String vireDriversProfile () {
+//		return "Profile";
+//	}
+	
+	@RequestMapping(value = {"Profile", "ProfilePageDriver", "ProfilePagePassenger"}, method = RequestMethod.GET)
 	public String viewPersonalProfile(HttpSession session, Model model) {
 		
 		Person p = (Person) session.getAttribute("loggedInUser");
