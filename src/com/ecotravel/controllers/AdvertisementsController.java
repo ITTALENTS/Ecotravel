@@ -65,13 +65,13 @@ public class AdvertisementsController {
 	
 	
 	@RequestMapping(value="SubscribeForTrip", method = RequestMethod.POST)
-	public String subscribeUserToTrip(@RequestParam int selectedAdvertisement, 
+	public String subscribeUserToTrip(@RequestParam int selectedAdv, 
 									HttpSession session, Model model) {
 		
-		System.out.println("Subscribing for ad: " + selectedAdvertisement);
+		System.out.println("Subscribing for ad: " + selectedAdv);
 		
 		List<Addvertisment> matchingAds = (List<Addvertisment>)session.getAttribute("matching_ads");
-		String driverUsername = matchingAds.get(selectedAdvertisement).getDriver().getProfile().getUsername();
+		String driverUsername = matchingAds.get(selectedAdv).getDriver().getProfile().getUsername();
 		
 		System.out.println("Driver in this ad is: " + driverUsername);
 		
