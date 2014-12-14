@@ -24,16 +24,25 @@
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
 				printInCell(out, a.getDate());
-				//printInCell(out, a.getTime());
+				printInCell(out, a.getTimeOfTravel());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
 				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" class=\"btn btn-primary\">Driver Profile</a>");
-				printInCell(out, "<ul class=\"pager\"><li class=\"next\"><input btn btn-warning type=\"submit\" value=\"U+21f0\"></li></ul>");
+				printInCell(out, "<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"submit\" value=\"Subscribe\"></li></ul>");
 			out.print("</div>");
 		}
 	%>
 		<form method="GET" name="selectedAdvertisment">
 				<% 
-					for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("all_valid_advertisements")) 
+					out.print(  "<div class=\"row\">"
+							 		+ "<div class=\"col-lg-1\">From</div>"
+					 		  		+ "<div class=\"col-lg-1\">From</div>"
+					 		        + "<div class=\"col-lg-1\">To</div>" 
+					 		  	    + "<div class=\"col-lg-1\">Date</div>"
+					 		  		+ "<div class=\"col-lg-1\">Time</div>"
+					 		  		+ "<div class=\"col-lg-1\">Free places</div>"
+					 			+ "</div>");
+					
+				for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("matching_advertisements")) 
 					{
 						printAnAdvertisment(out, a);
 					} 

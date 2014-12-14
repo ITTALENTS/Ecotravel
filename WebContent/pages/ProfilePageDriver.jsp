@@ -1,3 +1,6 @@
+<%@page import="java.io.IOException"%>
+<%@page import="java.util.List"%>
+<%@page import="jdbc.model.Addvertisment"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,6 +11,22 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
+		<%! static void printInCell(JspWriter out, String a) throws IOException{
+			out.print("<div class=\"col-lg-1\">");
+				out.print(a);
+			out.print("</div>");
+		}
+	
+		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
+			out.print("<div class=\"row\">");
+				printInCell(out, a.getTravelFrom());
+				printInCell(out, a.getTravelTo());
+				printInCell(out, a.getDate());
+				printInCell(out, a.getTimeOfTravel());
+				printInCell(out, String.valueOf(a.getFreePlaces()));
+			out.print("</div>");
+		}
+	%>
 	<div id="welcome" class="container">
 		<h1>My Profile:</h1>
 		<hr>
@@ -26,9 +45,28 @@
 		</div>
 		<!-- HERE TO PRINT USER'S ADVERTISEMENT !!! -->
 		
-		<form method="GET" action="EditAdvertisement" class="form-horizontal">
-			<input type="submit" value="Edit My Advertisement" class="btn btn-warning"/>
-		</form>
+		<% List<Addvertisment> listOfAllActiveAds = (List<Addvertisment>)(session.getAttribute("active_ads"));
+		if(!listOfAllActiveAds.isEmpty()) { 
+			out.print(  "<div class=\"row\">"
+			 		+ "<div class=\"col-lg-1\">From</div>"
+	 		  		+ "<div class=\"col-lg-1\">From</div>"
+	 		        + "<div class=\"col-lg-1\">To</div>" 
+	 		  	    + "<div class=\"col-lg-1\">Date</div>"
+	 		  		+ "<div class=\"col-lg-1\">Time</div>"
+	 		  		+ "<div class=\"col-lg-1\">Free places</div>"
+	 			+ "</div>");
+			for(int i=0; i < listOfAllActiveAds.size(); i++)
+				
+			%>
+			<form method="GET" action="EditAdvertisement" class="form-horizontal">
+				<input type="submit" value="Edit My Advertisement" class="btn btn-warning"/>
+			</form>
+			
+			<form method="GET" action="DeleteAdvertisement" class="form-horizontal">
+				<input type="submit" value="Delete My Advertisement" class="btn btn-danger"/>
+			</form>
+		<% } %>
+			
 		
 		<form method="GET" action="EditProfile" class="form-horizontal">
 			<input type="submit" value="Edit Profile" class="btn btn-info"/>
