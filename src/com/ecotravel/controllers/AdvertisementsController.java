@@ -59,7 +59,7 @@ public class AdvertisementsController {
 			System.out.println("driver: " + ad.getDriver().getProfile().getUsername());
 		}
 		
-		session.setAttribute("matcing_advertisements", ads);
+		session.setAttribute("matching_advertisements", ads);
 		return "ChooseTrip";
 	}
 	
