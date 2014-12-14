@@ -1,13 +1,13 @@
 package jdbc.model;
 
 public abstract class Addvertisment {
-	private int advertismentId;
+	
 	private String travelFrom;
 	private String travelTo;
 	private int freePlaces;
 	private String Date;
 	private String timeOfTravel;
-	
+	private Driver driver;
 	
 	public String getTimeOfTravel() {
 		return timeOfTravel;
@@ -17,16 +17,9 @@ public abstract class Addvertisment {
 		this.timeOfTravel = timeOfTravel;
 	}
 
-	private Driver driver;
+	
 
-	public int getAdvertismentId() {
-		return advertismentId;
-	}
-
-	public void setAdvertismentId(int advertismentId) {
-		this.advertismentId = advertismentId;
-	}
-
+	
 	public String getTravelFrom() {
 		return travelFrom;
 	}

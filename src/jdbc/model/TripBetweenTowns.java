@@ -4,17 +4,7 @@ package jdbc.model;
 
 public class TripBetweenTowns extends Addvertisment{
 
-	@Override
-	public int getAdvertismentId() {
-		// TODO Auto-generated method stub
-		return super.getAdvertismentId();
-	}
-
-	@Override
-	public void setAdvertismentId(int advertismentId) {
-		// TODO Auto-generated method stub
-		super.setAdvertismentId(advertismentId);
-	}
+	
 
 	@Override
 	public String getTravelFrom() {
