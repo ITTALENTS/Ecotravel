@@ -17,7 +17,7 @@
 	<%@ include file="Header.jsp" %>
 	<div id="welcome" class="container">
 		<div class="jumbotron"><h1>Search For Advertisements</h1></div>
-		<form method="POST" >
+		<form method="GET" action="SearchAdvertisement">
 			<div class="form-group">
 				<label for="fromCity" class="col-md-2 control-label">From:</label> 
 				<div class="col-md-10">

@@ -36,7 +36,7 @@ public class AdvertisementsController {
 	
 	
 	
-	@RequestMapping(value="AdvertisementsPage", method = RequestMethod.POST)
+	@RequestMapping(value="SearchAdvertisement", method = RequestMethod.GET)
 	public String searchAdvertisements(@RequestParam String fromCity,
 								@RequestParam String toCity, 
 								@RequestParam String date, HttpSession session, Model model) {
@@ -56,7 +56,6 @@ public class AdvertisementsController {
 		List<Addvertisment> ads = tripDAO.showActiveAdvertisments(fromCity, toCity, date);
 		
 		session.setAttribute("all_valid_advertisements", ads);
-		
 		return "ChooseTrip";
 	}
 	

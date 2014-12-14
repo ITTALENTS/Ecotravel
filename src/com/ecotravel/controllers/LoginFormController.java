@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import jdbc.dao.ProfileDAO;
 import jdbc.model.Driver;
+import jdbc.model.Passenger;
 import jdbc.model.Person;
 import jdbc.model.Profile;
 
@@ -64,8 +65,12 @@ public class LoginFormController {
 			 session.setMaxInactiveInterval(1*60); // 15 minutes
 			if(p instanceof Driver)
 				return "ChooseForm";
-			else // instance of Passenger
+			else if(p instanceof Passenger)// instance of Passenger
 				return "AdvertisementsPage";
+			else{
+				model.addAttribute("login_error", "nito driver nito passenger");
+				return "Welcome";
+			}
 		}
 		
 	}
