@@ -23,10 +23,10 @@
 	  <div class="navbar-collapse collapse navbar-responsive-collapse">
 	    <ul class="nav navbar-nav">
 	    	<% if(session.getAttribute("loggedInUser") instanceof  Driver){
-	    		out.print("<li><a href=\"/ChooseForm\">Home</a></li>");
+	    		out.print("<li><a href=\"ChooseForm\">Home</a></li>");
 	    		}
 	    		else if(session.getAttribute("loggedInUser") instanceof  Passenger){
-	    			out.print("<li><a href=\"/AdvertisementsPage\">Home</a></li>");
+	    			out.print("<li><a href=\"AdvertisementsPage\">Home</a></li>");
 	    		}
 	    		else{
 	    	    	out.print("<li><a href=\"/Ecotravel/\">Home</a></li>");
