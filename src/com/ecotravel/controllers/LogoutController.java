@@ -16,13 +16,10 @@ public class LogoutController {
 	 
 	@RequestMapping(method = RequestMethod.POST)
 	public String logout(HttpServletResponse response, HttpSession session, Model model) {
-		// session.removeAttribute("logedInUser");
+		// session.removeAttribute("loggedInUser");
 		session.invalidate();
 		return "redirect:Welcome";
 	}
-	
-	
-	
 	
 }
 
