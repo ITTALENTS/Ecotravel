@@ -21,21 +21,22 @@
 		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
 			out.print("<div class=\"row\">");
 				String driverUsername = a.getDriver().getProfile().getUsername();
+				printInCell(out,"<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"radio\" name=\"option\" value=driverUsername></li></ul>");
 				printInCell(out, driverUsername);
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
 				printInCell(out, a.getDate());
 				printInCell(out, a.getTimeOfTravel());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
-				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" class=\"btn btn-primary\">Driver Profile</a>");
-				printInCell(out,"<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"radio\" name=\"option\" value=\"driverUsername\"></li></ul>"); 
+				printInCell(out, "<a href=\"driverProfile\" value=\"driverProfile\" class=\"btn btn-primary\">Driver Profile</a>"); 
 			out.print("</div>");
 		}
 	%>
 		<form method="GET" name="selectedAdvertisment">
 				<% 
 					out.print(  "<div class=\"row\">"
-							 		+ "<div class=\"col-lg-1\">From</div>"
+									+ "<div class=\"col-lg-1\">Select Trip</div>"
+							 		+ "<div class=\"col-lg-1\">Driver</div>"
 					 		  		+ "<div class=\"col-lg-1\">From</div>"
 					 		        + "<div class=\"col-lg-1\">To</div>" 
 					 		  	    + "<div class=\"col-lg-1\">Date</div>"
