@@ -38,6 +38,20 @@ public class ProfileController {
 		
 	}
 	
-	//TODO: controller for edit profile
+	
+	
+	
+	@RequestMapping(value = "EditProfile", method = RequestMethod.GET)
+	public String editProfile(HttpSession session, Model model) {
+		
+		Person p = (Person)session.getAttribute("loggedInUser");
+		
+		//TODO: ADD CODE HERE !!!!!!!!!!!!1
+		
+		if(p instanceof Person)
+			return "redirect:ProfilePagePassenger";
+		else // p instanceof Driver
+			return "redirect:ProfilePageDriver";
+	}
 
 }
