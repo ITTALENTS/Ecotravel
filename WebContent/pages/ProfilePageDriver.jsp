@@ -49,7 +49,6 @@
 		if(!listOfAllActiveAds.isEmpty()) { 
 			out.print(  "<div class=\"row\">"
 			 		+ "<div class=\"col-lg-1\">From</div>"
-	 		  		+ "<div class=\"col-lg-1\">From</div>"
 	 		        + "<div class=\"col-lg-1\">To</div>" 
 	 		  	    + "<div class=\"col-lg-1\">Date</div>"
 	 		  		+ "<div class=\"col-lg-1\">Time</div>"
