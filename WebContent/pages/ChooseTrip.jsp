@@ -19,13 +19,13 @@
 		}
 	
 		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
-			out.print("<div class=\"row\">");
+			out.print("<div class=\"row trip-row\">");
 				String driverUsername = a.getDriver().getProfile().getUsername();
-				printInCell(out,"<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"radio\" name=\"driverUsername\" value=" + driverUsername + "></li></ul>");
+				printInCell(out,"<input class=\"btn btn-primary\" type=\"radio\" name=\"driverUsername\" value=" + driverUsername + ">");
 				printInCell(out, driverUsername);
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
-				printInCell(out, a.getDate());
+				printInCell(out, a.getDate().substring(2));
 				printInCell(out, a.getTimeOfTravel());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
 				printInCell(out, "<a href=\"\" value=\"driverProfile\" class=\"btn btn-primary\">Driver Profile</a>"); 

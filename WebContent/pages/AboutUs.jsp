@@ -9,40 +9,39 @@
 <body>
 	<%@ include file="Header.jsp" %>
 	<div id="welcome" class="container">
-		<div style="font-size: 10px;">
-			<h1>Who we are?<h1>
+			<h1>Who we are?</h1>
 			<div class="row">
 				<div class="row">
 					<h2  class="text-warning">Viktoriq Slavcheva Borisova</h2>
 				</div>
-				<div class="row" style="font-style: italic;">
+				<div class="row"><em>
 				Student at <a href="http://www.tu-sofia.bg/"> <abbr title="Technical University Of Sofia">TU</abbr>  </a>
-				</div>
-				<div class="row" >
+				</em></div>
+				<div class="row" ><em>
 					Studying: Computer and Software technology -> Grade 3: 
-				</div>
+				</em></div>
 			</div>
 			<div class="row">
 				<div class="row">
 					<h2 class="text-warning">Vladimir Penchev Pechev</h2>
 				</div>
-				<div class="row" style="font-style: italic;">
+				<div class="row"><em>
 					Student at: <a href="https://www.uni-sofia.bg/" > <abbr title="Sofia University">SU</abbr></a>
-				</div>
-				<div class="row"  style="font-style: italic;">
+				</em></div>
+				<div class="row"  style="font-style: italic;"><em>
 					Studying: Software engineering -> Grade 3:
-				</div> 
+				</em></div> 
 			</div>
 			<div class="row">
 				<div class="row">
 					<h2 class="text-warning">Nikola Monov</h2>
 				</div>
-				<div class="row"  style="font-style: italic;">
+				<div class="row"><em>
 				Student at: <a href="https://www.uni-sofia.bg/"> <abbr title="Sofia University">SU</abbr></a>
-				</div>
-				<div class="row"  style="font-style: italic;">
+				</em></div>
+				<div class="row"><em>
 					Studying: Software engineering -> Grade 3:
-				</div> 
+				</em></div> 
 			</div>
 			<div class="text-danger">
 				You can contact us at: <i>ittallentsproject@gmail.com</i>
