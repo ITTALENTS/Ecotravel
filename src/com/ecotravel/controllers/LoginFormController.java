@@ -35,7 +35,7 @@ public class LoginFormController {
 	
 	
 	// this method handles POST requests to from Welcome page:
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="Login", method = RequestMethod.POST)
 	public String login(@RequestParam String username, @RequestParam String password, 
 			HttpSession session, Model model) {
 		

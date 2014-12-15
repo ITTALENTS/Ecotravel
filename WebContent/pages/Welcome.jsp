@@ -11,7 +11,7 @@
 <body>
 	<%@ include file="Header.jsp" %>
 	<div id="welcome" class="container">
-		<form id="loginForm" method="POST" class="fom-horizontal">
+		<form id="loginForm" method="POST" class="fom-horizontal" action="Login">
 			<div class="form-group">
 				<label for="username" class="col-md-2 control-label">Username:</label>
 				<div class="col-md-10">
