@@ -19,7 +19,7 @@ public class ProfileController {
 //		return "Profile";
 //	}
 	
-	@RequestMapping(value = {"Profile", "ProfilePageDriver", "ProfilePagePassenger"}, method = RequestMethod.GET)
+	@RequestMapping(value = "Profile", method = RequestMethod.GET)
 	public String viewPersonalProfile(HttpSession session, Model model) {
 		
 		Person p = (Person) session.getAttribute("loggedInUser");

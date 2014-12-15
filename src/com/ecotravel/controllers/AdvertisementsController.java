@@ -28,11 +28,15 @@ public class AdvertisementsController {
 		return "CreateTrip";
 	}
 	
+
+	
+	
 	// redirects to driver/passenger to AdvertisementsPage
 	@RequestMapping(value="AdvertisementsPage", method = RequestMethod.GET)
 	public String sendPassengerTo(HttpSession session) {
 		return "AdvertisementsPage";
 	}
+	
 	
 	
 	
@@ -64,12 +68,14 @@ public class AdvertisementsController {
 	}
 	
 	
+	
+	
 	@RequestMapping(value="SubscribeForTrip", method = RequestMethod.GET)
 	public String subscribeUserToTrip(@RequestParam String driverUsername, 
 									HttpSession session, Model model) {
 		
 //		System.out.println("Subscribing for ad: " + selectedAdv);
-//		
+
 //		List<Addvertisment> matchingAds = (List<Addvertisment>)session.getAttribute("matching_ads");
 //		String driverUsername = matchingAds.get(selectedAdv).getDriver().getProfile().getUsername();
 		
@@ -89,6 +95,8 @@ public class AdvertisementsController {
 		
 		return "AdvertisementsPage";
 	}
+	
+	
 	
 	
 	// ADDs an advertisement
@@ -117,9 +125,10 @@ public class AdvertisementsController {
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(username);
 		session.setAttribute("active_ads", activeAds);
 		
-		return "ProfilePageDriver";
+		return "redirect:Profile";
 		
 	}
+	
 	
 	
 	
@@ -139,8 +148,9 @@ public class AdvertisementsController {
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser.getProfile().getUsername());
 		session.setAttribute("active_ads", activeAds);
 		
-		return "ProfilePageDriver";
+		return "redirect:Profile";
 	}
+	
 	
 	
 	
@@ -162,8 +172,9 @@ public class AdvertisementsController {
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser.getProfile().getUsername());
 		session.setAttribute("active_ads", activeAds);
 		
-		return "redirect:ProfilePageDriver";
+		return "Profile";
 	}
+	
 	
 	
 	
