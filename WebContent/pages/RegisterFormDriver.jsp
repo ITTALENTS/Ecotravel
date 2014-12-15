@@ -24,7 +24,7 @@
 				<label for="yes">Yes</label>
 				<input id="yes" type="radio" name="isSmoking" value="Yes">
 				<label for="no">No</label>
-				<input id="no" type="radio" name="isSmoking" value="Yes" checked="checked">
+				<input id="no" type="radio" name="isSmoking" value="No" checked="checked">
 				</div>
 			</div>
 			
@@ -37,6 +37,7 @@
 					<option name="pop">Pop</option>
 					<option name="rap">Rap</option>
 					<option name="rock">Rock</option>
+					<option name="metal">Metal</option>
 					<option name="folk">Folk</option>
 					<option name="techno">Techno</option>
 				</select>
