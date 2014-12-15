@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProfileController {
 	
-//	@RequestMapping(value="ProfilePageDriver")
-//	public String vireDriversProfile () {
-//		return "Profile";
-//	}
 	
 	@RequestMapping(value = "Profile", method = RequestMethod.GET)
 	public String viewPersonalProfile(HttpSession session, Model model) {
@@ -59,4 +55,41 @@ public class ProfileController {
 			return "redirect:ProfilePageDriver";
 	}
 
+	
+	
+	
+	// this controller redirects Driver to ChooseForm when he clicks Home button
+	// redirects Passenger to AdvertisementsPage when he clicks Home button
+	// redirects user to Welcome if he isn't logged in
+	@RequestMapping(value="Home", method = RequestMethod.GET)
+	public String goToChooseForm(HttpSession session) {
+		if(session.getAttribute("loggedInUser") instanceof  Driver){
+			return "ChooseForm";
+		}
+		else if(session.getAttribute("loggedInUser") instanceof  Passenger){
+			return "AdvertisementsPage";
+		}
+		else{
+	    	return "redirect:Welcome";
+		}
+	}
+	
+	
+	
+	// this controller is for header's link AboutUs
+	@RequestMapping(value="AboutUs", method = RequestMethod.GET)
+	public String openAboutUsPage() {
+		
+		return "AboutUs";
+	}
+	
+	
+	// this controller is for header's link History
+	@RequestMapping(value="History", method = RequestMethod.GET)
+	public String openHistoryPage() {
+		
+		return "History";
+	}
+	
+	
 }

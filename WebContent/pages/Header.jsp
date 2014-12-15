@@ -22,20 +22,24 @@
 	  </div>
 	  <div class="navbar-collapse collapse navbar-responsive-collapse">
 	    <ul class="nav navbar-nav">
-	    	<% if(session.getAttribute("loggedInUser") instanceof  Driver){
-	    		out.print("<li><a href=\"ChooseForm\">Home</a></li>");
-	    		}
-	    		else if(session.getAttribute("loggedInUser") instanceof  Passenger){
-	    			out.print("<li><a href=\"AdvertisementsPage\">Home</a></li>");
-	    		}
-	    		else{
-	    	    	out.print("<li><a href=\"/Ecotravel/\">Home</a></li>");
-	    		}
-	    		
+	    
+	    	<li><a href="Home">Home</a></li>
+	    	
+	    	<% 
+	    	
+// 	    		if(session.getAttribute("loggedInUser") instanceof  Driver){
+// 	    			out.print("<li><a href=\"ChooseForm\">Home</a></li>");
+// 	    		}
+// 	    		else if(session.getAttribute("loggedInUser") instanceof  Passenger){
+// 	    			out.print("<li><a href=\"AdvertisementsPage\">Home</a></li>");
+// 	    		}
+// 	    		else{
+// 	    	    	out.print("<li><a href=\"Welcome\">Home</a></li>");
+// 	    		}
 	    		
 	    	%>
-	      	<li><a href="/Ecotravel/pages/AboutUs.jsp">About Us</a></li>
-			<li><a href="/Ecotravel/pages/History.jsp">History</a></li>			
+	      	<li><a href="AboutUs">About Us</a></li>
+			<li><a href="History">History</a></li>			
 	    </ul>
 	    <ul class="nav navbar-nav pull-right">
 	    <% if(session.getAttribute("loggedInUser") != null) { %>

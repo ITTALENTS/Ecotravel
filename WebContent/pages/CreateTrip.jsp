@@ -44,9 +44,9 @@
 				</div>
 			</div>
 	  		<div class="form-group">
-				<label for="number-of-free-places" class="col-md-2 control-label">Number of Free places</label> 
+				<label for="number-of-free-places" class="col-md-2 control-label">Number of Free places:</label> 
 				<div class="col-md-10">
-					<input id="number-of-free-places" type="number" name="freePlaces" min="1" max="6"  required="required" class="form-control">
+					<input id="number-of-free-places" type="number" name="freePlaces" min="1" max="6" required="required" class="form-control">
 				</div>
 			</div>
 	  		
