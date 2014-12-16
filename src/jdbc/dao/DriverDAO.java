@@ -105,12 +105,15 @@ public class DriverDAO implements IDriverDAO {
 		}
 
 	}
+	
+	
 private void changePassword(String username, String password) {
 		
 		String changePasswordOfProfile = "Update profiles set password=? where username=?";
 		jdbc.update(changePasswordOfProfile, password, username);
 
 	}
+
 	@Override
 	public Driver changeProfile(String username, String name, String telephone,
 			String musicInTheCar, boolean isSmoking, int birthYear, String password) {
@@ -132,8 +135,7 @@ private void changePassword(String username, String password) {
 			jdbc.update(changeProfileOfDriver, name, telephone, birthYear,
 					smoke,musicInTheCar, idOfProfile);
 			transactionManager.commit(status);
-		//	driver= showProfile(username);
-		//	System.out.println(driver.getProfile().getPassword());
+	
 		
 		} catch (DataAccessException e) {
 System.out.println("in catch");
