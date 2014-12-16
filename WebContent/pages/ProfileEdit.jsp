@@ -51,7 +51,7 @@
 				<label class="control-label" for="retype-password">Retype Password:</label>
 				<input id="retype-password" class="form-control" type = "password" name = "rePassword" required="true"/>
 			</div>
-			<h4 style="color:red">${rePassword_error_msg}</h4>
+			<h4 style="color:red">${edit_error_msg}</h4>
 			
 				
 			<%if(currentUser instanceof Driver){ %>			

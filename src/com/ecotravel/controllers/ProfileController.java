@@ -62,13 +62,11 @@ public class ProfileController {
 	public String editProfilePassenger(@RequestParam String name,
 										@RequestParam int birthYear,
 										@RequestParam String telephone,
-										@RequestParam String email,
-										@RequestParam String username,
 										@RequestParam String password,
 										@RequestParam String rePassword,
 										HttpSession session, Model model) {
 		
-		Person p = (Person)session.getAttribute("loggedInUser");
+		//Person p = (Person)session.getAttribute("loggedInUser");
 		
 		if(!password.equals(rePassword)) {
 			model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
@@ -78,12 +76,17 @@ public class ProfileController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		PassengerDAO passengerDAO = (PassengerDAO) context.getBean("passengerDAO");
 		
-		Person p = (Person) passengerDAO.changeProfile(name, telephone, birthYear, username, password);
+		String username = ((Person)session.getAttribute("loggedInUser")).getProfile().getUsername();
+		System.out.println("Who changes his profile: " + username);
+		
+		Person p = (Passenger) passengerDAO.changeProfile(name, telephone, birthYear, username, password);
+		
+		System.out.println("Setting up session...");
 		
 		session.removeAttribute("loggedInUser");
 		session.setAttribute("loggedInUser", p);
 		
-		return "redirect:ProfilePagePassenger";
+		return "redirect:Profile";
 
 	}
 
@@ -95,24 +98,35 @@ public class ProfileController {
 	public String editProfileDriver(@RequestParam String name,
 									@RequestParam int birthYear,
 									@RequestParam String telephone,
-									@RequestParam String email,
-									@RequestParam String username,
 									@RequestParam String password,
 									@RequestParam String rePassword,
 									@RequestParam String isSmoking,
 									@RequestParam String musicInTheCar,
 									HttpSession session, Model model) {
 		
-		Person p = (Person)session.getAttribute("loggedInUser");
-		
-		if(p.getProfile().getPassword().equals("")) {
-			
+		if(!password.equals(rePassword)) {
+			model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
+			return "ProfileEdit";
 		}
 		
-		// TODO: IMPLEMENT THIS analogichno na gorniq code
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
 		
+		String username = ((Person)session.getAttribute("loggedInUser")).getProfile().getUsername();
 		
-		return "redirect:ProfilePageDriver";
+		boolean smokingAllowed;
+		if(isSmoking.equalsIgnoreCase("Yes"))
+			smokingAllowed = true;
+		else
+			smokingAllowed = false;
+		
+//		Person p = (Person) driverDAO.changeProfile(username, name, telephone, musicInTheCar, 
+//				smokingAllowed, birthYear);
+		
+//		session.removeAttribute("loggedInUser");
+//		session.setAttribute("loggedInUser", p);
+		
+		return "redirect:Profile";
 	}
 	
 	

@@ -15,14 +15,14 @@
 			<div class="form-group">
 				<label for="username" class="col-md-2 control-label">Username:</label>
 				<div class="col-md-10">
-					<input id="username" type="text" class="form-control control-field" name="username" placeholder=" Enter your username" required="required"/>
+					<input id="username" type="text" class="form-control control-field" name="username" placeholder="Enter your username" required="required"/>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="password" class="col-md-2 control-label">Password:</label>
 				<div class="col-md-10">
-					<input id="password" type="password" class="form-control control-field" name="password" placeholder=" Enter your password" required="required"/>
+					<input id="password" type="password" class="form-control control-field" name="password" placeholder="Enter your password" required="required"/>
 				</div>
 			</div>
 			<div>
