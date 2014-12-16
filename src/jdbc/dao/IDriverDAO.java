@@ -17,7 +17,7 @@ public interface IDriverDAO {
 	public void updateAdvertisment(String username, String date, int freePlaces);
 
 	public void changeProfile(String username, String name, String telephone,
-			String musicInTheCar, boolean isSmoking, String birthYear);
+			String musicInTheCar, boolean isSmoking, int birthYear);
 
 	public Driver showProfile(String username);
 
