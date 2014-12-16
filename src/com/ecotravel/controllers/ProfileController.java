@@ -26,7 +26,7 @@ public class ProfileController {
 	@RequestMapping(value = "Profile", method = RequestMethod.GET)
 	public String viewPersonalProfile(HttpSession session, Model model) {
 		
-		System.out.println(".. in viewPersonalProfile() method");
+		//System.out.println(".. in viewPersonalProfile() method");
 		
 		Person p = (Person) session.getAttribute("loggedInUser");
 		
