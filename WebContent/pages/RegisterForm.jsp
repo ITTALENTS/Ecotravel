@@ -64,6 +64,7 @@
 				</div>
 			</div>
 			
+			<input type="reset" value="reset" class="btn btn-warning"/>
 			<input type="submit" name="registerSubmit" value="submit" class="btn btn-primary"/>
 		</form>	
 	</div>

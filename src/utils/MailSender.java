@@ -9,6 +9,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import jdbc.dao.DriverDAO;
 import jdbc.dao.ProfileDAO;
 import utils.MailSender;
 import jdbc.model.Emailer;
@@ -30,7 +31,7 @@ public class MailSender {
 	public boolean sendMessage(String username){		
 			this.setSubject("Generating new Password");
 			this.setEmailText("Be more careful next time! \n Your new password is: ");
-			
+
 			String email = profileDao.getEmailByUsername(username);
 			if(email == null)
 				return false;

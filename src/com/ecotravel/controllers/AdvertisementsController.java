@@ -93,6 +93,9 @@ public class AdvertisementsController {
 			
 			emailer.sendTripEmail(driverUsername, currentUser.getProfile().getUsername());
 			model.addAttribute("email_sent_msg", "Successfully sent email :) \n Wait the driver to mail you.");
+			ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+			DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+			driverDAO.receivedMails(driverUsername);
 		}
 		catch(RuntimeException e){
 			model.addAttribute("email_sent_msg", "For some reasons you can't apply for this trip now! Please try again!");
