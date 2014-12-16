@@ -1,5 +1,7 @@
 package com.ecotravel.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import jdbc.dao.DriverDAO;
@@ -205,6 +207,20 @@ public class ProfileController {
 	}
 	
 	
+	
+	
+	@RequestMapping(value="Statistics", method = RequestMethod.GET)
+	public String viewStatistics(HttpSession session) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
+		
+		List<Driver> wantedDrivers = driverDAO.getListOfMostWantedDrivers();
+		
+		session.setAttribute("most_wanted_drivers", wantedDrivers);
+		
+		return "MostSearchedDriver";
+	}
 	
 	
 }

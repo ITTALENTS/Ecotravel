@@ -12,14 +12,15 @@
 	<div id="welcome" class="container">
 		<% 
 			out.print(  "<div class=\"row\">"
-					 		  		+ "<div class=\"col-lg-1\">USERNAME</div>"
-					 		  		+ "<div class=\"col-lg-1\">Number Of Resieved Mails</div>"
+					 		  		+ "<div class=\"col-lg-2\">USERNAME</div>"
+					 		  		+ "<div class=\"col-lg-3\">Number Of Resieved Mails</div>"
 					 			+ "</div>");
-				List<Driver> listOfDrivers = (List<Driver>)session.getAttribute("get_drivers_and_mails");	
+				List<Driver> listOfDrivers = (List<Driver>)session.getAttribute("most_wanted_drivers");	
 				for(Driver currentDriver : listOfDrivers) 
-				{
-					out.print("<div class=\"col-lg-1\">"+ currentDriver.getProfile().getUsername()+"</div>");
-					out.print("<div class=\"col-lg-1\">"+ currentDriver.getRating()+"</div>");
+				{   out.print("<div class=\"row\">");
+					out.print("<div class=\"col-lg-2\">"+ currentDriver.getProfile().getUsername()+"</div>");
+					out.print("<div class=\"col-lg-3\">"+ currentDriver.getRating()+"</div>");
+					out.print("</div>");
 				}
 				%>		
 	</div>
