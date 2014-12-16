@@ -18,7 +18,7 @@
 			
 			<div class="form-group" id="age">
 				<label class="control-label" for="birthYear">Birth Year:</label>
-				<input class="form-control" id="birthYear" type="number" name="birthYear" min="1990" max="2000">
+				<input class="form-control" id="birthYear" type="number" name="birthYear" min="1950" max="2000">
 			</div>
 			
 			<div class="form-group" id="phoneField">
