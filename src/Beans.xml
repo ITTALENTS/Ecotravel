@@ -12,8 +12,10 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/ecotravel" />
 
+
 		<property name="username" value="admin" />
 		<property name="password" value="hristobotev154" />
+
 	</bean>
 
 	<bean id="person" class="jdbc.model.Person" abstract="true">
