@@ -1,15 +1,19 @@
 package jdbc.dao;
 
 import java.util.Map;
+
 import javax.sql.DataSource;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+
 import jdbc.mappers.*;
 import jdbc.model.*;
+
 import java.security.SecureRandom;
 import java.util.Random;
 
@@ -140,10 +144,13 @@ public class ProfileDAO implements IProfileDAO {
 		profile.setUsername(username);
 		profile.setEmail(email);
 		profile.setPassword(password);
+		
 		String insertIntoProfiles = "insert into profiles (username, email, password) values (?, ?,?)";
 		jdbc.update(insertIntoProfiles, profile.getUsername(),
 				profile.getEmail(), profile.getPassword());
 	}
+
+
 
 	@Override
 	public void changePassword(Profile profile, String password) {
