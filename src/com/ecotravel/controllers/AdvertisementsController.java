@@ -157,8 +157,14 @@ public class AdvertisementsController {
 	
 	
 	
+	@RequestMapping(value="EditAdvertisementFreePlaces", method = RequestMethod.GET)
+	public String goToEditAdvertisementFreePlaces() {
+		return "EditAdvertisementFreePlaces";
+	}
+	
+	
 	//if driver wants to edit his edit advertisement
-	@RequestMapping(value="EditAdvertisement", method = RequestMethod.GET) 
+	@RequestMapping(value="EditFreePlaces", method = RequestMethod.POST) 
 	public String editAdvertisement(@RequestParam int freePlaces,
 									HttpSession session, Model model) {
 		

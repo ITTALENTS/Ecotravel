@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
-	<form method="GET" action="EditProfile" class="form-horizontal">
+	<form method="GET" action="EditFreePlaces" class="form-horizontal">
 		<%! static void printInCell(JspWriter out, String a) throws IOException{
 			out.print("<div class=\"col-lg-1\">");
 				out.print(a);
@@ -29,7 +29,7 @@
 	 		  	    + "<div class=\"col-lg-1\">Date</div>"
 	 		  		+ "<div class=\"col-lg-1\">Time</div>"+ "</div>");
 	 		  		
-				out.print("<div class=\"col-lg-1\"><input type=\"number\" min=\"1\" max=\"6\" value=\"Free places\"> </div>");
+				out.print("<div class=\"col-lg-1\"><input type=\"number\" min=\"1\" max=\"6\" name=\"freePlaces\" value=\"Free places\"> </div>");
 			}
 		 %>		
 			<input type="submit" value="Confirm" class="btn btn-info"/>

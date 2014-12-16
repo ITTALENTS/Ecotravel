@@ -57,7 +57,7 @@
 			for(int i=0; i < listOfAllActiveAds.size(); i++)
 				printAnAdvertisment(out, listOfAllActiveAds.get(i));
 			%>
-			<form method="GET" action="EditAdvertisement" class="form-horizontal">
+			<form method="GET" action="EditAdvertisementFreePlaces" class="form-horizontal">
 				<input type="submit" value="Edit My Advertisement" class="btn btn-warning"/>
 			</form>
 			
