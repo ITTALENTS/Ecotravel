@@ -1,3 +1,4 @@
+<%@page import="utils.MusicTypesContainer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,15 +32,7 @@
 			<div class="form-group" id="musicInCar">
 				<label for="musicInTheCar">What music is allowed in the car:</label>
 				<select id="musicInTheCar" name="musicInTheCar" class="form-control">
-					<option name="everything" checked>Everything</option>
-					<option name="popFolk">Pop folk</option>
-					<option name="commercial">Commercial</option>
-					<option name="pop">Pop</option>
-					<option name="rap">Rap</option>
-					<option name="rock">Rock</option>
-					<option name="metal">Metal</option>
-					<option name="folk">Folk</option>
-					<option name="techno">Techno</option>
+					<% MusicTypesContainer.printMusicTypes(out);	%>
 				</select>
 			</div>
 			
