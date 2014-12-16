@@ -18,14 +18,11 @@ public class TownsContainer {
 									"Kardzhali", "Kazanlak", "Kyustendil",
 									"Lom", "Lovech",
 									"Montana",
-									"Sofia",
 									"Pernik", "Plovdiv",
-									"Rousse",
+									"Razgrad", "Rousse",
 									"Stara-Zagora", "Svishtov",
 									"Pazardzhik", "Pleven",
-									"Sandanski", "Sevlievo", "Sliven",
-									"Razgrad",
-									"Shumen",
+									"Sandanski", "Sevlievo", "Sliven", "Shumen", "Sofia",
 									"Targovishte", "Troyan",						
 									"Varna", "Veliko Tarnovo", "Velingrad", "Vidin", "Vratsa"};
 	
