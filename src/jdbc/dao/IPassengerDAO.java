@@ -6,8 +6,8 @@ import jdbc.model.*;
 public interface IPassengerDAO {
 	public void setDataSource(DataSource ds);
 
-	public void changeProfile(String name, String telephone, int birthYear,
-			String username);
+	public Passenger changeProfile(String name, String telephone, int birthYear,
+			String username, String password);
 
 	public Passenger showProfile(String username);
 
