@@ -71,12 +71,7 @@ public class DriverDAO implements IDriverDAO {
 	public void openAdvertisment(String username, String from, String to,
 			String date, String time, int freePlaces) {
 
-		/*
-		 * TripBetweenTowns ad = new TripBetweenTowns(); ad.setDate(date);
-		 * ad.setFreePlaces(freePlaces); ad.setTravelFrom(from);
-		 * ad.setTravelTo(to);
-		 */
-
+	
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);
 
@@ -272,7 +267,7 @@ public class DriverDAO implements IDriverDAO {
 	
 	
 	public List<Driver> getListOfMostActiveDrivers() {
-		String getMostWantedDrivers = "select drivers.travels , profiles.username from drivers inner join profiles where (drivers.profileId=profiles.profileId) order by rating desc";
+		String getMostWantedDrivers = "select drivers.travels , profiles.username from drivers inner join profiles where (drivers.profileId=profiles.profileId) order by travels desc";
 
 		return jdbc.query(getMostWantedDrivers, new RowMapper<Driver>() {
 			public Driver mapRow(ResultSet rs, int rowNum) throws SQLException {

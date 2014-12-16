@@ -12,8 +12,7 @@ public class ProfilePassMapper implements RowMapper<Passenger> {
 		Passenger profile = new Passenger();
 		Profile profileOfPassenger= new Profile();
 		profile.setName(rs.getString("name"));
-		//profile.setUsername(rs.getString("username"));
-		//profile.setEmail(rs.getString("email"));
+		
 		profileOfPassenger.setUsername(rs.getString("username"));
 		profileOfPassenger.setEmail(rs.getString("email"));
 		profile.setProfile(profileOfPassenger);

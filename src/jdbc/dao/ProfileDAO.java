@@ -47,9 +47,9 @@ public class ProfileDAO implements IProfileDAO {
 				usernameExistInDB = true;
 				String getUsername = "select username from profiles where username=?";
 
-				Map<String, Object> userPass = jdbc.queryForMap(getUsername,
+				Map<String, Object> userUsername = jdbc.queryForMap(getUsername,
 						username);
-				usernameInDB = (String) userPass.get("username");
+				usernameInDB = (String) userUsername.get("username");
 			}
 
 			else
@@ -176,8 +176,7 @@ public class ProfileDAO implements IProfileDAO {
 			int index = (int) (RANDOM.nextDouble() * letters.length());
 			newPassword += letters.substring(index, index + 1);
 		}
-
-		// String newPassword= UUID.randomUUID().toString();
+		
 		savePasswordByUsername(username, newPassword);
 		return newPassword;
 	}
