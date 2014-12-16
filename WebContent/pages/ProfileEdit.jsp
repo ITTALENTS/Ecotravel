@@ -10,23 +10,23 @@
 <title>Road trip</title>
 </head>
 <body>
-	<% Person currentUser = (Person)session.getAttribute("loggedIn");%>
+	<% Person currentUser = (Person)session.getAttribute("loggedInUser");%>
 	<%@ include file="Header.jsp" %>
 	<div id="welcome" class="container">
 		<form id=editForm" method="Post" action="SubmitNewProfile">
 			<div class="form-group" id="nameField">
 				<label class="control-label" for="name">Name:</label>
-				<input class="form-control" id="name" type = "text" name = "name" value=\"<%=currentUser.getName()%>\" %> />
+				<input class="form-control" id="name" type = "text" name = "name" value=<%=String.valueOf(currentUser.getName())%> />
 			</div>
 			
 			<div class="form-group" id="age">
 				<label class="control-label" for="birthYear">Birth Year:</label>
-				<input class="form-control" id="birthYear" type="number" name="birthYear" min="1990" max="2000" value=\"<%= currentUser.getBirthYear()%>\" />
+				<input class="form-control" id="birthYear" type="number" name="birthYear" min="1990" max="2000" value=<%=currentUser.getBirthYear()%> />
 			</div>
 			
 			<div class="form-group" id="phoneField">
 				<label class="control-label" for="telephone">Phone:</label>
-				<input class="form-control" id="telephone" type = "tel" name = "telephone" value=\"<%= currentUser.getTelephone()%>\"/>
+				<input class="form-control" id="telephone" type = "tel" name = "telephone" value=<%=currentUser.getTelephone()%> >
 			</div>
 			
 			<div class="form-group" id="emailField">

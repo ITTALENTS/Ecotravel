@@ -10,15 +10,14 @@
 	<%@ include file="Header.jsp" %>
 	<div id="welcome" class="container">
 		<h1>My Profile:</h1>
-		<hr>
 		<div class="text-success">
-		<p>Name: ${name} <p>
-		<p>Username: ${username} </p>
-		<p>Year of birth: ${birthYear}</p>
-		<p>E-mail: ${email} </p>
-		<p>Phone: ${phone} </p>
-		<p>Driving License: No</p>
-		<p>Rating: ${rating }</p>
+			<p>Name: ${name} <p>
+			<p>Username: ${username} </p>
+			<p>Year of birth: ${birthYear}</p>
+			<p>E-mail: ${email} </p>
+			<p>Phone: ${phone} </p>
+			<p>Driving License: No</p>
+			<p>Rating: ${rating }</p>
 		</div>
 		<form method="GET" action="EditProfile">
 			<input type="submit" value="Edit Profile" class="btn btn-info"/>

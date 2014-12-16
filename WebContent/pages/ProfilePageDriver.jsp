@@ -30,7 +30,7 @@
 	<div id="welcome" class="container">
 		<h1>My Profile:</h1>
 		<hr>
-		<div class="text-success">\
+		<div class="text-success">
 			<p>Name: <strong>${name}</strong> <p>
 			<p>Username: ${username} </p>
 			<p>Year of birth: ${birthYear}</p>
