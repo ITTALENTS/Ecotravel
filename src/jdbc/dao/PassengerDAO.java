@@ -58,7 +58,7 @@ System.out.println(idOfProfile);
 			jdbc.update(changeProfileOfPassenger, name, telephone, birthYear,
 					password, idOfProfile);
 			passenger= showProfile(username);
-			System.out.println(passenger.getName());
+			
 			transactionManager.commit(status);
 		} catch (DataAccessException e) {
 

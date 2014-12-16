@@ -20,8 +20,7 @@ import jdbc.model.*;
 import jdbc.mappers.*;
 
 public class DriverDAO implements IDriverDAO {
-	
-	
+
 	private JdbcTemplate jdbc;
 	private PlatformTransactionManager transactionManager;
 
@@ -30,13 +29,11 @@ public class DriverDAO implements IDriverDAO {
 		this.transactionManager = transactionManager;
 	}
 
-	
 	public void setDataSource(DataSource ds) {
 		this.jdbc = new JdbcTemplate(ds);
 
 	}
 
-	
 	@Override
 	public void deleteAdvertisment(String username, String date) {
 		String deleteAdvertisment = "delete from ads where driverId=(select driverId from drivers where profileId= (select profileId from profiles where username =?)) and dateOfTravel=?";
@@ -44,14 +41,12 @@ public class DriverDAO implements IDriverDAO {
 
 	}
 
-	
 	@Override
 	public void updateAdvertisment(String username, String date, int freePlaces) {
 		String updateAdvertisment = "update ads set  ads.freePlaces=?  where driverId=(select driverId from drivers where profileId= (select profileId from profiles where username =?)) and dateOfTravel=?";
 		jdbc.update(updateAdvertisment, freePlaces, username, date);
 
 	}
-	
 
 	@Override
 	public Driver showProfile(String username) {
@@ -64,7 +59,6 @@ public class DriverDAO implements IDriverDAO {
 
 	}
 
-	
 	@Override
 	public void receivedMails(String username) {
 		String increaseTravelesOfDriver = "update drivers set drivers.travels=(travels+1) where profileId = "
@@ -73,7 +67,6 @@ public class DriverDAO implements IDriverDAO {
 
 	}
 
-	
 	@Override
 	public void openAdvertisment(String username, String from, String to,
 			String date, String time, int freePlaces) {
@@ -83,32 +76,30 @@ public class DriverDAO implements IDriverDAO {
 		 * ad.setFreePlaces(freePlaces); ad.setTravelFrom(from);
 		 * ad.setTravelTo(to);
 		 */
-		
+
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);
-		
+
 		try {
 			String getDriverIdByUsername = "select driverId from drivers where profileId like(select profileId from profiles where username like ?)";
 			@SuppressWarnings("deprecation")
-			
 			int driverId = jdbc.queryForInt(getDriverIdByUsername, username);
-			
+
 			String insertAdvertisment = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,timeOfTravel,freePlaces  ) values(?,?,?,?,?,?) ";
 			jdbc.update(insertAdvertisment, driverId, from, to, date, time,
 					freePlaces);
-			
+
 			transactionManager.commit(status);
-			
+
 		} catch (DataAccessException e) {
 
 			transactionManager.rollback(status);
 		}
 
 	}
-	
-	
-private void changePassword(String username, String password) {
-		
+
+	private void changePassword(String username, String password) {
+
 		String changePasswordOfProfile = "Update profiles set password=? where username=?";
 		jdbc.update(changePasswordOfProfile, password, username);
 
@@ -116,29 +107,30 @@ private void changePassword(String username, String password) {
 
 	@Override
 	public Driver changeProfile(String username, String name, String telephone,
-			String musicInTheCar, boolean isSmoking, int birthYear, String password) {
-		
+			String musicInTheCar, boolean isSmoking, int birthYear,
+			String password) {
+
 		int smoke = (isSmoking) ? 1 : 0;
-		
+
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);
 		Driver driver = new Driver();
 		try {
-			
-			
+
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
-			int idOfProfile = jdbc.queryForInt(getProfileIdByUsername, username);
+			int idOfProfile = jdbc
+					.queryForInt(getProfileIdByUsername, username);
 			changePassword(username, password);
 
 			String changeProfileOfDriver = "update drivers set drivers.nameOfDriver=?,drivers.telephone=?,drivers.birthYear=?,drivers.smokeInTheCar=?, drivers.musicInTheCar=? where drivers.profileId=?";
 
 			jdbc.update(changeProfileOfDriver, name, telephone, birthYear,
-					smoke,musicInTheCar, idOfProfile);
+					smoke, musicInTheCar, idOfProfile);
+			driver = showProfile(username);
 			transactionManager.commit(status);
-	
-		
+
 		} catch (DataAccessException e) {
-System.out.println("in catch");
+
 			transactionManager.rollback(status);
 
 		}
@@ -148,22 +140,22 @@ System.out.println("in catch");
 	public void registerDriver(String username, String name, int birthYear,
 			String telephone, int yearsInDriving, String musicInTheCar,
 			boolean smokeInTheCar) {
-		
+
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);
-		
+
 		try {
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
 			@SuppressWarnings("deprecation")
 			int profileId = jdbc.queryForInt(getProfileIdByUsername, username);
-			
+
 			String insertIntoDrivers = "Insert into drivers(profileId,nameOfDriver,telephone, rating, smokeInTheCar, travels,yearsInDriving,musicInTheCar,birthYear)  values(?,?,?,?,?,?,?,?,?) ";
 			int smoke = (smokeInTheCar) ? 1 : 0;
 			jdbc.update(insertIntoDrivers, profileId, name, telephone, 0,
 					smoke, 0, yearsInDriving, musicInTheCar, birthYear);
-			
+
 			transactionManager.commit(status);
-			
+
 		} catch (DataAccessException e) {
 
 			transactionManager.rollback(status);
@@ -171,18 +163,16 @@ System.out.println("in catch");
 
 	}
 
-	
-	
-	
 	private List<Addvertisment> getAdsForDriver(String username) {
 		return jdbc
 				.query("select ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel,ads.timeOfTravel, profiles.username from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  username=?",
 						new Object[] { username },
 						new AdvertismentDriverMapper());
 	}
+	
+	
+	
 
-	
-	
 	@Override
 	public List<Addvertisment> getActiveAdvertismentsForDriver(String username) {
 		List<Addvertisment> allAdvertisments = getAdsForDriver(username);
@@ -191,7 +181,7 @@ System.out.println("in catch");
 
 		for (Addvertisment addvertisment : allAdvertisments) {
 			String[] dateOfTravel = addvertisment.getDate().split("(-)");
-			
+
 			int yearOfTravel = Integer.parseInt(dateOfTravel[0]);
 
 			int monthOfTravel = Integer.parseInt(dateOfTravel[1]);
@@ -200,7 +190,7 @@ System.out.println("in catch");
 
 			String[] timeOfTravel = addvertisment.getTimeOfTravel()
 					.split("(:)");
-			
+
 			int hourAdd = Integer.parseInt(timeOfTravel[0]);
 
 			int minutesAdd = Integer.parseInt(timeOfTravel[1]);
@@ -218,33 +208,32 @@ System.out.println("in catch");
 			int currentMinute = rightNow.get(Calendar.MINUTE);
 
 			if (yearOfTravel > currentYear) {
-				
+
 				upToDateAds.add(addvertisment);
 				continue;
-			} 
-			else if (yearOfTravel == currentYear) {
-				
+			} else if (yearOfTravel == currentYear) {
+
 				if (monthOfTravel > currentMonth) {
-					
+
 					upToDateAds.add(addvertisment);
 					continue;
-					
+
 				} else if (monthOfTravel == currentMonth) {
 
 					if (dayOfTravel > currentDay) {
-						
+
 						upToDateAds.add(addvertisment);
 						continue;
-						
+
 					} else if (dayOfTravel == currentDay) {
-						
+
 						if (hourAdd > currentHour) {
-							
+
 							upToDateAds.add(addvertisment);
 							continue;
-							
+
 						} else if (hourAdd == currentHour) {
-							
+
 							if (minutesAdd > currentMinute)
 								upToDateAds.add(addvertisment);
 						}
@@ -256,12 +245,16 @@ System.out.println("in catch");
 		}
 		return upToDateAds;
 	}
+	
+	
+	
+	
 
 	public List<Driver> getListOfMostWantedDrivers() {
 		String getMostWantedDrivers = "select drivers.rating , profiles.username from drivers inner join profiles where (drivers.profileId=profiles.profileId) order by rating desc";
 
 		return jdbc.query(getMostWantedDrivers, new RowMapper<Driver>() {
-			
+
 			public Driver mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Driver driver = new Driver();
 				Profile profile = new Profile();
@@ -276,6 +269,8 @@ System.out.println("in catch");
 
 	}
 
+	
+	
 	public List<Driver> getListOfMostActiveDrivers() {
 		String getMostWantedDrivers = "select drivers.travels , profiles.username from drivers inner join profiles where (drivers.profileId=profiles.profileId) order by rating desc";
 
