@@ -53,10 +53,10 @@ public class Profile {
 		this.password = password;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "Profile [profileId=" + profileId + ", username=" + username
 				+ ", email=" + email + ", password=" + password + "]";
-	}
+	}*/
 
 }

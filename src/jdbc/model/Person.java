@@ -55,11 +55,11 @@ public abstract class Person {
 	
 	
 	
-	@Override
+/*	@Override
 	public String toString() {
 		return "Person [name=" + name + ", rating=" + rating + ", telephone="
 				+ telephone + ", birthYear=" + birthYear + ", profile="
 				+ profile + "]";
 	}
-
+*/
 }
