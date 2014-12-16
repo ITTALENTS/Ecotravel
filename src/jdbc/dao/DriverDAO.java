@@ -108,7 +108,7 @@ public class DriverDAO implements IDriverDAO {
 
 	@Override
 	public void changeProfile(String username, String name, String telephone,
-			String musicInTheCar, boolean isSmoking, String birthYear) {
+			String musicInTheCar, boolean isSmoking, int birthYear) {
 		
 		int smoke = (isSmoking) ? 1 : 0;
 		
