@@ -66,7 +66,7 @@ public class DriverDAO implements IDriverDAO {
 
 	
 	@Override
-	public void increaseTravels(String username) {
+	public void receivedMails(String username) {
 		String increaseTravelesOfDriver = "update drivers set drivers.travels=(travels+1) where profileId = "
 				+ "  (SELECT profileId FROM profiles where username like ?)";
 		jdbc.update(increaseTravelesOfDriver, username);
@@ -107,17 +107,30 @@ public class DriverDAO implements IDriverDAO {
 	}
 
 	@Override
-	public void changeProfile(String username, String name, String telephone,
-			String musicInTheCar, boolean isSmoking, int birthYear) {
+	public Driver changeProfile(String username, String name, String telephone,
+			String musicInTheCar, boolean isSmoking, int birthYear, String password) {
 		
 		int smoke = (isSmoking) ? 1 : 0;
 		
-		String updateProfiles = "update drivers set drivers.nameOfDriver=?, drivers.telephone=?, drivers.musicInTheCar=?, drivers.smokeInTheCar=?, drivers.birthYear=? where profileId = "
-				+ "( select profileId from profiles where username like ? )";
-		
-		jdbc.update(updateProfiles, name, telephone, musicInTheCar, smoke,
-				birthYear, username);
+		TransactionDefinition def = new DefaultTransactionDefinition();
+		TransactionStatus status = transactionManager.getTransaction(def);
+		Driver driver = new Driver();
+		try {
+			String getProfileIdByUsername = "select profileId from profiles where username=?";
+			int idOfProfile = jdbc.queryForInt(getProfileIdByUsername, username);
 
+			String changeProfileOfDriver = "update drivers inner join profiles on drivers.profileId =profiles.profileId  set drivers.nameOfDriver=?,drivers.telephone=?,drivers.birthYear=?,drivers.smokeInTheCar=?, drivers.musicInTheCar=?, profiles.password=? where drivers.profileId=?";
+
+			jdbc.update(changeProfileOfDriver, name, telephone, birthYear,
+					smoke,musicInTheCar,password, idOfProfile);
+			driver= showProfile(username);
+		
+		} catch (DataAccessException e) {
+
+			transactionManager.rollback(status);
+
+		}
+		return driver;
 	}
 
 	public void registerDriver(String username, String name, int birthYear,

@@ -16,12 +16,12 @@ public interface IDriverDAO {
 
 	public void updateAdvertisment(String username, String date, int freePlaces);
 
-	public void changeProfile(String username, String name, String telephone,
-			String musicInTheCar, boolean isSmoking, int birthYear);
+	public Driver changeProfile(String username, String name, String telephone,
+			String musicInTheCar, boolean isSmoking, int birthYear, String password);
 
 	public Driver showProfile(String username);
 
-	public void increaseTravels(String username);
+	public void receivedMails(String username);
 
 	public List<Addvertisment> getActiveAdvertismentsForDriver(String username);
 
