@@ -78,7 +78,10 @@ public class ProfileController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		PassengerDAO passengerDAO = (PassengerDAO) context.getBean("passengerDAO");
 		
-		passengerDAO.changeProfile(name, telephone, birthYear, username);
+		Person p = (Person) passengerDAO.changeProfile(name, telephone, birthYear, username, password);
+		
+		session.removeAttribute("loggedInUser");
+		session.setAttribute("loggedInUser", p);
 		
 		return "redirect:ProfilePagePassenger";
 
@@ -106,6 +109,7 @@ public class ProfileController {
 			
 		}
 		
+		// TODO: IMPLEMENT THIS analogichno na gorniq code
 		
 		
 		return "redirect:ProfilePageDriver";
