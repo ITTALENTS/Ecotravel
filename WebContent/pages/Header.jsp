@@ -40,10 +40,11 @@
 	    		
 	    	%>
 	      	<li><a href="AboutUs">About Us</a></li>
-			<li><a href="History">History</a></li>			
+			<li><a href="History">History</a></li>		
 	    </ul>
 	    <ul class="nav navbar-nav pull-right">
 	    <% if(session.getAttribute("loggedInUser") != null) { %>
+				<li><a href="Statistics">Statistics</a></li>		
 				<li><a href="Profile" class="text-info">My Profile</a></li>
 				<li><form method="POST" action="Logout">
 					<input type="submit" value="Logout" class="btn btn-danger" />

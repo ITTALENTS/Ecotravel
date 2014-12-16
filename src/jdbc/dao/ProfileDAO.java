@@ -152,13 +152,8 @@ public class ProfileDAO implements IProfileDAO {
 
 
 
-	@Override
-	public void changePassword(Profile profile, String password) {
-		String email = profile.getEmail();
-		String changePasswordOfProfile = "Update profiles set password=? where email=?";
-		jdbc.update(changePasswordOfProfile, password, email);
-
-	}
+	
+	
 
 	public String getEmailByUsername(String username) {
 		if (usernameExist(username)) {
