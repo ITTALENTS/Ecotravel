@@ -38,8 +38,8 @@
  		        + "<div class=\"col-lg-1\">To</div>" 
  		  	    + "<div class=\"col-lg-1\">Date</div>"
   	    		+ "<div class=\"col-lg-1\">Time</div>"
-   				+ "<div class=\"col-lg-1\">Free Places</div>"+
- 		  		"</div>");
+   				+ "<div class=\"col-lg-1\">Free Places</div>"
+  	    		+ "</div>");
 		for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("active_ads")) {
 			printAnAdvertisment(out, a);
 		}

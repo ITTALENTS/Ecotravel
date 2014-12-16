@@ -157,10 +157,13 @@ public class AdvertisementsController {
 	
 	
 	
+	
 	@RequestMapping(value="EditAdvertisementFreePlaces", method = RequestMethod.GET)
 	public String goToEditAdvertisementFreePlaces() {
 		return "EditAdvertisementFreePlaces";
 	}
+	
+	
 	
 	
 	//if driver wants to edit his edit advertisement
@@ -168,6 +171,7 @@ public class AdvertisementsController {
 	public String editAdvertisement(@RequestParam int freePlaces,
 									HttpSession session, Model model) {
 		
+		System.out.println("New free places to set: " + freePlaces);
 		
 		Person currentUser = (Person) session.getAttribute("loggedInUser");
 		Addvertisment adv = ((List<Addvertisment>)session.getAttribute("active_ads")).get(0);
@@ -181,7 +185,7 @@ public class AdvertisementsController {
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser.getProfile().getUsername());
 		session.setAttribute("active_ads", activeAds);
 		
-		return "Profile";
+		return "redirect:Profile";
 	}
 	
 	
