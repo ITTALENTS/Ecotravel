@@ -58,10 +58,13 @@ public class AdvertisementsController {
 		TripBetweenTownsDAO tripDAO = (TripBetweenTownsDAO) context.getBean("tripBetweenTownsDAO");
 
 		List<Addvertisment> ads = tripDAO.showMatchingAdvertisments(fromCity, toCity, date);
-		
+	
 		for(Addvertisment ad : ads) {
 			System.out.println("driver: " + ad.getDriver().getProfile().getUsername());
 		}
+		
+		if(ads.isEmpty())
+			model.addAttribute("no_trips_msg", "Sorry, no matching trips.");
 		
 		session.setAttribute("matching_advertisements", ads);
 		return "ChooseTrip";
