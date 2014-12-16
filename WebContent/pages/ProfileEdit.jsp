@@ -13,7 +13,7 @@
 	<% Person currentUser = (Person)session.getAttribute("loggedInUser");%>
 	<%@ include file="Header.jsp" %>
 	<div id="welcome" class="container">
-		<form id=editForm" method="Post" action=" <% if(currentUser instanceof Driver) out.print("SubmitNewProfileDriver"); else out.print("SubmitNewProfilePassenger"); %>">
+		<form id=editForm" method="Post" action=" <% if(currentUser instanceof Passenger) out.print("SubmitNewProfilePassenger"); else out.print("SubmitNewProfileDriver"); %>">
 			<div class="form-group" id="nameField">
 				<label class="control-label" for="name">Name:</label>
 				<input class="form-control" id="name" type = "text" name = "name" value=<%=String.valueOf(currentUser.getName())%> />

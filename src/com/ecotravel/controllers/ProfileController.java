@@ -24,6 +24,8 @@ public class ProfileController {
 	@RequestMapping(value = "Profile", method = RequestMethod.GET)
 	public String viewPersonalProfile(HttpSession session, Model model) {
 		
+		System.out.println(".. in viewPersonalProfile() method");
+		
 		Person p = (Person) session.getAttribute("loggedInUser");
 		
 		model.addAttribute("birthYear", p.getBirthYear());
@@ -66,8 +68,6 @@ public class ProfileController {
 										@RequestParam String rePassword,
 										HttpSession session, Model model) {
 		
-		//Person p = (Person)session.getAttribute("loggedInUser");
-		
 		if(!password.equals(rePassword)) {
 			model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
 			return "ProfileEdit";
@@ -77,14 +77,17 @@ public class ProfileController {
 		PassengerDAO passengerDAO = (PassengerDAO) context.getBean("passengerDAO");
 		
 		String username = ((Person)session.getAttribute("loggedInUser")).getProfile().getUsername();
+		
 		System.out.println("Who changes his profile: " + username);
 		
-		Person p = (Passenger) passengerDAO.changeProfile(name, telephone, birthYear, username, password);
+		Person p = (Person) passengerDAO.changeProfile(name, telephone, birthYear, username, password);
 		
 		System.out.println("Setting up session...");
 		
 		session.removeAttribute("loggedInUser");
 		session.setAttribute("loggedInUser", p);
+		
+		System.out.println("Session updated.");
 		
 		return "redirect:Profile";
 
@@ -114,17 +117,23 @@ public class ProfileController {
 		
 		String username = ((Person)session.getAttribute("loggedInUser")).getProfile().getUsername();
 		
+		System.out.println("Who changes his profile: " + username);
+		
 		boolean smokingAllowed;
 		if(isSmoking.equalsIgnoreCase("Yes"))
 			smokingAllowed = true;
 		else
 			smokingAllowed = false;
 		
-//		Person p = (Person) driverDAO.changeProfile(username, name, telephone, musicInTheCar, 
-//				smokingAllowed, birthYear);
+		Person p = (Driver) driverDAO.changeProfile(username, name, telephone, musicInTheCar, 
+				smokingAllowed, birthYear, password);
 		
-//		session.removeAttribute("loggedInUser");
-//		session.setAttribute("loggedInUser", p);
+		System.out.println("Setting up session...");
+		
+		session.removeAttribute("loggedInUser");
+		session.setAttribute("loggedInUser", p);
+		
+		System.out.println("Session updated.");
 		
 		return "redirect:Profile";
 	}
