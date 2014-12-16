@@ -13,7 +13,7 @@
 		<property name="url" value="jdbc:mysql://localhost:3306/ecotravel" />
 
 		<property name="username" value="root" />
-		<property name="password" value="hristobotev154" />
+		<property name="password" value="admin" />
 	</bean>
 
 	<bean id="person" class="jdbc.model.Person" abstract="true">

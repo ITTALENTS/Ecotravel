@@ -13,7 +13,7 @@
 	<%@ include file="Header.jsp" %>
 	<div id="welcome" class="container">
 	<%! static void printInCell(JspWriter out, String a) throws IOException{
-			out.print("<div class=\"col-lg-1\">");
+			out.print("<div class=\"col-lg-2\">");
 				out.print(a);
 			out.print("</div>");
 		}
@@ -21,13 +21,13 @@
 		static void printAnAdvertisment(JspWriter out, Addvertisment a) throws IOException{
 			out.print("<div class=\"row trip-row\">");
 				String driverUsername = a.getDriver().getProfile().getUsername();
-				printInCell(out,"<input class=\"btn btn-primary\" type=\"radio\" name=\"driverUsername\" value=" + driverUsername + ">");
+				//printInCell(out,"<input class=\"btn btn-primary\" type=\"radio\" name=\"driverUsername\" value=" + driverUsername + ">");
 				printInCell(out, driverUsername);
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
 				printInCell(out, a.getDate().substring(2));
 				printInCell(out, a.getTimeOfTravel());
-				printInCell(out, String.valueOf(a.getFreePlaces()));
+				printInCell(out, String.valueOf(a.getFreePlaces())+ " places left   " + "<input class=\"btn btn-primary\" type=\"radio\" name=\"driverUsername\" value=" + driverUsername + ">");
 			out.print("</div>");
 		}
 	%>
@@ -35,13 +35,12 @@
 		<form method="GET" name="selectedAdvertisment" action="SubscribeForTrip">
 				<% 
 					out.print(  "<div class=\"row\">"
-									+ "<div class=\"col-lg-1\">Select Trip</div>"
-							 		+ "<div class=\"col-lg-1\">Driver</div>"
-					 		  		+ "<div class=\"col-lg-1\">From</div>"
-					 		        + "<div class=\"col-lg-1\">To</div>" 
-					 		  	    + "<div class=\"col-lg-1\">Date</div>"
-					 		  		+ "<div class=\"col-lg-1\">Time</div>"
-					 		  		+ "<div class=\"col-lg-1\">Free places</div>"
+							 		+ "<div class=\"col-lg-2\">Driver</div>"
+					 		  		+ "<div class=\"col-lg-2\">From</div>"
+					 		        + "<div class=\"col-lg-2\">To</div>" 
+					 		  	    + "<div class=\"col-lg-2\">Date</div>"
+					 		  		+ "<div class=\"col-lg-2\">Time</div>"
+					 		  		+ "<div class=\"col-lg-2\">Joint trip</div>"
 					 			+ "</div>");
 				ArrayList<Addvertisment> listOfAds = (ArrayList<Addvertisment>)session.getAttribute("matching_advertisements");	
 				for(Addvertisment a : listOfAds) 
@@ -64,7 +63,7 @@
 					{%>
 						<div class="row trip-row" class="child_div_1">
 							<form name=<%=a.getDriver().getProfile().getUsername()%> action="#" method="GET">
-								<div class=\"col-lg-1\"><input type="submit" value="View Driver Profile"/></div>
+								<div class=\"col-lg-1\"><input type="submit" class="btn btn-warning" value="View Driver Profile"/></div>
 							</form>
 						</div>
 			<%}	}%>
