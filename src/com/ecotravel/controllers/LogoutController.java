@@ -1,7 +1,9 @@
 package com.ecotravel.controllers;
 
 import java.io.IOException;
+import java.util.Date;
 
+import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,8 +18,15 @@ public class LogoutController {
 	 
 	@RequestMapping(method = RequestMethod.POST)
 	public String logout(HttpServletResponse response, HttpSession session, Model model) {
-		// session.removeAttribute("loggedInUser");
+		
+		session.removeAttribute("loggedInUser");
+		
+//		response.setHeader("pragma", "no-cache");              
+//		response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");             
+//		response.setHeader("Expires", "0");
+		
 		session.invalidate();
+		
 		return "redirect:Welcome";
 	}
 	

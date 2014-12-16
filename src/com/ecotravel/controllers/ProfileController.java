@@ -46,8 +46,16 @@ public class ProfileController {
 	
 	
 	
+	// when user wants o edit his profile
+	@RequestMapping(value="EditProfile", method = RequestMethod.GET)
+	public String goToProfileEditingPAge(HttpSession session, Model model) {
+		return "ProfileEdit";
+	}
 	
-	@RequestMapping(value = "EditProfile", method = RequestMethod.GET)
+	
+	
+	// after changes in profile data, user clicks SubmitNewProfile button to make changes
+	@RequestMapping(value = "SubmitNewProfile", method = RequestMethod.POST)
 	public String editProfile(HttpSession session, Model model) {
 		
 		Person p = (Person)session.getAttribute("loggedInUser");
