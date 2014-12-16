@@ -3,16 +3,13 @@ package jdbc.dao;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-
 import jdbc.model.*;
 import jdbc.mappers.*;
 
@@ -35,8 +32,7 @@ public class DriverDAO implements IDriverDAO {
 	@Override
 	public void updateAdvertisment(String username, String date, int freePlaces) {
 		String updateAdvertisment = "update ads set  ads.freePlaces=?  where driverId=(select driverId from drivers where profileId= (select profileId from profiles where username =?)) and dateOfTravel=?";
-		jdbc.update(updateAdvertisment, freePlaces, username,
-				date);
+		jdbc.update(updateAdvertisment, freePlaces, username, date);
 
 	}
 
@@ -66,30 +62,29 @@ public class DriverDAO implements IDriverDAO {
 
 	@Override
 	public void openAdvertisment(String username, String from, String to,
-			String date,String time, int freePlaces) {
+			String date, String time, int freePlaces) {
 
-	/*	TripBetweenTowns ad = new TripBetweenTowns();
-		ad.setDate(date);
-		ad.setFreePlaces(freePlaces);
-		ad.setTravelFrom(from);
-		ad.setTravelTo(to);*/
+		/*
+		 * TripBetweenTowns ad = new TripBetweenTowns(); ad.setDate(date);
+		 * ad.setFreePlaces(freePlaces); ad.setTravelFrom(from);
+		 * ad.setTravelTo(to);
+		 */
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);
-		try{
-				String getDriverIdByUsername="select driverId from drivers where profileId like(select profileId from profiles where username like ?)";
-					@SuppressWarnings("deprecation")
-					int driverId = jdbc.queryForInt(getDriverIdByUsername, username);
-					System.out.println("driver id: " + driverId);
-		String insertAdvertisment = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,timeOfTravel,freePlaces  ) values(?,?,?,?,?,?) ";
-		jdbc.update(insertAdvertisment, driverId, from, to, date,time, freePlaces);
-		transactionManager.commit(status);
-		}
-		catch (DataAccessException e) {
+		try {
+			String getDriverIdByUsername = "select driverId from drivers where profileId like(select profileId from profiles where username like ?)";
+			@SuppressWarnings("deprecation")
+			int driverId = jdbc.queryForInt(getDriverIdByUsername, username);
+			System.out.println("driver id: " + driverId);
+			String insertAdvertisment = "insert into ads (driverId,TownFrom, TownTo,dateOfTravel,timeOfTravel,freePlaces  ) values(?,?,?,?,?,?) ";
+			jdbc.update(insertAdvertisment, driverId, from, to, date, time,
+					freePlaces);
+			transactionManager.commit(status);
+		} catch (DataAccessException e) {
 
 			transactionManager.rollback(status);
 		}
-		
-		
+
 	}
 
 	@Override
@@ -123,80 +118,72 @@ public class DriverDAO implements IDriverDAO {
 		}
 
 	}
-private List<Addvertisment> getAdsForDriver(String username){
-	return jdbc
-			.query("select ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel,ads.timeOfTravel, profiles.username from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  username=?",
-					new Object[] {username},
-					new AdvertismentDriverMapper());
-}
+
+	private List<Addvertisment> getAdsForDriver(String username) {
+		return jdbc
+				.query("select ads.TownFrom, ads.TownTo , ads.freePlaces,ads.dateOfTravel,ads.timeOfTravel, profiles.username from ads inner join drivers on drivers.driverId=ads.driverId inner join profiles on drivers.profileId=profiles.profileId  where  username=?",
+						new Object[] { username },
+						new AdvertismentDriverMapper());
+	}
+
 	@Override
 	public List<Addvertisment> getActiveAdvertismentsForDriver(String username) {
-		List<Addvertisment> allAdvertisments= getAdsForDriver(username);
-		
-		List<Addvertisment> upToDateAds= new ArrayList<Addvertisment>();
+		List<Addvertisment> allAdvertisments = getAdsForDriver(username);
 
-	for (Addvertisment addvertisment : allAdvertisments) {
-		String [] dateOfTravel = addvertisment.getDate().split("(-)");
-		int yearOfTravel= Integer.parseInt(dateOfTravel[0]);
-		
-		int monthOfTravel= Integer.parseInt(dateOfTravel[1]);
-		
-		int dayOfTravel= Integer.parseInt(dateOfTravel[2]);
-		
-		String [] timeOfTravel= addvertisment.getTimeOfTravel().split("(:)");
-		int hourAdd = Integer.parseInt(timeOfTravel[0]);
-		
-		int minutesAdd = Integer.parseInt(timeOfTravel[1]);
-	
-		Calendar rightNow = Calendar.getInstance();
-		
-		int currentYear=  rightNow.get(Calendar.YEAR);
-	
-		int currentMonth= rightNow.get(Calendar.MONTH) +1;
-		
-		int currentDay= rightNow.get(Calendar.DAY_OF_MONTH);
-	
-		
-		int currentHour = rightNow.get(Calendar.HOUR_OF_DAY);
-	
-		int currentMinute = rightNow.get(Calendar.MINUTE);
-	
-		
-	
-		
-		if(yearOfTravel>currentYear){
-			upToDateAds.add(addvertisment);
-			continue;
-		}
-		else if(yearOfTravel==currentYear){
-			if(monthOfTravel>currentMonth){
+		List<Addvertisment> upToDateAds = new ArrayList<Addvertisment>();
+
+		for (Addvertisment addvertisment : allAdvertisments) {
+			String[] dateOfTravel = addvertisment.getDate().split("(-)");
+			int yearOfTravel = Integer.parseInt(dateOfTravel[0]);
+
+			int monthOfTravel = Integer.parseInt(dateOfTravel[1]);
+
+			int dayOfTravel = Integer.parseInt(dateOfTravel[2]);
+
+			String[] timeOfTravel = addvertisment.getTimeOfTravel()
+					.split("(:)");
+			int hourAdd = Integer.parseInt(timeOfTravel[0]);
+
+			int minutesAdd = Integer.parseInt(timeOfTravel[1]);
+
+			Calendar rightNow = Calendar.getInstance();
+
+			int currentYear = rightNow.get(Calendar.YEAR);
+
+			int currentMonth = rightNow.get(Calendar.MONTH) + 1;
+
+			int currentDay = rightNow.get(Calendar.DAY_OF_MONTH);
+
+			int currentHour = rightNow.get(Calendar.HOUR_OF_DAY);
+
+			int currentMinute = rightNow.get(Calendar.MINUTE);
+
+			if (yearOfTravel > currentYear) {
 				upToDateAds.add(addvertisment);
 				continue;
-			}
-			else if(monthOfTravel==currentMonth){
-				
-				if(dayOfTravel>currentDay){
+			} else if (yearOfTravel == currentYear) {
+				if (monthOfTravel > currentMonth) {
 					upToDateAds.add(addvertisment);
 					continue;
-				}
-				else if(dayOfTravel==currentDay){
-					if(hourAdd>currentHour)
-					{
+				} else if (monthOfTravel == currentMonth) {
+
+					if (dayOfTravel > currentDay) {
 						upToDateAds.add(addvertisment);
 						continue;
-					}
-					else if(hourAdd==currentHour){
-						if(minutesAdd>currentMinute)
+					} else if (dayOfTravel == currentDay) {
+						if (hourAdd > currentHour) {
 							upToDateAds.add(addvertisment);
+							continue;
+						} else if (hourAdd == currentHour) {
+							if (minutesAdd > currentMinute)
+								upToDateAds.add(addvertisment);
+						}
 					}
 				}
+
 			}
-			
+
 		}
-
-	
-
-	}
 		return upToDateAds;
 	}
 

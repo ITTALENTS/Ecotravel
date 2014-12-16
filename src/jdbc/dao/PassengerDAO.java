@@ -1,6 +1,5 @@
 package jdbc.dao;
 
-
 import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,7 +25,6 @@ public class PassengerDAO implements IPassengerDAO {
 
 	}
 
-	
 	@Override
 	public Passenger showProfile(String username) {
 
@@ -86,8 +84,6 @@ public class PassengerDAO implements IPassengerDAO {
 		}
 
 	}
-	
-	
 
 	public void registerPassenger(String username, String name, int birthYear,
 			String telephone) {
