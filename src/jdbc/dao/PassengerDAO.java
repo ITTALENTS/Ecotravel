@@ -40,7 +40,7 @@ public class PassengerDAO implements IPassengerDAO {
 	}
 
 	@Override
-	public void changeProfile(String name, String telephone, String birthYear,
+	public void changeProfile(String name, String telephone, int birthYear,
 			String username) {
 
 		String changeProfileOfPassenger = "update passengers set passengers.name=?, passengers.telephone=?, passengers.birthYear=? where profileId = "

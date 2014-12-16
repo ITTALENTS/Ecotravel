@@ -13,7 +13,7 @@
 	<% Person currentUser = (Person)session.getAttribute("loggedInUser");%>
 	<%@ include file="Header.jsp" %>
 	<div id="welcome" class="container">
-		<form id=editForm" method="Post" action="SubmitNewProfile">
+		<form id=editForm" method="Post" action=" <% if(currentUser instanceof Driver) out.print("SubmitNewProfileDriver"); else out.print("SubmitNewProfilePassenger"); %>">
 			<div class="form-group" id="nameField">
 				<label class="control-label" for="name">Name:</label>
 				<input class="form-control" id="name" type = "text" name = "name" value=<%=String.valueOf(currentUser.getName())%> />
@@ -74,7 +74,7 @@
 					</select>
 				</div>
 			<%} %>
-			<input type="submit" name="registerDriverSubmit" value="submit" class="btn btn-primary" />
+			<input type="submit" value="Submit" class="btn btn-primary" />
 		</form>
 	</div>
 	<%@ include file="Footer.jsp" %>

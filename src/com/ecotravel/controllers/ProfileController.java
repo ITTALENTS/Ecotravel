@@ -3,6 +3,7 @@ package com.ecotravel.controllers;
 import javax.servlet.http.HttpSession;
 
 import jdbc.dao.DriverDAO;
+import jdbc.dao.PassengerDAO;
 import jdbc.dao.ProfileDAO;
 import jdbc.model.Driver;
 import jdbc.model.Passenger;
@@ -46,6 +47,7 @@ public class ProfileController {
 	
 	
 	
+	
 	// when user wants o edit his profile
 	@RequestMapping(value="EditProfile", method = RequestMethod.GET)
 	public String goToProfileEditingPAge(HttpSession session, Model model) {
@@ -54,20 +56,61 @@ public class ProfileController {
 	
 	
 	
+	
 	// after changes in profile data, user clicks SubmitNewProfile button to make changes
-	@RequestMapping(value = "SubmitNewProfile", method = RequestMethod.POST)
-	public String editProfile(HttpSession session, Model model) {
+	@RequestMapping(value = "SubmitNewProfilePassenger", method = RequestMethod.POST)
+	public String editProfilePassenger(@RequestParam String name,
+										@RequestParam int birthYear,
+										@RequestParam String telephone,
+										@RequestParam String email,
+										@RequestParam String username,
+										@RequestParam String password,
+										@RequestParam String rePassword,
+										HttpSession session, Model model) {
 		
 		Person p = (Person)session.getAttribute("loggedInUser");
 		
-		//TODO: ADD CODE HERE !!!!!!!!!!!!1
+		if(!password.equals(rePassword)) {
+			model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
+			return "ProfileEdit";
+		}
 		
-		if(p instanceof Person)
-			return "redirect:ProfilePagePassenger";
-		else // p instanceof Driver
-			return "redirect:ProfilePageDriver";
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		PassengerDAO passengerDAO = (PassengerDAO) context.getBean("passengerDAO");
+		
+		passengerDAO.changeProfile(name, telephone, birthYear, username);
+		
+		return "redirect:ProfilePagePassenger";
+
 	}
 
+	
+	
+	
+	// after changes in profile data, user clicks SubmitNewProfile button to make changes
+	@RequestMapping(value = "SubmitNewProfileDriver", method = RequestMethod.POST)
+	public String editProfileDriver(@RequestParam String name,
+									@RequestParam int birthYear,
+									@RequestParam String telephone,
+									@RequestParam String email,
+									@RequestParam String username,
+									@RequestParam String password,
+									@RequestParam String rePassword,
+									@RequestParam String isSmoking,
+									@RequestParam String musicInTheCar,
+									HttpSession session, Model model) {
+		
+		Person p = (Person)session.getAttribute("loggedInUser");
+		
+		if(p.getProfile().getPassword().equals("")) {
+			
+		}
+		
+		
+		
+		return "redirect:ProfilePageDriver";
+	}
+	
 	
 	
 	
@@ -89,12 +132,15 @@ public class ProfileController {
 	
 	
 	
+	
 	// this controller is for header's link AboutUs
 	@RequestMapping(value="AboutUs", method = RequestMethod.GET)
 	public String openAboutUsPage() {
 		
 		return "AboutUs";
 	}
+	
+	
 	
 	
 	// this controller is for header's link History
