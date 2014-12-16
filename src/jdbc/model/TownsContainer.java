@@ -10,10 +10,24 @@ import javax.servlet.jsp.JspWriter;
 import com.sun.mail.iap.Response;
 
 public class TownsContainer {
-	private static String[] towns = {"Burgas", "Blagoevgrad", 
-										"Lovech", 
-										"Pleven", "Plovdiv", "Sofia",
-										"Varna", "Veliko Turnovo", "Vidin", "Vraca"};
+	private static String[] towns = {"Asenovgrad",
+									"Blagoevgrad", "Burgas", 
+									"Dimitrovgrad", "Dobrich", "Dupnitsa",
+									"Gabrovo",
+									"Haskovo",
+									"Kardzhali", "Kazanlak", "Kyustendil",
+									"Lom", "Lovech",
+									"Montana",
+									"Sofia",
+									"Pernik", "Plovdiv",
+									"Rousse",
+									"Stara-Zagora", "Svishtov",
+									"Pazardzhik", "Pleven",
+									"Sandanski", "Sevlievo", "Sliven",
+									"Razgrad",
+									"Shumen",
+									"Targovishte", "Troyan",						
+									"Varna", "Veliko Tarnovo", "Velingrad", "Vidin", "Vratsa"};
 	
 	public TownsContainer() {
 	}

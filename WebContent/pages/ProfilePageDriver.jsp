@@ -21,7 +21,7 @@
 			out.print("<div class=\"row\">");
 				printInCell(out, a.getTravelFrom());
 				printInCell(out, a.getTravelTo());
-				printInCell(out, a.getDate());
+				printInCell(out, a.getDate().substring(2));
 				printInCell(out, a.getTimeOfTravel());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
 			out.print("</div>");
@@ -30,7 +30,7 @@
 	<div id="welcome" class="container">
 		<h1>My Profile:</h1>
 		<hr>
-		<div class="text-success">
+		<div class="text-success">\
 			<p>Name: <strong>${name}</strong> <p>
 			<p>Username: ${username} </p>
 			<p>Year of birth: ${birthYear}</p>

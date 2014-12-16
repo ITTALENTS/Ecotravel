@@ -18,7 +18,7 @@
 				Student at <a href="http://www.tu-sofia.bg/"> <abbr title="Technical University Of Sofia">TU</abbr>  </a>
 				</em></div>
 				<div class="row" ><em>
-					Studying: Computer and Software technology -> Grade 3: 
+					Studying: Computer and Software technology -> Grade 3 
 				</em></div>
 			</div>
 			<div class="row">
@@ -29,7 +29,7 @@
 					Student at: <a href="https://www.uni-sofia.bg/" > <abbr title="Sofia University">SU</abbr></a>
 				</em></div>
 				<div class="row"  style="font-style: italic;"><em>
-					Studying: Software engineering -> Grade 3:
+					Studying: Software engineering -> Grade 2
 				</em></div> 
 			</div>
 			<div class="row">
@@ -40,9 +40,10 @@
 				Student at: <a href="https://www.uni-sofia.bg/"> <abbr title="Sofia University">SU</abbr></a>
 				</em></div>
 				<div class="row"><em>
-					Studying: Software engineering -> Grade 3:
+					Studying: Software engineering -> Grade 3
 				</em></div> 
 			</div>
+			<br />
 			<div class="text-danger">
 				You can contact us at: <i>ittallentsproject@gmail.com</i>
 			</div>
