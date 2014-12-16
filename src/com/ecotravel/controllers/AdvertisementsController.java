@@ -124,7 +124,12 @@ public class AdvertisementsController {
 		Driver currentUser = (Driver) session.getAttribute("loggedInUser");
 		String username = currentUser.getProfile().getUsername();
 		
-		driverDAO.openAdvertisment(username, fromCity, toCity, date, time, freePlaces);
+		if(driverDAO.getActiveAdvertismentsForDriver(username).size() >= 1) {
+			model.addAttribute("create_trip_error_msg", "You can not add any more trips at this time.");
+			return "CreateTrip";
+		}
+		else
+			driverDAO.openAdvertisment(username, fromCity, toCity, date, time, freePlaces);
 
 		// here update session attribute "active_ads"
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(username);

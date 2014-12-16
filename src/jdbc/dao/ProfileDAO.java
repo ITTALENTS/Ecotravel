@@ -1,19 +1,15 @@
 package jdbc.dao;
 
 import java.util.Map;
-
 import javax.sql.DataSource;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-
 import jdbc.mappers.*;
 import jdbc.model.*;
-
 import java.security.SecureRandom;
 import java.util.Random;
 
@@ -50,8 +46,6 @@ public class ProfileDAO implements IProfileDAO {
 				Map<String, Object> userPass = jdbc.queryForMap(getUsername,
 						username);
 				usernameInDB = (String) userPass.get("username");
-				System.out.println(usernameInDB);
-				System.out.println(username);
 			}
 
 			else
@@ -68,20 +62,15 @@ public class ProfileDAO implements IProfileDAO {
 			return false;
 
 	}
-	
-	
 
-	public boolean usernameExistForReg(String username)	
-	{
+	public boolean usernameExistForReg(String username) {
 		String sql = "select COUNT(*)  from profiles where username=?";
-		int usernameExist= jdbc.queryForInt(sql, username);
-		return (usernameExist>0);
-		
+		@SuppressWarnings("deprecation")
+		int usernameExist = jdbc.queryForInt(sql, username);
+		return (usernameExist > 0);
+
 	}
-	
-	
-	
-	
+
 	public boolean emailExist(String email) {
 
 		String countEmails = "select count(*) from profiles where email=?";
@@ -90,15 +79,11 @@ public class ProfileDAO implements IProfileDAO {
 		return (emailExist > 0);
 	}
 
-	
-	
 	public boolean isRegistrationAllowed(String email, String username) {
 
 		return !(emailExist(email) || usernameExistForReg(username));
 	}
 
-	
-	
 	public boolean matchPassword(String username, String password) {
 		String passwordDB = null;
 		if (usernameExist(username)) {
@@ -113,8 +98,6 @@ public class ProfileDAO implements IProfileDAO {
 		return false;
 	}
 
-	
-	
 	@SuppressWarnings("deprecation")
 	public Person login(String username, String password) {
 		int isDriver = 0;
@@ -150,9 +133,6 @@ public class ProfileDAO implements IProfileDAO {
 			return null;
 
 	}
-	
-	
-	
 
 	@Override
 	public void createProfile(String username, String email, String password) {
@@ -164,10 +144,6 @@ public class ProfileDAO implements IProfileDAO {
 		jdbc.update(insertIntoProfiles, profile.getUsername(),
 				profile.getEmail(), profile.getPassword());
 	}
-	
-	
-	
-	
 
 	@Override
 	public void changePassword(Profile profile, String password) {
@@ -176,10 +152,6 @@ public class ProfileDAO implements IProfileDAO {
 		jdbc.update(changePasswordOfProfile, password, email);
 
 	}
-	
-	
-	
-	
 
 	public String getEmailByUsername(String username) {
 		if (usernameExist(username)) {
@@ -190,9 +162,6 @@ public class ProfileDAO implements IProfileDAO {
 		}
 		return null;
 	}
-	
-	
-	
 
 	public String generateRandomPassword(String username) {
 		Random RANDOM = new SecureRandom();
@@ -210,9 +179,6 @@ public class ProfileDAO implements IProfileDAO {
 		savePasswordByUsername(username, newPassword);
 		return newPassword;
 	}
-	
-	
-	
 
 	private void savePasswordByUsername(String username, String newPassword) {
 

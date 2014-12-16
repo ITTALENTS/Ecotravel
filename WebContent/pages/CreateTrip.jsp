@@ -52,7 +52,10 @@
 	  		
 	  		<input type="submit" value="Create" class="btn btn-default">
 		</form>
+		
+		<div><h3>${create_trip_error_msg}</h3></div>
 	</div>
+	
 	<%@ include file="Footer.jsp" %>
 </body>
 </html>
