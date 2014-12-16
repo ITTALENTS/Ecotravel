@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Profile</title>
+<title>Road trip</title>
 </head>
 <body>
 	<%@ include file="Header.jsp" %>
@@ -58,11 +58,11 @@
 				printAnAdvertisment(out, listOfAllActiveAds.get(i));
 			%>
 			<form method="GET" action="EditAdvertisementFreePlaces" class="form-horizontal">
-				<input type="submit" value="Edit My Advertisement" class="btn btn-warning"/>
+				<input type="submit" value="Edit My Trip" class="btn btn-warning"/>
 			</form>
 			
 			<form method="GET" action="DeleteAdvertisement" class="form-horizontal">
-				<input type="submit" value="Delete My Advertisement" class="btn btn-danger"/>
+				<input type="submit" value="Delete My Trip" class="btn btn-danger"/>
 			</form>
 		<% } %>
 			

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Road trip</title>
 </head>
 <body>
 	<div id="Footer" class="jumbotron"> 

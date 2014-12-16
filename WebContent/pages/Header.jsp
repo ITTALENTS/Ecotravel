@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap-theme.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/site.css">
+	<title>Road trip</title>
 </head>
 <body>
 		<div class="navbar navbar-default">
