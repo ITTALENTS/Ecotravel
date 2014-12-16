@@ -63,8 +63,8 @@ public class AdvertisementsController {
 			System.out.println("driver: " + ad.getDriver().getProfile().getUsername());
 		}
 		
-		if(ads.isEmpty())
-			model.addAttribute("no_trips_msg", "Sorry, no matching trips.");
+//		if(ads.isEmpty())
+//			model.addAttribute("no_trips_msg", "Sorry, no matching trips.");
 		
 		session.setAttribute("matching_advertisements", ads);
 		return "ChooseTrip";
