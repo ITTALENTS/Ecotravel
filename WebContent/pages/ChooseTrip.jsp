@@ -43,16 +43,17 @@
 					 		  		+ "<div class=\"col-lg-1\">Time</div>"
 					 		  		+ "<div class=\"col-lg-1\">Free places</div>"
 					 			+ "</div>");
-					
-				for(Addvertisment a : (ArrayList<Addvertisment>)session.getAttribute("matching_advertisements")) 
+				ArrayList<Addvertisment> listOfAds = (ArrayList<Addvertisment>)session.getAttribute("matching_advertisements");	
+				for(Addvertisment a : listOfAds) 
 					{
 						printAnAdvertisment(out, a);
 					}
 				
-					if((ArrayList<Addvertisment>)session.getAttribute("matching_advertisements") != null)
+					if(!listOfAds.isEmpty())
 						out.print("<ul class=\"pager\"><li class=\"next\"><input class=\"btn btn-primary\" type=\"submit\" value=\"Connect this driver\"></li></ul>");
-					else
-						out.print("<div>No matching trips</div>");
+					else{
+						out.print("<div  class=\"text-danger\">No matching trips</div>");
+					}
 				%>
 		</form>
 	</div>

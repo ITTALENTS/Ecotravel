@@ -1,6 +1,5 @@
 package com.ecotravel.controllers;
 
-import jdbc.dao.EmailerDAO;
 
 
 
@@ -15,14 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import utils.MailSender;
+
 @Controller
 @RequestMapping("ForgottenPassword")
 public class ForgottenPasswordController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String sendNewPassword(@RequestParam("username") String username, Model model) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		EmailerDAO emailer = (EmailerDAO) context.getBean("emailerDAO");
+		//ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		//MailSender emailer = (MailSender) context.getBean("mailSender");
+		MailSender emailer = new MailSender();
 		try{
 			if(!emailer.sendMessage(username)){
 				model.addAttribute("generatingPasswordStatus", "Invalid username!");

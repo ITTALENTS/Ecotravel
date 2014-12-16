@@ -1,15 +1,21 @@
 package jdbc.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 import javax.sql.DataSource;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+
 import jdbc.model.*;
 import jdbc.mappers.*;
 
@@ -17,16 +23,21 @@ public class DriverDAO implements IDriverDAO {
 	private JdbcTemplate jdbc;
 	private PlatformTransactionManager transactionManager;
 
+	public void setTransactionManager(
+			PlatformTransactionManager transactionManager) {
+		this.transactionManager = transactionManager;
+	}
+
+	public void setDataSource(DataSource ds) {
+		this.jdbc = new JdbcTemplate(ds);
+
+	}
+
 	@Override
 	public void deleteAdvertisment(String username, String date) {
 		String deleteAdvertisment = "delete from ads where driverId=(select driverId from drivers where profileId= (select profileId from profiles where username =?)) and dateOfTravel=?";
 		jdbc.update(deleteAdvertisment, username, date);
 
-	}
-
-	public void setTransactionManager(
-			PlatformTransactionManager transactionManager) {
-		this.transactionManager = transactionManager;
 	}
 
 	@Override
@@ -52,11 +63,6 @@ public class DriverDAO implements IDriverDAO {
 		String increaseTravelesOfDriver = "update drivers set drivers.travels=(travels+1) where profileId = "
 				+ "  (SELECT profileId FROM profiles where username like ?)";
 		jdbc.update(increaseTravelesOfDriver, username);
-
-	}
-
-	public void setDataSource(DataSource ds) {
-		this.jdbc = new JdbcTemplate(ds);
 
 	}
 
@@ -185,6 +191,42 @@ public class DriverDAO implements IDriverDAO {
 
 		}
 		return upToDateAds;
+	}
+
+	public List<Driver> getListOfMostWantedDrivers() {
+		String getMostWantedDrivers = "select drivers.rating , profiles.username from drivers inner join profiles where (drivers.profileId=profiles.profileId) order by rating desc";
+
+		return jdbc.query(getMostWantedDrivers, new RowMapper<Driver>() {
+			public Driver mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Driver driver = new Driver();
+				Profile profile = new Profile();
+
+				profile.setUsername(rs.getString("username"));
+				driver.setProfile(profile);
+				driver.setRating(rs.getInt("rating"));
+
+				return driver;
+			}
+		});
+
+	}
+
+	public List<Driver> getListOfMostActiveDrivers() {
+		String getMostWantedDrivers = "select drivers.travels , profiles.username from drivers inner join profiles where (drivers.profileId=profiles.profileId) order by rating desc";
+
+		return jdbc.query(getMostWantedDrivers, new RowMapper<Driver>() {
+			public Driver mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Driver driver = new Driver();
+				Profile profile = new Profile();
+
+				profile.setUsername(rs.getString("username"));
+				driver.setProfile(profile);
+				driver.setRating(rs.getInt("travels"));
+
+				return driver;
+			}
+		});
+
 	}
 
 }

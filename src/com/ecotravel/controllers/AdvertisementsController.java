@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import jdbc.dao.DriverDAO;
-import jdbc.dao.EmailerDAO;
 import jdbc.dao.TripBetweenTownsDAO;
 import jdbc.model.Addvertisment;
 import jdbc.model.Driver;
@@ -18,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import utils.MailSender;
 
 @Controller
 public class AdvertisementsController {
@@ -84,8 +85,9 @@ public class AdvertisementsController {
 		
 		System.out.println("Driver in this ad is: " + driverUsername);
 		
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		EmailerDAO emailer = (EmailerDAO) context.getBean("emailerDAO");
+//		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+//		MailSender emailer = (MailSender) context.getBean("mailSender");
+		MailSender emailer = new MailSender();
 		try{
 			Person currentUser = (Person) session.getAttribute("loggedInUser");
 			
