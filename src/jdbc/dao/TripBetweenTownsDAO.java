@@ -33,70 +33,60 @@ public class TripBetweenTownsDAO implements IAdvertismentDAO {
 			String to, String date) {
 		List<Addvertisment> advertisments = searchAdvertisment(from, to, date);
 		List<Addvertisment> activeAds = new ArrayList();
-		List<Addvertisment> upToDateAds= new ArrayList<Addvertisment>();
+		List<Addvertisment> upToDateAds = new ArrayList<Addvertisment>();
 
 		for (Addvertisment addvertisment : advertisments) {
-			String [] dateOfTravel = addvertisment.getDate().split("(-)");
-			int yearOfTravel= Integer.parseInt(dateOfTravel[0]);
-			
-			int monthOfTravel= Integer.parseInt(dateOfTravel[1]);
-			
-			int dayOfTravel= Integer.parseInt(dateOfTravel[2]);
-			
-			String [] timeOfTravel= addvertisment.getTimeOfTravel().split("(:)");
+			String[] dateOfTravel = addvertisment.getDate().split("(-)");
+			int yearOfTravel = Integer.parseInt(dateOfTravel[0]);
+
+			int monthOfTravel = Integer.parseInt(dateOfTravel[1]);
+
+			int dayOfTravel = Integer.parseInt(dateOfTravel[2]);
+
+			String[] timeOfTravel = addvertisment.getTimeOfTravel()
+					.split("(:)");
 			int hourAdd = Integer.parseInt(timeOfTravel[0]);
-			
+
 			int minutesAdd = Integer.parseInt(timeOfTravel[1]);
-		
+
 			Calendar rightNow = Calendar.getInstance();
-			
-			int currentYear=  rightNow.get(Calendar.YEAR);
-		
-			int currentMonth= rightNow.get(Calendar.MONTH) +1;
-			
-			int currentDay= rightNow.get(Calendar.DAY_OF_MONTH);
-		
-			
+
+			int currentYear = rightNow.get(Calendar.YEAR);
+
+			int currentMonth = rightNow.get(Calendar.MONTH) + 1;
+
+			int currentDay = rightNow.get(Calendar.DAY_OF_MONTH);
+
 			int currentHour = rightNow.get(Calendar.HOUR_OF_DAY);
-		
+
 			int currentMinute = rightNow.get(Calendar.MINUTE);
-		
-			
-		
-			
-			if(yearOfTravel>currentYear){
+
+			if (yearOfTravel > currentYear) {
 				upToDateAds.add(addvertisment);
 				continue;
-			}
-			else if(yearOfTravel==currentYear){
-				if(monthOfTravel>currentMonth){
+			} else if (yearOfTravel == currentYear) {
+				if (monthOfTravel > currentMonth) {
 					upToDateAds.add(addvertisment);
 					continue;
-				}
-				else if(monthOfTravel==currentMonth){
-					
-					if(dayOfTravel>currentDay){
+				} else if (monthOfTravel == currentMonth) {
+
+					if (dayOfTravel > currentDay) {
 						upToDateAds.add(addvertisment);
 						continue;
-					}
-					else if(dayOfTravel==currentDay){
-						if(hourAdd>currentHour)
-						{
+					} else if (dayOfTravel == currentDay) {
+						if (hourAdd > currentHour) {
 							upToDateAds.add(addvertisment);
 							continue;
-						}
-						else if(hourAdd==currentHour){
-							if(minutesAdd>currentMinute)
+						} else if (hourAdd == currentHour) {
+							if (minutesAdd > currentMinute)
 								upToDateAds.add(addvertisment);
 						}
 					}
 				}
-				
+
 			}
 
-		
-
 		}
-			return upToDateAds;
-		}
+		return upToDateAds;
+	}
 }

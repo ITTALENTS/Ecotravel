@@ -64,8 +64,8 @@ public class AdvertisementsController {
 			System.out.println("driver: " + ad.getDriver().getProfile().getUsername());
 		}
 		
-		if(ads.isEmpty())
-			model.addAttribute("no_trips_msg", "Sorry, no matching trips.");
+//		if(ads.isEmpty())
+//			model.addAttribute("no_trips_msg", "Sorry, no matching trips.");
 		
 		session.setAttribute("matching_advertisements", ads);
 		return "ChooseTrip";
@@ -159,11 +159,21 @@ public class AdvertisementsController {
 	
 	
 	
+	
+	@RequestMapping(value="EditAdvertisementFreePlaces", method = RequestMethod.GET)
+	public String goToEditAdvertisementFreePlaces() {
+		return "EditAdvertisementFreePlaces";
+	}
+	
+	
+	
+	
 	//if driver wants to edit his edit advertisement
-	@RequestMapping(value="EditAdvertisement", method = RequestMethod.GET) 
+	@RequestMapping(value="EditFreePlaces", method = RequestMethod.POST) 
 	public String editAdvertisement(@RequestParam int freePlaces,
 									HttpSession session, Model model) {
 		
+		System.out.println("New free places to set: " + freePlaces);
 		
 		Person currentUser = (Person) session.getAttribute("loggedInUser");
 		Addvertisment adv = ((List<Addvertisment>)session.getAttribute("active_ads")).get(0);
@@ -177,7 +187,7 @@ public class AdvertisementsController {
 		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(currentUser.getProfile().getUsername());
 		session.setAttribute("active_ads", activeAds);
 		
-		return "Profile";
+		return "redirect:Profile";
 	}
 	
 	

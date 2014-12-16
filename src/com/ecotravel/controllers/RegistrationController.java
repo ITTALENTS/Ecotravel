@@ -75,7 +75,7 @@ public class RegistrationController {
 		
 		
 		// call DAO methods which check if user name and mail are free
-		boolean usernameExists = profileDAO.usernameExist(username);
+		boolean usernameExists = profileDAO.usernameExistForReg(username);
 		boolean emailExists = profileDAO.emailExist(email);
 		// boolean isUserAllwedToRegister = !usernameExists && !emailExists;
 		boolean isUserAllwedToRegister = profileDAO.isRegistrationAllowed(email, username);
@@ -109,7 +109,10 @@ public class RegistrationController {
 				model.addAttribute("username_taken_msg", "This username already taken!");
 				return "RegisterForm";
 			} 
-			else return null;
+			else {
+				System.out.println("Critical error !!!");
+				return null;
+			}
 		}
 
 	}
