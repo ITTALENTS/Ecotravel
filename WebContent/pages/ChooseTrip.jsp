@@ -28,10 +28,10 @@
 				printInCell(out, a.getDate().substring(2));
 				printInCell(out, a.getTimeOfTravel());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
-				printInCell(out, "<a href=\"ViewDriversProfile\" value=" + driverUsername + " class=\"btn btn-primary\">Driver's Profile</a>"); 
 			out.print("</div>");
 		}
 	%>
+	<div id="parent_div_1">
 		<form method="GET" name="selectedAdvertisment" action="SubscribeForTrip">
 				<% 
 					out.print(  "<div class=\"row\">"
@@ -56,6 +56,19 @@
 					}
 				%>
 		</form>
+		</div>
+		<div id="parent_div_2">
+			<% if(!listOfAds.isEmpty()){
+				printInCell(out, "Profiles"); 
+				for(Addvertisment a : listOfAds) 
+					{%>
+						<div class="row trip-row" class="child_div_1">
+							<form name=<%=a.getDriver().getProfile().getUsername()%> action="#" method="GET">
+								<div class=\"col-lg-1\"><input type="submit" value="View Driver Profile"/></div>
+							</form>
+						</div>
+			<%}	}%>
+		</div>
 	</div>
 	<%@ include file="Footer.jsp" %>
 </body>

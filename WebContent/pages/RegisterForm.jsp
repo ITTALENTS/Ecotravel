@@ -55,16 +55,12 @@
 			<div class="form-group" id="hasDriverLicense">
 				<label class="control-label" for="driverOption">Do you have a driving license?</label>
 				<div class="row">
-				<label class="control-label">Yes</label>
+					<label class="control-label">Yes</label>
+					<input type="radio" name="driverLicense" value="Yes"/>
 				</div>
 				<div class="row">
-				<input type="radio" name="driverLicense" value="Yes"/>
-				</div>
-				<div class="row">
-				<label class="control-label">No</label>
-				</div>
-				<div class="row">
-				<input type="radio" name="driverLicense" value="No" checked="checked" />
+					<label class="control-label">No</label>
+					<input type="radio" name="driverLicense" value="No" checked="checked" />
 				</div>
 			</div>
 			
