@@ -69,6 +69,13 @@ public class ProfileDAO implements IProfileDAO {
 
 	}
 
+	public boolean usernameExistForReg(String username)	
+	{
+		String sql = "select COUNT(*)  from profiles where username=?";
+		int usernameExist= jdbc.queryForInt(sql, username);
+		return (usernameExist>0);
+		
+	}
 	public boolean emailExist(String email) {
 
 		String countEmails = "select count(*) from profiles where email=?";
@@ -79,12 +86,12 @@ public class ProfileDAO implements IProfileDAO {
 
 	public boolean isRegistrationAllowed(String email, String username) {
 
-		return !(emailExist(email) || usernameExist(username));
+		return !(emailExist(email) || usernameExistForReg(username));
 	}
 
 	public boolean matchPassword(String username, String password) {
 		String passwordDB = null;
-		if (usernameExist(username)) {
+		if (usernameExistForReg(username)) {
 
 			String getPasswordByUsername = "select password from profiles where username=?";
 			Map<String, Object> userPass = jdbc.queryForMap(
