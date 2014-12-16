@@ -8,5 +8,5 @@ public interface IProfileDAO {
 
 	public void createProfile(String username, String email, String password);
 
-	public void changePassword(Profile profile, final String password);
+	
 }

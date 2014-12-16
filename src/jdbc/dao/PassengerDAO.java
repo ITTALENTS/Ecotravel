@@ -1,12 +1,14 @@
 package jdbc.dao;
 
 import javax.sql.DataSource;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+
 import jdbc.model.*;
 import jdbc.mappers.*;
 
@@ -46,16 +48,18 @@ public class PassengerDAO implements IPassengerDAO {
 		TransactionStatus status = transactionManager.getTransaction(def);
 		Passenger passenger = new Passenger();
 		try {
+			
+			
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
-			int idOfProfile = jdbc
-					.queryForInt(getProfileIdByUsername, username);
-
+			int idOfProfile = jdbc.queryForInt(getProfileIdByUsername, username);
+System.out.println(idOfProfile);
 			String changeProfileOfPassenger = "update passengers inner join profiles on passengers.profileId =profiles.profileId  set passengers.name=?,passengers.telephone=?,passengers.birthYear=?, profiles.password=? where passengers.profileId=?";
 
 			jdbc.update(changeProfileOfPassenger, name, telephone, birthYear,
 					password, idOfProfile);
 			passenger= showProfile(username);
-		
+			System.out.println(passenger.getName());
+			transactionManager.commit(status);
 		} catch (DataAccessException e) {
 
 			transactionManager.rollback(status);

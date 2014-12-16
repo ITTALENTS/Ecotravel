@@ -105,7 +105,12 @@ public class DriverDAO implements IDriverDAO {
 		}
 
 	}
+private void changePassword(String username, String password) {
+		
+		String changePasswordOfProfile = "Update profiles set password=? where username=?";
+		jdbc.update(changePasswordOfProfile, password, username);
 
+	}
 	@Override
 	public Driver changeProfile(String username, String name, String telephone,
 			String musicInTheCar, boolean isSmoking, int birthYear, String password) {
@@ -116,17 +121,22 @@ public class DriverDAO implements IDriverDAO {
 		TransactionStatus status = transactionManager.getTransaction(def);
 		Driver driver = new Driver();
 		try {
+			
+			
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
 			int idOfProfile = jdbc.queryForInt(getProfileIdByUsername, username);
+			changePassword(username, password);
 
-			String changeProfileOfDriver = "update drivers inner join profiles on drivers.profileId =profiles.profileId  set drivers.nameOfDriver=?,drivers.telephone=?,drivers.birthYear=?,drivers.smokeInTheCar=?, drivers.musicInTheCar=?, profiles.password=? where drivers.profileId=?";
+			String changeProfileOfDriver = "update drivers set drivers.nameOfDriver=?,drivers.telephone=?,drivers.birthYear=?,drivers.smokeInTheCar=?, drivers.musicInTheCar=? where drivers.profileId=?";
 
 			jdbc.update(changeProfileOfDriver, name, telephone, birthYear,
-					smoke,musicInTheCar,password, idOfProfile);
-			driver= showProfile(username);
+					smoke,musicInTheCar, idOfProfile);
+			transactionManager.commit(status);
+		//	driver= showProfile(username);
+		//	System.out.println(driver.getProfile().getPassword());
 		
 		} catch (DataAccessException e) {
-
+System.out.println("in catch");
 			transactionManager.rollback(status);
 
 		}
