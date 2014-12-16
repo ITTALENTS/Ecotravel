@@ -37,6 +37,9 @@ public class PassengerDAO implements IPassengerDAO {
 		return profile;
 
 	}
+	
+	
+	
 
 	@Override
 	public void changeProfile(String name, String telephone, String birthYear,
@@ -48,6 +51,9 @@ public class PassengerDAO implements IPassengerDAO {
 				username);
 
 	}
+	
+	
+	
 
 	@Override
 	public void voteForDriver(String username, int vote) {
@@ -84,6 +90,9 @@ public class PassengerDAO implements IPassengerDAO {
 		}
 
 	}
+	
+	
+	
 
 	public void registerPassenger(String username, String name, int birthYear,
 			String telephone) {

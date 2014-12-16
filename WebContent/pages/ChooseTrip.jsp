@@ -28,7 +28,7 @@
 				printInCell(out, a.getDate().substring(2));
 				printInCell(out, a.getTimeOfTravel());
 				printInCell(out, String.valueOf(a.getFreePlaces()));
-				printInCell(out, "<a href=\"\" value=\"driverProfile\" class=\"btn btn-primary\">Driver Profile</a>"); 
+				printInCell(out, "<a href=\"ViewDriversProfile\" value=" + driverUsername + " class=\"btn btn-primary\">Driver's Profile</a>"); 
 			out.print("</div>");
 		}
 	%>
