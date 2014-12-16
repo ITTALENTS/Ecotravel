@@ -62,12 +62,15 @@
 				for(Addvertisment a : listOfAds) 
 					{%>
 						<div class="row trip-row" class="child_div_1">
-							<form name=<%=a.getDriver().getProfile().getUsername()%> action="#" method="GET">
-								<div class=\"col-lg-1\"><input type="submit" class="btn btn-warning" value="View Driver Profile"/></div>
+							<form action="ViewDriversProfile" method="GET">
+								<div class="col-lg-1">
+									<input type="hidden" name="driverUsername" value=<%=a.getDriver().getProfile().getUsername()%> />
+									<input type="submit"class="btn btn-warning" value="View Driver Profile"/></div>
 							</form>
 						</div>
 			<%}	}%>
 		</div>
+		<h4>${trip_not_selscted_msg}</h4>
 	</div>
 	<%@ include file="Footer.jsp" %>
 </body>

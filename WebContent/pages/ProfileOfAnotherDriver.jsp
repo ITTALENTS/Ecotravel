@@ -45,7 +45,7 @@
 		</div>
 		<!-- HERE TO PRINT USER'S ADVERTISEMENT !!! -->
 		
-		<% List<Addvertisment> listOfAllActiveAds = (List<Addvertisment>)(session.getAttribute("active_ads"));
+		<% List<Addvertisment> listOfAllActiveAds = (List<Addvertisment>)(session.getAttribute("someones_active_ads"));
 		if(!listOfAllActiveAds.isEmpty()) { 
 			out.print(  "<div class=\"row\">"
 			 		+ "<div class=\"col-lg-1\">From</div>"
@@ -57,6 +57,7 @@
 			for(int i=0; i < listOfAllActiveAds.size(); i++)
 				printAnAdvertisment(out, listOfAllActiveAds.get(i));
 			} %>
+		
 	</div>
 	<%@ include file="Footer.jsp" %>
 </body>

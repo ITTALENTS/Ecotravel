@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import jdbc.dao.DriverDAO;
 import jdbc.dao.PassengerDAO;
 import jdbc.dao.ProfileDAO;
+import jdbc.model.Addvertisment;
 import jdbc.model.Driver;
 import jdbc.model.Passenger;
 import jdbc.model.Person;
@@ -191,6 +192,10 @@ public class ProfileController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
 		Driver driver = driverDAO.showProfile(driverUsername);
+		
+		// here update session attribute "active_ads"
+		List<Addvertisment> activeAds = driverDAO.getActiveAdvertismentsForDriver(driverUsername);
+		session.setAttribute("someones_active_ads", activeAds);
 		
 		model.addAttribute("name", driver.getName());
 		model.addAttribute("username", driver.getProfile().getUsername());
