@@ -52,7 +52,7 @@ public class PassengerDAO implements IPassengerDAO {
 			
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
 			int idOfProfile = jdbc.queryForInt(getProfileIdByUsername, username);
-System.out.println(idOfProfile);
+
 			String changeProfileOfPassenger = "update passengers inner join profiles on passengers.profileId =profiles.profileId  set passengers.name=?,passengers.telephone=?,passengers.birthYear=?, profiles.password=? where passengers.profileId=?";
 
 			jdbc.update(changeProfileOfPassenger, name, telephone, birthYear,

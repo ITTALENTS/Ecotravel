@@ -165,6 +165,7 @@ public class ProfileDAO implements IProfileDAO {
 		return null;
 	}
 
+	
 	public String generateRandomPassword(String username) {
 		Random RANDOM = new SecureRandom();
 		int PASSWORD_LENGTH = 8;

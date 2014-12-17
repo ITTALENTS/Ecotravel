@@ -258,7 +258,7 @@ public class ProfileController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
 		
-		List<Driver> wantedDrivers = driverDAO.getListOfMostWantedDrivers();
+		List<Driver> wantedDrivers = driverDAO.getListOfMostActiveDrivers();
 		
 		session.setAttribute("most_wanted_drivers", wantedDrivers);
 		
