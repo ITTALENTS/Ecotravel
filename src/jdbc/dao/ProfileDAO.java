@@ -138,7 +138,7 @@ public class ProfileDAO implements IProfileDAO {
 
 	}
 
-	@Override
+	/*@Override
 	public void createProfile(String username, String email, String password) {
 		Profile profile = new Profile();
 		profile.setUsername(username);
@@ -149,7 +149,7 @@ public class ProfileDAO implements IProfileDAO {
 		jdbc.update(insertIntoProfiles, profile.getUsername(),
 				profile.getEmail(), profile.getPassword());
 	}
-
+*/
 
 
 	

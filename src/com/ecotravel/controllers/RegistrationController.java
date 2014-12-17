@@ -101,10 +101,10 @@ public class RegistrationController {
 		if(isUserAllwedToRegister) {
 			if(driverLicense.equalsIgnoreCase("No")) {
 				// here call register method from DAO (it writes the new user in DB)
-				profileDAO.createProfile(username, email, password);
+				//profileDAO.createProfile(username, email, password);
 				// we register as passenger
 				PassengerDAO passengerDao = (PassengerDAO) context.getBean("passengerDAO");
-				passengerDao.registerPassenger(username, name, birthYear, telephone);
+				passengerDao.registerPassenger(username,email,password, name, birthYear, telephone);
 				
 				model.addAttribute("reg_complete_msg", "Registration completed. Please, log in.");
 				session.invalidate();
@@ -166,12 +166,12 @@ public class RegistrationController {
 		
 		// here call register method from DAO (it writes the new user in DB)
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
+		//ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
 		
-		profileDAO.createProfile((String)session.getAttribute("username"), (String)session.getAttribute("email"), (String)session.getAttribute("password"));
+		//profileDAO.createProfile((String)session.getAttribute("username"), (String)session.getAttribute("email"), (String)session.getAttribute("password"));
 		// we register as driver
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
-		driverDAO.registerDriver((String)session.getAttribute("username"), (String)session.getAttribute("name"), 
+		driverDAO.registerDriver((String)session.getAttribute("username"), (String)session.getAttribute("email"), (String)session.getAttribute("password"),(String)session.getAttribute("name"), 
 				(int)session.getAttribute("birthYear"), (String)session.getAttribute("telephone"), licensePeriodYear,
 				musicInTheCar, smokingAllowed);
 		

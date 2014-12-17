@@ -132,7 +132,7 @@ public class DriverDAO implements IDriverDAO {
 		return driver;
 	}
 
-	public void registerDriver(String username, String name, int birthYear,
+	public void registerDriver(String username,String email, String password, String name, int birthYear,
 			String telephone, int yearsInDriving, String musicInTheCar,
 			boolean smokeInTheCar) {
 
@@ -140,6 +140,13 @@ public class DriverDAO implements IDriverDAO {
 		TransactionStatus status = transactionManager.getTransaction(def);
 
 		try {
+			
+			
+		
+			
+			String insertIntoProfiles = "insert into profiles (username, email, password) values (?, ?,?)";
+			jdbc.update(insertIntoProfiles, username,
+					email, password);
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
 			@SuppressWarnings("deprecation")
 			int profileId = jdbc.queryForInt(getProfileIdByUsername, username);

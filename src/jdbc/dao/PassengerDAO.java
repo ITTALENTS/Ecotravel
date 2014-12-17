@@ -107,13 +107,19 @@ public class PassengerDAO implements IPassengerDAO {
 
 	}
 
-	public void registerPassenger(String username, String name, int birthYear,
+	public void registerPassenger(String username,String email, String password, String name, int birthYear,
 			String telephone) {
 
 		TransactionDefinition def = new DefaultTransactionDefinition();
 		TransactionStatus status = transactionManager.getTransaction(def);
 
 		try {
+			
+		
+			String insertIntoProfiles = "insert into profiles (username, email, password) values (?, ?,?)";
+			jdbc.update(insertIntoProfiles,username,
+					email,password);
+			
 
 			String getProfileIdByUsername = "select profileId from profiles where username=?";
 			@SuppressWarnings("deprecation")
