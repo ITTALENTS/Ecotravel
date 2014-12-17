@@ -10,7 +10,7 @@
     <%@ include file="Header.jsp" %>
     <div id="welcome" class="container">
 	    <div class="jumbotron">
-			<p>
+			<p style="text-align:justify"">
 				Carpooling first became prominent in the United States as a rationing tactic during World War II. 
 				It returned in the mid-1970s due to the 1973 oil crisis and the 1979 energy crisis. At that time the first employee 
 				vanpools were organized at Chrysler and 3M.
@@ -25,8 +25,10 @@
 				rides thanks to easy-to-use and reliable online transport marketplaces. These websites are commonly used for one-off 
 				long-distance journeys with high fuel costs.
 			</p>
-			
-			<iframe width="560" height="315" src="//www.youtube.com/embed/sdWGt3kgZTs" frameborder="0" allowfullscreen></iframe>
+			<br>
+			<div style="text-align:center">
+				<iframe width="560" height="315" src="//www.youtube.com/embed/sdWGt3kgZTs" frameborder="0" allowfullscreen></iframe>
+			</div>
 		</div>
 	</div>
 </body>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 import jdbc.dao.DriverDAO;
 import jdbc.dao.PassengerDAO;
@@ -45,8 +46,8 @@ public class RegistrationController {
 								@RequestParam String username, 
 								@RequestParam String password,
 								@RequestParam String rePassword,
-								@RequestParam String driverLicense, Model model, 
-								HttpSession session, HttpServletResponse response) {
+								@RequestParam String driverLicense, 
+								Model model, HttpSession session) {
 		
 		System.out.println("username: " + username);
 		System.out.println("pass: " + password);
@@ -57,6 +58,31 @@ public class RegistrationController {
 		System.out.println("birthYear: " + birthYear);
 		System.out.println("driverLicense: " + driverLicense);
 		
+		// Parameters Validation:
+		boolean hasErrors = false;
+		if(name.length() < 2) {
+			model.addAttribute("short_name_msg", "Your name is too short");
+			hasErrors = true;
+		} if(username.length() < 3) {
+			model.addAttribute("short_username_msg", "Your username must contain at least 3 characters");
+			hasErrors = true;
+		} if(password.length() < 6) {
+			model.addAttribute("weak_password_msg", "Your password must contain at least 6 characters");
+			hasErrors = true;
+		} if(!email.matches(".*\\@.*\\..*")) {
+			model.addAttribute("invalid_email_msg", "Invalid email");
+			hasErrors = true;
+		} if(!telephone.matches("(08)[7-9][0-9]{7}")) {
+			model.addAttribute("invalid_phone_msg", "Invalid phone number");
+			hasErrors = true;
+		} if(!password.equals(rePassword)) {
+			model.addAttribute("rePassword_error_msg", "Password and Retype Password fields do not match!");
+			hasErrors = true;
+		}
+		
+		if(hasErrors)
+			return "RegisterForm";
+		
 		session.setAttribute("username", username);
 		session.setAttribute("password", password);
 		session.setAttribute("email", email);
@@ -66,25 +92,11 @@ public class RegistrationController {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		ProfileDAO profileDAO = (ProfileDAO) context.getBean("profileDAO");
-		
-		// check password retype
-		if(!password.equals(rePassword)) {
-			model.addAttribute("rePassword_error_msg", "Password and Retype Password fields do not match!");
-			return "RegisterForm";
-		}
-		
-		
 		// call DAO methods which check if user name and mail are free
 		boolean usernameExists = profileDAO.usernameExistForReg(username);
 		boolean emailExists = profileDAO.emailExist(email);
 		// boolean isUserAllwedToRegister = !usernameExists && !emailExists;
 		boolean isUserAllwedToRegister = profileDAO.isRegistrationAllowed(email, username);
-		
-//		// these variables are jsut for the test
-//		boolean usernameExists = false;
-//		boolean emailExists = false;
-//		boolean isUserAllwedToRegister = !usernameExists && !emailExists;
-		
 		
 		if(isUserAllwedToRegister) {
 			if(driverLicense.equalsIgnoreCase("No")) {
@@ -140,11 +152,6 @@ public class RegistrationController {
 		else
 			smokingAllowed = false;
 		
-		System.out.println();
-		System.out.println("License year: " + licensePeriodYear);
-		System.out.println("Smoking: " + smokingAllowed);
-		System.out.println("Music: " + musicInTheCar);
-		System.out.println();
 		// get model attributes from previous page and print them in console
 		System.out.println("username: " + session.getAttribute("username"));
 		System.out.println("password: " + session.getAttribute("password"));
@@ -152,6 +159,10 @@ public class RegistrationController {
 		System.out.println("name: " + session.getAttribute("name"));
 		System.out.println("telephone: " + session.getAttribute("telephone"));
 		System.out.println("birthYear: " + session.getAttribute("birthYear"));
+		System.out.println();
+		System.out.println("License year: " + licensePeriodYear);
+		System.out.println("Smoking: " + smokingAllowed);
+		System.out.println("Music: " + musicInTheCar);
 		
 		// here call register method from DAO (it writes the new user in DB)
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -174,19 +185,6 @@ public class RegistrationController {
 	
 	
 	
-	
-//	// another implementation:
-//	@RequestMapping(method = RequestMethod.POST)
-//	public String registerUser(ModelMap model, /* @Valid Person person */ BindingResult result) {
-//	
-//		if(result.hasErrors()) {
-//			
-//			// do something
-//			return null;
-//		} else {
-//			return "ChooseForm";
-//		}
-//	}
 
 	
 }

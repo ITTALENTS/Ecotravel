@@ -12,7 +12,7 @@
 			<h1>Who we are?</h1>
 			<div class="row">
 				<div class="row">
-					<h2  class="text-warning">Viktoriq Slavcheva Borisova</h2>
+					<h2  class="text-warning">Viktoria Slavcheva Borisova</h2>
 				</div>
 				<div class="row"><em>
 				Student at <a href="http://www.tu-sofia.bg/"> <abbr title="Technical University Of Sofia">TU</abbr>  </a>
@@ -34,7 +34,7 @@
 			</div>
 			<div class="row">
 				<div class="row">
-					<h2 class="text-warning">Nikola Monov</h2>
+					<h2 class="text-warning">Nikola Yoshev Monov</h2>
 				</div>
 				<div class="row"><em>
 				Student at: <a href="https://www.uni-sofia.bg/"> <abbr title="Sofia University">SU</abbr></a>

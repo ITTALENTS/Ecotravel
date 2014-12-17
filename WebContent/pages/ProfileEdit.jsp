@@ -16,6 +16,7 @@
 		<form id=editForm" method="Post" action=" <% if(currentUser instanceof Passenger) out.print("SubmitNewProfilePassenger"); else out.print("SubmitNewProfileDriver"); %>">
 			<div class="form-group" id="nameField">
 				<label class="control-label" for="name">Name:</label>
+				<h6 style="color:red; display:inline; margin-left:5px;">${short_name_msg}</h6>
 				<input class="form-control" id="name" type = "text" name = "name" value=<%=String.valueOf(currentUser.getName())%> />
 			</div>
 			
@@ -26,6 +27,7 @@
 			
 			<div class="form-group" id="phoneField">
 				<label class="control-label" for="telephone">Phone:</label>
+				<h6 style="color:red; display:inline; margin-left:5px;">${invalid_phone_msg}</h6>
 				<input class="form-control" id="telephone" type = "tel" name = "telephone" value=<%=currentUser.getTelephone()%> >
 			</div>
 			
@@ -43,8 +45,8 @@
 			
 			<div class="form-group" id="passwordField">
 				<label class="control-label" for="password">Password:</label>
+				<h6 style="color:red; display:inline; margin-left:5px;">${weak_password_msg}</h6>
 				<input id="password" class="form-control" type = "password" name = "password" required="true"/>
-				<!-- name should be "profile.password" to to the mapping -->
 			</div>
 			
 			<div class="form-group" id="rePasswordField">

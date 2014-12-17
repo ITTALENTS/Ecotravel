@@ -13,6 +13,7 @@
 		<form id="registerForm" method="POST" action="RegisterForm" class="form-horizontal">
 			<div class="form-group" id="nameField">
 				<label class="control-label" for="name">Name:</label>
+				<h6 style="color:red; display:inline; margin-left:5px;">${short_name_msg}</h6>
 				<input class="form-control" id="name" type = "text" name = "name" required="true"/>
 			</div>
 			
@@ -23,27 +24,28 @@
 			
 			<div class="form-group" id="phoneField">
 				<label class="control-label" for="telephone">Phone:</label>
+				<h6 style="color:red; display:inline; margin-left:5px;">${invalid_phone_msg}</h6>
 				<input class="form-control" id="telephone" type = "tel" name = "telephone" required="true"/>
 			</div>
 			
 			<div class="form-group" id="emailField">
 				<label class="control-label" for="email">Email:</label>
+				<h6 style="color:red; display:inline; margin-left:5px;">${invalid_email_msg}</h6>
 				<input class="form-control" id="email"  type = "email" name = "email" required="true"/>
-				<!-- name should be "profile.email" to to the mapping -->
 			</div>
 			<h4 style="color:red">${email_taken_msg}</h4>
 			
 			<div class="form-group" id="usernameFiled">
 				<label class="control-label" for="username">Username:</label>
+				<h6 style="color:red; display:inline; margin-left:5px;">${short_username_msg}</h6>
 				<input id="username" class="form-control" type = "text" name = "username" required="true"/>
-				<!-- name should be "profile.username" to to the mapping -->
 			</div>
 			<h4 style="color:red">${username_taken_msg}</h4>
 			
 			<div class="form-group" id="passwordField">
 				<label class="control-label" for="password">Password:</label>
+				<h6 style="color:red; display:inline; margin-left:5px;">${weak_password_msg}</h6>
 				<input id="password" class="form-control" type = "password" name = "password" required="true"/>
-				<!-- name should be "profile.password" to to the mapping -->
 			</div>
 			
 			<div class="form-group" id="rePasswordField">

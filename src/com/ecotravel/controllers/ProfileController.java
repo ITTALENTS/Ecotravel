@@ -71,10 +71,29 @@ public class ProfileController {
 										@RequestParam String rePassword,
 										HttpSession session, Model model) {
 		
-		if(!password.equals(rePassword)) {
+		// Parameters Validation:
+		boolean hasErrors = false;
+		if(name.length() < 2) {
+			model.addAttribute("short_name_msg", "Your name is too short");
+			hasErrors = true;
+		} if(password.length() < 6) {
+			model.addAttribute("weak_password_msg", "Your password must contain at least 6 characters");
+			hasErrors = true;
+		} if(!telephone.matches("(08)[7-9][0-9]{7}")) {
+			model.addAttribute("invalid_phone_msg", "Invalid phone number");
+			hasErrors = true;
+		} if(!password.equals(rePassword)) {
 			model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
-			return "ProfileEdit";
+			hasErrors = true;
 		}
+		
+		if(hasErrors)
+			return "ProfileEdit";
+		
+//		if(!password.equals(rePassword)) {
+//			model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
+//			return "ProfileEdit";
+//		}
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		PassengerDAO passengerDAO = (PassengerDAO) context.getBean("passengerDAO");
@@ -110,10 +129,29 @@ public class ProfileController {
 									@RequestParam String musicInTheCar,
 									HttpSession session, Model model) {
 		
-		if(!password.equals(rePassword)) {
-			model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
-			return "ProfileEdit";
-		}
+		// Parameters Validation:
+				boolean hasErrors = false;
+				if(name.length() < 2) {
+					model.addAttribute("short_name_msg", "Your name is too short");
+					hasErrors = true;
+				} if(password.length() < 6) {
+					model.addAttribute("weak_password_msg", "Your password must contain at least 6 characters");
+					hasErrors = true;
+				} if(!telephone.matches("(08)[7-9][0-9]{7}")) {
+					model.addAttribute("invalid_phone_msg", "Invalid phone number");
+					hasErrors = true;
+				} if(!password.equals(rePassword)) {
+					model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
+					hasErrors = true;
+				}
+				
+				if(hasErrors)
+					return "ProfileEdit";
+		
+//		if(!password.equals(rePassword)) {
+//			model.addAttribute("edit_error_msg", "Password and Retype Password fields do not match!");
+//			return "ProfileEdit";
+//		}
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
@@ -203,7 +241,7 @@ public class ProfileController {
 		model.addAttribute("email", driver.getProfile().getEmail());
 		model.addAttribute("phone", driver.getTelephone());
 		model.addAttribute("licenseYear", driver.getLicenseYear());
-		model.addAttribute("isSmoking", driver.getIsSmoking());
+		model.addAttribute("isSmoking", driver.getIsSmoking() ? "Yes" : "No");
 		model.addAttribute("music", driver.getMusicInTheCar());
 		model.addAttribute("numberOfTravels", driver.getNumberOfTravels());
 		model.addAttribute("rating", driver.getRating());
@@ -220,7 +258,7 @@ public class ProfileController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DriverDAO driverDAO = (DriverDAO) context.getBean("driverDAO");
 		
-		List<Driver> wantedDrivers = driverDAO.getListOfMostActiveDrivers();
+		List<Driver> wantedDrivers = driverDAO.getListOfMostWantedDrivers();
 		
 		session.setAttribute("most_wanted_drivers", wantedDrivers);
 		
